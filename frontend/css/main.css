@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    margin: 0;
+    color: black;
+}
+
+a{
+    text-decoration: none;
+}
+
+.wrapper{
+    background-color: #f5f7ff;
+    min-height: 100vh;
+}
+
+
+.container{
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 90px;
+    
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.logo_block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    margin-left: 50px;
+}
+
+.bebebe{
+    width: 50px;
+    height: 50px;
+}
+
+.logo{
+    margin: 20px;
+    font-weight: 700;
+    font-size: 45px;
+}
+
+nav{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+nav ul{
+    display:flex;
+    gap: 40px;
+    
+    list-style: none;
+    align-items: center;
+    
+    margin: 0;
+    padding: 0;
+}
+
+.header_icons{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    margin-left: auto;
+}
+
+.header_icons img{
+    display: block;
+}
+
+header nav ul li.active {
+    position: relative;
+}
+
+header nav ul li.active::after  {
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 55px;
+    height: 4px;
+    background: #7896E8;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 3px;
+}
+
+
+
+
+
+
+.home_container{
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    padding: 60px 80px;
+    box-sizing: border-box;
+
+    min-height: 600px;
+}
+
+.info_home{
+    width: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.image_home{
+    width: 50%;
+    position: relative;
+    z-index: 1;
+
+    /* фотография немного ниже текста */
+    padding-top: 0;
+}
+
+.image_home img{
+    display: block;
+
+    /* масштабируется вместе с шириной */
+    width: 110%;
+    height: auto;
+
+    /* НЕ обрезаем */
+    object-fit: contain;
+
+    /* позволяет чуть зайти в сторону текста */
+    transform: translateX(-5%);
+    margin-top: 0px;
+    margin-left: -30px;
+}
+
+
+
+
+.info_home h2{
+    display: inline-block;
+
+    padding: 8px 16px;
+
+    background-color: #eef0ff;
+    color: #5965e8;
+    border-radius: 30px;
+    word-spacing: 5px;
+    font-size: clamp(15px, 1.2vw, 19px);
+}
+
+.info_home h1 {
+    margin-top: 25px;
+
+    font-size: clamp(48px, 4.8vw, 78px);
+
+    line-height: 1.05;
+
+    color: #172b55;
+}
+
+.info_home p{
+    font-size: clamp(19px, 1.7vw, 27px);
+    max-width: 600px;
+    margin-top: 0px;
+    line-height: 1.6;
+    color: #5f6b85;
+}
+.hero_buttons{
+    display: flex;
+    gap: 16px;
+
+    margin-top: 30px;
+}
+
+.btn{
+    display: inline-flex;
+    align-items: center;
+
+    border-radius: 15px;
+    padding: 15px 25px;
+
+    font-size: clamp(16px, 1.3vw, 20px);
+    text-decoration: none;
+    word-spacing: 4px;
+    font-weight: 600;
+}
+
+.btn-locate{
+    background-color: #5965e8;
+    color: white;
+}
+
+.btn-bid{
+    background-color: white;
+    color: #5965e8;
+
+    border: 1px solid #5965e8;
+}
+
+.btn-locate:hover{
+    background-color: #4653d8;
+}
+
+.btn-bid:hover{
+    background-color: #f1f2ff;
+}
