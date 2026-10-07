@@ -1,5 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+/* ВЕРТИКАЛЬНЫЙ ПОЛЗУНОК*/
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #5965e8;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #4c57d6;
+}
+
+/* БОДИ*/
+
+
 body{
     font-family: "Poppins", sans-serif;
     font-weight: 500;

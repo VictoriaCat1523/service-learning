@@ -4,6 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../js/login.js" defer></script>
+        <script>    
+            if (sessionStorage.getItem('openRegister') === 'true') {
+                    document.documentElement.classList.add('open-register');
+                }
+        </script>
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/login.css">
     </head>
@@ -19,17 +25,13 @@
                 
                 <nav>
                     <ul>
-                        <li><a href="main_site_before_autoriz.html">Главная</a></li>
-                        <li><a href="#">Найти компанию</a></li>
+                        <li><a href="main_login.html">Главная</a></li>
+                        <li><a href="be_locate_company.html">Найти компанию</a></li>
                         <li><a href="#">Создать заявку</a></li>
                         <li><a href="#">Мои заявки</a></li>
                         <li><a href="#">Уведомления</a></li>
                     </ul>
                 </nav>
-                <div class="header_btns">
-                        <a href="login.html" class="btn btn-entrance">Войти</a>
-                        <a href="register.html" class="btn btn-register">Регистрация</a>
-                </div>
             </header>
         </div>
 
@@ -37,37 +39,79 @@
             <div class="auth-box">
 
                 <div class="auth-toggle">
+                    <div class="toggle-slider"></div>
                     <button class="toggle-btn active" type="button" id="loginTab">Войти</button>
                     <button class="toggle-btn" type="button" id="registerTab">Регистрация</button>
                 </div>
 
-                
-                <form class="auth-form">
-                
-                    <label>Email</label>
-                    <input type="email">
+                <div id="loginForm">
+                    <form class="auth-form">
+                        <h1>С возвращением!</h1>
+                        <p>Войдите, чтобы продолжить</p>
 
-                    <label>Пароль</label>
-                    <input type="password">
+                        <input type="email" class="user" placeholder="Адрес электронной почты">
 
-                    <button type="submit">Войти</button>
-                </form>
+                        <div class="password-wrapper">
+                            <input type="password" id="loginPassword" class="pass login" placeholder="Введите свой пароль">
+                            <button type="button" class="show-password">
+                                <img src="../images/eye-off.svg" alt="">
+                            </button>
+                        </div>
+
+
+                        <div class="login-options">
+                            <label class="checkbox">
+                                <input type="checkbox">
+                                <span>Запомнить меня</span>
+                            </label>
+                            <a href="#">Забыли пароль?</a>
+                        </div>
+                        
+                        
+                        <button type="submit" class="submit-btn">Войти</button>
+                    </form>
+                </div>
+
+
+                <div id="registerForm">
+                    <form class="auth-form">
+
+                        <img src="../images/user-registration.svg" alt="" class="user-registration">
+                        <h1>Создай аккаунт</h1>
+                        <p> Зарегестрируйся, чтобы находить компании
+                            <br>для любых интересов и мероприятий
+                        </p>
+
+                        <input type="name" class="name" placeholder="Имя">
+
+                        <input type="second-name" class="name" placeholder="Фамилия">
+
+                        <input type="email" class="email" placeholder="Электронная почта">
+
+                        <div class="password-wrapper">
+                            <input type="password" id="registerPassword"class="pass" placeholder="Пароль">
+                            <button type="button" class="show-password">
+                                <img src="../images/eye-off.svg" alt="">
+                            </button>
+                        </div>
+
+                        <div class="password-wrapper">
+                            <input type="password" class="pass" placeholder="Повторите пароль">
+                            <button type="button" class="show-password">
+                                <img src="../images/eye-off.svg" alt="">
+                            </button>
+                        </div>
+                        <input type="date" class="date" placeholder="Дата рождения">
+
+                        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+
+                        <p class="Login">Уже есть аккаунт?<a href="#">Войти</a></p>
+                    </form>
+                </div>
+                
+               
             </div>
         </div>
 
     </body>
 </html>
-
-
-<script>
-    const loginTab = document.getElementById('loginTab');
-    const registerTab = document.getElementById('registerTab');
-
-    loginTab.addEventListener('click', function () {
-        window.location.href = 'login.html';
-    });
-
-    registerTab.addEventListener('click', function () {
-        window.location.href = 'register.html';
-    });
-</script>
