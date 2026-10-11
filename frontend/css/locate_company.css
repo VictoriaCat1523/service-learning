@@ -118,28 +118,6 @@ nav ul{
     word-spacing: 4px;
 }
 
-.btn-entrance{
-    background-color: white;
-    color: #5965e8;
-
-    border: 1px solid #5965e8;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.btn-register{
-    background-color: #5965e8;
-    color: white;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.btn-register:hover{
-    background-color: #303BA8;
-}
-
-.btn-entrance:hover{
-    background-color: #f1f2ff;
-}
-
 header nav ul li.active {
     position: relative;
 }
@@ -190,7 +168,6 @@ header nav ul li.active::after  {
     box-shadow: none;
     outline: none;
     appearance: none;
-    width: 100%;
 }
 /* ПОИСК ПЕРВЫЙ*/
 .locate-group {
@@ -464,6 +441,8 @@ header nav ul li.active::after  {
 
 
 
+
+
 /*FOOTER С СОЦСЕТЯМИ И Т.П.*/
 
 .site-footer{
@@ -570,6 +549,3 @@ header nav ul li.active::after  {
     font-size: 14px;
     padding-top: 15px;
 }
-
-
-/*C8D1E3 */

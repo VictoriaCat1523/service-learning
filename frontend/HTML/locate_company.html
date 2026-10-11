@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WITH us</title>
-        <link rel="stylesheet" href="../css/main_login.css">
+        <link rel="stylesheet" href="../css/locate_company.css">
         <script src="../js/main_login.js" defer></script>
     </head>
 <body class="wrapper">
@@ -17,19 +17,142 @@
                 
                 <nav>
                     <ul>
-                        <li class="active"><a href="main_login.html">Главная</a></li>
-                        <li><a href="#">Найти компанию</a></li>
+                        <li><a href="main.html">Главная</a></li>
+                        <li class="active"><a href="locate_company.html">Найти компанию</a></li>
                         <li><a href="#">Создать заявку</a></li>
                         <li><a href="#">Мои заявки</a></li>
                         <li><a href="#">Уведомления</a></li>
                     </ul>
                 </nav>
-                <div class="header_btns">
-                        <a href="login.html" class="btn btn-entrance">Войти</a>
-                        <a href="login.html" class="btn btn-register" id="registerButton">Регистрация</a>
-                </div>
             </header>
         </div>
-        
-</body>
+        <div class="info">
+            <div class="text_locate">
+                    <h1>Найти компанию</h1>
+                    <p>Выбирай компанию на ближайшие часы</p>
+                <div class="LocateCompany">
+                    <div class="locate-group">
+                        <img src="../images/search.svg" alt="" class="search-icon">
+                        <input type="text" id= "searchInput" placeholder="Кого или куда ищем?">
+                    </div>
+                    <div class="locate-where">
+                        <img src="../images/map-pin-search.svg" alt="" class="map-pin-icon">
+                        <input type="text" placeholder="Где ищем?">
+                    </div>
+                </div>
+            </div>
+            <div class="content-layout">
+                <div class="filter_list">
+                    <div class="FilterHeader">
+                        <h1>Фильтры</h1>
+                        <button type="button" class="reset_all">Сбросить всё</button>
+                    </div>
+
+                    <hr class="filter-divider">
+
+                    <div class="categories">
+                        <h3>Категории</h3>
+                        <label><input type="checkbox" name="category" value="cinema">Кино</label>
+                        <label><input type="checkbox" name="category" value="games">Игры</label>
+                        <label><input type="checkbox" name="category" value="cafe">Кафе</label>
+                        <label><input type="checkbox" name="category" value="sport">Спорт</label>
+                        <label><input type="checkbox" name="category" value="talk">Общение</label>                    
+                        <div class="extra_categories" hidden>
+                            <label><input type="checkbox" name="category" value="education">Учёба</label>
+                            <label><input type="checkbox" name="category" value="walk">Прогулка</label>
+                            <label><input type="checkbox" name="category" value="event">Мероприятия</label>
+                            <label><input type="checkbox" name="category" value="music">Музыка</label>
+                            <label><input type="checkbox" name="category" value="travel">Поездки</label>
+                            <label><input type="checkbox" name="category" value="others">Другое</label>
+                        </div>
+                        <button type="button" class="show_categories">Показать всё</button>
+                    </div>
+
+                    <hr class="filter-divider">
+
+                    <div class="age">
+                        <h3>Возраст</h3>
+                        <div id="age_values">
+                            <span id="minAgeValue">18</span>
+                            <span>-</span>
+                            <span id="maxAgeValue">35</span>
+                            <span>лет</span>
+                        </div>
+                        <div class="age_sliders">
+                            <input type="range" id="minAge" min="18" max="60" value="18">
+                            <input type="range" id="maxAge" min="18" max="60" value="35">
+                        </div>
+                    </div>
+
+                    <hr class="filter-divider">
+
+                    <div class="gender">
+                        <h3>Пол</h3>
+
+                        <label>
+                            <input type="radio" name="gender" value="any" checked>
+                            Любой
+                        </label>
+
+                        <label>
+                            <input type="radio" name="gender" value="male">
+                            Мужской
+                        </label>
+
+                        <label>
+                            <input type="radio" name="gender" value="female">
+                            Женский
+                        </label>
+                    </div>
+
+                    <button type="button" class="apply_filters">Показать результаты</button>
+                </div>
+            </div>    
+        </div>
+
+
+
+
+        <footer class="site-footer">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="#" alt="">
+                        <span>WITH</span>
+                    </div>
+                    <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <a href="main.html">Главная</a>
+                    <a href="locate_company.html">Найти компанию</a>
+                    <a href="#">Создать заявку</a>
+                    <a href="#">Мои заявки</a>
+                    <a href="#">Уведомления</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Поддержка</h3>
+                    <a href="#">Правила сервиса</a>
+                    <a href="#">Поддержка</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Telegram"><img src="../images/social icons/telegram-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="Discord"><img src="../images/social icons/discord-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="VK"><img src="../images/social icons/vk-svgrepo-com.svg" alt=""></a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 WITH. Все права защищены.</p>
+            </div>
+        </footer>
+
+    </body>
 </html>
+
+<script src="../js/be_locate_company.js"></script>

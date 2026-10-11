@@ -226,6 +226,7 @@ header nav ul li.active::after  {
 .btn-locate{
     background-color: #5965e8;
     color: white;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .btn-bid{
@@ -233,12 +234,132 @@ header nav ul li.active::after  {
     color: #5965e8;
 
     border: 1px solid #5965e8;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .btn-locate:hover{
-    background-color: #4653d8;
+    background-color: #303BA8;
 }
 
 .btn-bid:hover{
     background-color: #f1f2ff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FOOTER С СОЦСЕТЯМИ И Т.П.*/
+
+.site-footer{
+    background-color: #232c40;
+    color: #ffff;
+    padding: 25px 75px;
+    margin-top: 60px;
+}
+
+.footer-main{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* ЛОГО И СЛОГАН*/
+
+.footer-brand{
+    width: 320px;
+    gap: 16px;
+}
+
+.footer-logo{
+    display: inline-flex;
+}
+
+.footer-logo img{
+    width: 60px;
+    height: 60px;
+    margin-right: 30px;
+}
+
+.footer-logo span{
+    font-size: 40px;
+}
+
+.footer-brand p{
+    font-size: 14px;
+    color: #C8D1E3;
+    margin: 10px 0 0 ;
+}
+
+/*ОБЩАЯ НАСТРОЙКА НАВИГАЦИИ, ИНФО И СОЦ. СЕТЕЙ*/
+
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;;
+    gap: 10px;
+    min-width: 100px;
+}
+
+.footer-links h3{
+    font-size: 20px;
+    margin: 0;
+}
+
+.footer-links a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #C8D1E3;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover{
+    color: #8FA8FF;
+}
+
+/*СОЦИАЛНЫЕ ИКОНКИ*/
+.social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 5px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.social-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+
+    transition: filter 0.2s ease;
+}
+
+.social-icon:hover img {
+     filter: brightness(0) saturate(100%)
+            invert(72%) sepia(18%) saturate(1094%)
+            hue-rotate(194deg) brightness(103%) contrast(101%);
+}
+/*НИЖНЯЯ ЧАСТ FOOTERA*/
+.footer-bottom{
+    margin-top: 30px;
+    border-top: 1px solid #5f6b85;
+    color: #5f6b85;
+    font-size: 14px;
+    padding-top: 15px;
 }
