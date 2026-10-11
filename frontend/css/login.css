@@ -17,7 +17,26 @@
 *::-webkit-scrollbar-thumb:hover {
     background: #4c57d6;
 }
+/*ЦВЕТ ГИПЕРССЫЛОК*/
 
+header a,
+header a:visited {
+    color: #5f6b85;
+}
+
+header .active a, header .active a:visited{
+    color: #5965e8 !important;
+}
+
+header .btn-register,
+header .btn-register:visited {
+    color: white;
+}
+
+header .btn-entrance,
+header .btn-entrance:visited {
+    color: #5965e8;
+}
 /* БОДИ*/
 
 body{
@@ -408,21 +427,23 @@ nav ul{
 
 /*БЛОК - ЗАБЫЛИ ПАРОЛЬ*/
 
-.login-options a{
+.login-options a, .login-options a:visited{
     text-decoration: none;
     line-height: 1;
     margin: 0;
     transition: color 0.2s ease;
+    color: #5965e8;
 }
 
 .login-options a:hover{
     color: #303BA8;
 }
 
-p a{
+p a, p a:visited{
     align-items: center;
     margin-left: 15px;
     transition: color 0.2s ease;
+    color: #5965e8;
 }
 
 p a:hover{
@@ -447,7 +468,7 @@ p a:hover{
 .site-footer{
     background-color: #232c40;
     color: #ffff;
-    padding: 25px 75px;
+    padding: 25px 80px;
     margin-top: 60px;
 }
 

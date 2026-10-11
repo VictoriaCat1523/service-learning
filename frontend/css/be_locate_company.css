@@ -18,6 +18,31 @@
     background: #4c57d6;
 }
 
+
+/*ЦВЕТ ГИПЕРССЫЛОК*/
+
+
+header a,
+header a:visited {
+    color: #5f6b85;
+}
+
+header .active a, header .active a:visited{
+    color: #5965e8 !important;
+}
+
+
+header .btn-register,
+header .btn-register:visited {
+    color: white;
+}
+
+header .btn-entrance,
+header .btn-entrance:visited {
+    color: #5965e8;
+}
+
+
 /* БОДИ*/
 
 
@@ -148,7 +173,7 @@ header nav ul li.active::after  {
     content: " ";
     position: absolute;
     display: block;
-    width: 55px;
+    width: 80%;
     height: 4px;
     background: #7896E8;
     border-radius: 5px;
@@ -469,7 +494,7 @@ header nav ul li.active::after  {
 .site-footer{
     background-color: #232c40;
     color: #ffff;
-    padding: 25px 75px;
+    padding: 25px 80px;
     margin-top: 60px;
 }
 
