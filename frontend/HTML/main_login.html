@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/main_login.css">
+        <link rel="stylesheet" href="../css/auth_modal.css">
         <script src="../js/main_login.js" defer></script>
     </head>
 
@@ -22,10 +23,10 @@
                 <nav>
                     <ul>
                         <li class="active"><a href="main_login.html">Главная</a></li>
-                        <li><a href="be_locate_company.html">Найти компанию</a></li>
-                        <li><a href="be_create_event.html">Создать заявку</a></li>
-                        <li><a href="#">Мои заявки</a></li>
-                        <li><a href="#">Уведомления</a></li>
+                        <li><a href="#" data-auth-modal-open>Найти компанию</a></li>
+                        <li><a href="#"  data-auth-modal-open>Создать заявку</a></li>
+                        <li><a href="#"  data-auth-modal-open>Мои заявки</a></li>
+                        <li><a href="#"  data-auth-modal-open>Уведомления</a></li>
                     </ul>
                 </nav>
                 <div class="header_btns">
@@ -46,8 +47,8 @@
                     <br>Найди компанию</h1>
                 <p>Создай заявку или присоединись к кому-нибудь.</p>
                 <div class="hero_buttons">
-                    <a href="be_locate_company.html" class="btn btn-locate">Найти компанию</a>
-                    <a href="#" class="btn btn-bid">Создать заявку</a>
+                    <a href="#" class="btn btn-locate" data-auth-modal-open>Найти компанию</a>
+                    <a href="#" class="btn btn-bid" data-auth-modal-open>Создать заявку</a>
                 </div>
             </div>
             <div class="image_home">
@@ -68,10 +69,10 @@
                 <div class="footer-links">
                     <h3>Навигация</h3>
                     <a href="main_login.html">Главная</a>
-                    <a href="be_locate_company.html">Найти компанию</a>
-                    <a href="be_create_event.html">Создать заявку</a>
-                    <a href="#">Мои заявки</a>
-                    <a href="#">Уведомления</a>
+                    <a href="#" data-auth-modal-open>Найти компанию</a>
+                    <a href="#" data-auth-modal-open>Создать заявку</a>
+                    <a href="#" data-auth-modal-open>Мои заявки</a>
+                    <a href="#" data-auth-modal-open>Уведомления</a>
                 </div>
                 <div class="footer-links">
                     <h3>Поддержка</h3>
@@ -94,5 +95,7 @@
                 <p>© 2026 WITH. Все права защищены.</p>
             </div>
         </footer>
+        <div id="authModalContainer"></div>
+        <script src="../js/auth_modal.js" defer></script>
     </body>
 </html>

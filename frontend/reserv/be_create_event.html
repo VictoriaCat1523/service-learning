@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WITH us</title>
+        <link rel="stylesheet" href="../css/be_create_event.css">
+        <link rel="stylesheet" href="../css/auth_modal.css">
+    </head>
+    <body class="wrapper">
+        <div>
+            <header>
+                <div class="logo_block">
+                    <img src="../images/main_icon_project.svg" alt="" class="bebebe">
+                    <span class="logo">WITH</span>  
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="main_login.html">Главная</a></li>
+                        <li><a href="be_locate_company.html"  data-auth-modal-open>Найти компанию</a></li>
+                        <li class="active"><a href="be_create_event.html"  data-auth-modal-open>Создать заявку</a></li>
+                        <li><a href="#"  data-auth-modal-open>Мои заявки</a></li>
+                        <li><a href="#"  data-auth-modal-open>Уведомления</a></li>
+                    </ul>
+                </nav>
+                <div class="header_btns">
+                        <a href="login.html" class="btn btn-entrance">Войти</a>
+                        <a href="login.html" class="btn btn-register" id="registerButton">Регистрация</a>
+                </div>
+            </header>
+        </div>
+        <div class="info">
+            <!-- БЛОК НАЗВАНИЯ-->
+            <div class="title">
+                <a href="./main_login.html">Назад на главную</a>
+                <h1>Создание заявки</h1>
+                <p>Заполните форму, чтобы найти компанию или человека</p>
+            </div>
+            <!-- БЛОК ПРОГРЕССА-->
+            <div class="progress">
+                <div class="progress-step active">
+                    <div class="step-circle">1</div>
+                    <span>Детали заказа</span>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <span>Место и время</span>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <span>Дополнительно</span>
+                </div>
+
+                <div class="progress-line"></div>
+
+                <div class="progress-step">
+                    <div class="step-circle">4</div>
+                    <span>Проверка и публикация</span>
+                </div>
+            </div>
+            <!-- ОБЩИЙ БЕЛЫЙ БЛОК -->
+            <div class="plan-layout">
+                <div class="plan">
+                    <!-- БЛОК КАТЕГОРИЙ И ДРУГИХ ПОЛЕЙ ВВОДА-->
+                    <div class="create-step" id="step1">
+                        <div class="create-plan">
+                            <h2>1.Детали заявки</h2>
+                            <p>Расскажите, какая помощь вам нужна</p>
+                            <div class="category">
+                                <h3>Категория</h3>
+
+                                <div class="category-dropdown">
+                                    <input type="hidden" name="category" value="" class="category-value">
+
+                                    <button type="button" class="category-select" aria-expanded="false">
+                                        <span class="selected-category">
+                                            <span class="category-emoji">🎬</span>
+                                            <span class="category-text">Выберите категорию</span>
+                                        </span>
+                                        <span class="category-arrow">⌄</span>
+                                    </button>
+
+                                    <div class="category-menu">
+                                        <button type="button" class="category-option" data-value="cinema">
+                                            <span class="option-emoji">🎬</span>
+                                            <span>Кино</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="games">
+                                            <span class="option-emoji">🎮</span>
+                                            <span>Игры</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="cafe">
+                                            <span class="option-emoji">☕</span>
+                                            <span>Кафе</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="sport">
+                                            <span class="option-emoji">⚽</span>
+                                            <span>Спорт</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="talk">
+                                            <span class="option-emoji">💬</span>
+                                            <span>Общение</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="education">
+                                            <span class="option-emoji">📚</span>
+                                            <span>Учёба</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="walk">
+                                            <span class="option-emoji">🚶</span>
+                                            <span>Прогулка</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="event">
+                                            <span class="option-emoji">🎉</span>
+                                            <span>Мероприятия</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="music">
+                                            <span class="option-emoji">🎵</span>
+                                            <span>Музыка</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="travel">
+                                            <span class="option-emoji">✈️</span>
+                                            <span>Поездки</span>
+                                            <span class="option-check"></span>
+                                        </button>
+
+                                        <button type="button" class="category-option" data-value="others">
+                                            <span class="option-emoji">✨</span>
+                                            <span>Другое</span>
+                                            <span class="option-check"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Название заявки</h3>
+                                <input
+                                    type="text"
+                                    class="name_plan"
+                                    id="requestTitle"
+                                    name="title"
+                                    maxlength="80"
+                                    placeholder="Например: Ищу компанию в кино"
+                                    required
+                                >
+                                <div class="char-counter" id="titleCounter">0/80</div>
+                            </div>
+                            <div class="category">
+                                <h3>Описание</h3>
+                                <textarea
+                                    class="description_plan"
+                                    id="requestDescription"
+                                    maxlength="500"
+                                    name="description"
+                                    placeholder="Опишите подробнее, что вы хотите, какие у вас ожидания и что важно для вас"
+                                    rows="4"
+                                    required
+                                ></textarea>
+                                <div class="char-counter" id="descriptionCounter">0/500</div>
+                            </div>
+                            <div class="category">
+                                <h3>Количество человек</h3>
+                                <div class="people-counter">
+                                    <button type="button" class="counter-btn" id="decreasePeople">−</button>
+
+                                    <input
+                                        type="number"
+                                        class="people-input"
+                                        id="peopleCount"
+                                        name="people_count"
+                                        value="1"
+                                        min="1"
+                                        max="100"
+                                        required
+                                    >
+
+                                    <button type="button" class="counter-btn" id="increasePeople">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- БЛОК СОВЕТ-->
+                        <div class="advice">
+                            <div class="advice-heading">
+                                <img src="../images/lightbulb.svg" alt="" class="advice-icon">
+                                <h1>Советы хорошей заявки</h1>
+                            </div>
+                            <div class="advice-item">
+                                <span class="advice-check">✓</span> 
+                                <p>Чем подробнее вы опишите запрос, теп выше шанс найти подходящего человека</p>
+                            </div>
+                            <div class="advice-item">
+                                <span class="advice-check">✓</span>
+                                <p>Будьте октрыты и вежливы в заявке</p>
+                            </div>
+                            <div class="advice-item">
+                                <span class="advice-check">✓</span>                                                
+                                <p> Укажите конкретную категорию и количество учатников, так другим будет проще понять, подходит ли им ваше предложение</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="create-step" id="step2" hidden>
+                        <h2>2. Место и время</h2>
+                        <p>На следующем этапе добавим выбор места и времени встречи.</p>
+                    </div>
+                    <div class="create-step" id="step3" hidden>
+                        <h2>3. Дополнительно</h2>
+                        <p>Тестовый этап: здесь будут дополнительные параметры заявки.</p>
+                    </div>
+
+                    <div class="create-step" id="step4" hidden>
+                        <h2>4. Проверка и публикация</h2>
+                        <p>Тестовый этап: здесь появится итог заявки перед публикацией.</p>
+                    </div>
+                    <!-- БЛОК КНОПОК ДАЛЕЕ И ОТМЕНА-->
+                    <div class="plan-actions">
+                        <button
+                            type="button"
+                            class="cancel-btn"
+                            onclick="history.back()"
+                        >
+                            Отмена
+                        </button>
+                        <button type="button" class="next-btn" id="nextStep">Далее</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="#" alt="">
+                        <span>WITH</span>
+                    </div>
+                    <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <a href="main_login.html">Главная</a>
+                    <a href="be_locate_company.html">Найти компанию</a>
+                    <a href="be_create_event.html">Создать заявку</a>
+                    <a href="#">Мои заявки</a>
+                    <a href="#">Уведомления</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Поддержка</h3>
+                    <a href="#">Правила сервиса</a>
+                    <a href="#">Поддержка</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Telegram"><img src="../images/social icons/telegram-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="Discord"><img src="../images/social icons/discord-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="VK"><img src="../images/social icons/vk-svgrepo-com.svg" alt=""></a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 WITH. Все права защищены.</p>
+            </div>
+        </footer>
+        <div id="authModalContainer"></div>
+        <script src="../js/auth_modal.js" defer></script>
+    </body>
+</html>
+
+<script src="../js/category-select.js" defer></script>
+<script src="../js/people_counter.js" defer></script>
+<script src="../js/request-char-counter.js" defer></script>
+<script src="../js/create_event.js" defer></script>

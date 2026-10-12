@@ -49,7 +49,7 @@ body{
     font-style: normal;
     font-size: 16px;
     margin: 0;
-    color: black;
+    color: #172b55;
 }
 
 a{
@@ -154,6 +154,37 @@ header nav ul li.active::after  {
     margin-top: 10px;
     margin-left: 3px;
 }
+
+/*АВА*/
+
+.header_icons{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    margin-left: auto;
+}
+
+.header_icons img{
+    display: block;
+}
+
+header nav ul li.active {
+    position: relative;
+}
+
+header nav ul li.active::after  {
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 80%;
+    height: 4px;
+    background: #7896E8;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 3px;
+}
+
 
 
 /* ОСНОВНАЯ ЧАСТЬ*/ 

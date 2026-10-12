@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/be_locate_company.css">
+        <link rel="stylesheet" href="../css/auth_modal.css">
     </head>
     <body class="wrapper">
         <div>
@@ -17,10 +18,10 @@
                 <nav>
                     <ul>
                         <li><a href="main_login.html">Главная</a></li>
-                        <li class="active"><a href="be_locate_company.html">Найти компанию</a></li>
-                        <li><a href="be_create_event.html">Создать заявку</a></li>
-                        <li><a href="#">Мои заявки</a></li>
-                        <li><a href="#">Уведомления</a></li>
+                        <li class="active"><a href="be_locate_company.html" data-auth-modal-open>Найти компанию</a></li>
+                        <li><a href="be_create_event.html" data-auth-modal-open>Создать заявку</a></li>
+                        <li><a href="#"  data-auth-modal-open>Мои заявки</a></li>
+                        <li><a href="#" data-auth-modal-open>Уведомления</a></li>
                     </ul>
                 </nav>
                 <div class="header_btns">
@@ -157,6 +158,8 @@
                 <p>© 2026 WITH. Все права защищены.</p>
             </div>
         </footer>
+        <div id="authModalContainer"></div>
+        <script src="../js/auth_modal.js" defer></script>
     </body>
 </html>
 

@@ -1,0 +1,166 @@
+
+/* ЗАТЕМНЕНИЕ ФОНА */
+.auth-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background-color: rgba(23, 43, 85, 0.55);
+    backdrop-filter: blur(4px);
+}
+
+/* СКРЫТИЕ ОКНА */
+.auth-modal-overlay[hidden] {
+    display: none;
+}
+
+/* КАРТОЧКА ОКНА */
+.auth-modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+    padding: 36px;
+
+    background-color: #ffffff;
+    border: 1px solid #e3e8ff;
+    border-radius: 24px;
+
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(23, 43, 85, 0.2);
+
+    animation: authModalAppear 0.2s ease;
+}
+
+/* КРЕСТИК */
+.auth-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    color: #7c84b5;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.auth-modal-close:hover {
+    color: #172b55;
+}
+
+/* ИКОНКА */
+.auth-modal-icon {
+    margin-bottom: 12px;
+    font-size: 42px;
+}
+
+/* ЗАГОЛОВОК */
+.auth-modal h2 {
+    margin: 0 0 14px;
+    color: #172b55;
+    font-size: 27px;
+}
+
+/* ОПИСАНИЕ */
+.auth-modal-text {
+    margin: 0 0 24px;
+    color: #7c84b5;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ОБЩИЕ СТИЛИ ССЫЛОК */
+.auth-modal-register,
+.auth-modal-login {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+
+    border: 2px solid #5965e8;
+    border-radius: 14px;
+
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* РЕГИСТРАЦИЯ */
+.auth-modal-register {
+    background-color: #5965e8;
+    color: #ffffff;
+}
+
+.auth-modal-register:hover {
+    background-color: #303ba8;
+    border-color: #303ba8;
+}
+
+/* ВХОД */
+.auth-modal-login {
+    background-color: #ffffff;
+    color: #5965e8;
+}
+
+.auth-modal-login:hover {
+    background-color: #f1f2ff;
+}
+
+/* КНОПКА «ПОЗЖЕ» */
+.auth-modal-later {
+    margin-top: 18px;
+    padding: 6px 12px;
+
+    border: none;
+    background: transparent;
+
+    color: #7c84b5;
+    font: inherit;
+    font-size: 14px;
+
+    cursor: pointer;
+}
+
+.auth-modal-later:hover {
+    color: #172b55;
+}
+
+/* АНИМАЦИЯ */
+@keyframes authModalAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ТЕЛЕФОНЫ */
+@media (max-width: 480px) {
+    .auth-modal {
+        padding: 30px 22px;
+    }
+
+    .auth-modal h2 {
+        font-size: 24px;
+    }
+}
