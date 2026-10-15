@@ -33,7 +33,7 @@
         <div class="info">
             <!-- БЛОК НАЗВАНИЯ-->
             <div class="title">
-                <a href="./main_login.html">Назад на главную</a>
+                <a href="./main.html">Назад на главную</a>
                 <h1>Создание заявки</h1>
                 <p>Заполните форму, чтобы найти компанию или человека</p>
             </div>
@@ -225,7 +225,7 @@
                     <div class="create-step" id="step2" hidden>
                         <div class="create-plan">
                             <h2>2. Место и время</h2>
-                            <p>На следующем этапе добавим выбор места и времени встречи.</p>
+                            <p>Укажите, где и когда нужна помощь</p>
                             <div class="plan-where-time">
                                 <div class="where">
                                     <h3>Место встречи</h3>
@@ -286,13 +286,345 @@
                         </div>
                     </div>
                     <div class="create-step" id="step3" hidden>
-                        <h2>3. Дополнительно</h2>
-                        <p>Тестовый этап: здесь будут дополнительные параметры заявки.</p>
+                        <div class="create-plan">
+                            <h2>3. Дополнительно</h2>
+                            <p>Уточните детали, чтобы сделать вашу заявку более точной и понятной</p>
+                            <div class="plan-additional">
+                                <!-- ДОПП НАСТРОЙКИ -->
+                                <section class="additional-settings">
+                                    <h3>Дополнительные настройки</h3>
+
+                                    <label class="setting-option">
+                                        <span>
+                                            <strong>Разрешить предложения</strong>
+                                            <small>Участники смогут предлагать изменения условий встречи.</small>
+                                        </span>
+                                        <input type="checkbox" name="allow-suggestions">
+                                    </label>
+
+                                    <label class="setting-option">
+                                        <span>
+                                            <strong>Гибкость времени</strong>
+                                            <small>Можно договориться о другом времени.</small>
+                                        </span>
+                                        <input
+                                            type="checkbox"
+                                            name="flexible-time"
+                                            disabled
+                                        >
+                                    </label>
+
+                                    <label class="setting-option">
+                                        <span>
+                                            <strong>Гибкость по месту</strong>
+                                            <small>Можно обсудить другую локацию.</small>
+                                        </span>
+                                        <input
+                                            type="checkbox"
+                                            name="flexible-place"
+                                            disabled
+                                        >
+                                    </label>
+
+                                    <label class="setting-option">
+                                        <span>
+                                            <strong>Скрывать после набора компании</strong>
+                                            <small>Заявка исчезнет из поиска, когда наберётся нужное количество участников.</small>
+                                        </span>
+                                        <input type="checkbox" name="hide-when-full">
+                                    </label>
+
+                                    <label class="setting-option">
+                                        <span>
+                                            <strong>Напоминания о встрече</strong>
+                                            <small>Участники будут получать напоминания перед встречей.</small>
+                                        </span>
+                                        <input type="checkbox" name="meeting-reminders">
+                                    </label>
+                                </section>
+                                
+                                <div class="additional-main">
+                                    <!-- БЮДЖЕТ -->
+                                    <section class="additional-budget">
+                                        <h3>Бюджет мероприятия</h3>
+
+                                        <label class="budget-option">
+                                            <input
+                                                type="radio"
+                                                name="budget-type"
+                                                value="none"
+                                                checked
+                                            >
+                                            <span>Не указан</span>
+                                        </label>
+
+                                        <label class="budget-option">
+                                            <input
+                                                type="radio"
+                                                name="budget-type"
+                                                value="specified"
+                                            >
+                                            <span>Указать бюджет</span>
+                                        </label>
+
+
+                                        <div class="budget-input" hidden>
+                                            <label for="event-budget">Бюджет на одного участника</label>
+                                            <p>Укажите примерную сумму в рублях, которую планируете потратить на одного человека.</p>
+                                            <div class="budget-field">
+                                                <input
+                                                    type="number"
+                                                    id="event-budget"
+                                                    name="event-budget"
+                                                    min="0"
+                                                    step="1"
+                                                    placeholder="Например, 1500"
+                                                >
+                                                <span>₽ / чел.</span>
+                                            </div>
+                                        </div>
+
+                                    </section>
+
+                                    <!-- ДОПП ФАЙЛ -->
+                                    <section class="additional-file">
+                                        <h3>Дополнительные материалы</h3>
+                                        <p>Прикрепите фотографию, афишу, карту или документ (необязательно).</p>
+
+                                        <label for="event-file">Выбрать файл</label>
+                                        <input
+                                            type="file"
+                                            id="event-file"
+                                            name="event-file"
+                                            accept=".jpg,.jpeg,.png,.pdf"
+                                        >
+
+                                        <small>Форматы: JPG, PNG, PDF.</small>
+                                    </section>
+                                </div>
+                                
+                                
+                                <!-- СОВЕТЫ -->
+                                <div class="advice">
+                                    <div class="advice-heading">
+                                        <img src="../images/star.svg" alt="" class="advice-icon">
+                                        <h1>Советы для заявки</h1>
+                                    </div>
+
+                                    <div class="advice-item">
+                                        <span class="advice-check">✓</span>
+                                        <p>Укажи примерный бюджет, чтобы участники могли оценить расходы.</p>
+                                    </div>
+
+                                    <div class="advice-item">
+                                        <span class="advice-check">✓</span>
+                                        <p>Добавь фотографию или афишу, если они помогут представить встречу.</p>
+                                    </div>
+
+                                    <div class="advice-item">
+                                        <span class="advice-check">✓</span>
+                                        <p>Продумай дополнительные условия, чтобы участникам было проще договориться.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+
                     <div class="create-step" id="step4" hidden>
-                        <h2>4. Проверка и публикация</h2>
-                        <p>Тестовый этап: здесь появится итог заявки перед публикацией.</p>
+                        <div class="create-plan">
+                            <h2>4. Проверка и публикация</h2>
+                            <p>Проверьте информацию перед публикацией заявки.</p>
+
+                            <div class="review-layout">
+
+                                <!-- Левая колонка: информация о заявке -->
+                                <div class="review-main">
+
+                                    <!-- Детали заявки -->
+                                    <section class="review-card review-card-details">
+                                        <div class="review-card-heading">
+                                            <div class="review-title-group">
+                                                <img src="../images/clapperboard.svg"
+                                                    alt=""
+                                                    class="review-icon">
+                                                <h3>Детали заявки</h3>
+                                            </div>
+                                            <button type="button" class="review-edit" data-edit-step="1">
+                                                Изменить
+                                            </button>
+                                        </div>
+
+                                        <div class="review-content">
+                                            <div class="review-field">
+                                                <span>Название</span>
+                                                <p id="review-title" data-review-field="step1.title">Не указано</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Категория</span>
+                                                <p id="review-category" data-review-field="step1.category">Не выбрана</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Описание</span>
+                                                <p id="review-description" data-review-field="step1.description">Не указано</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Количество участников</span>
+                                                <p id="review-people" data-review-field="step1.people_count">Не указано</p>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <!-- Место и время -->
+                                    <section class="review-card review-card-time">
+                                        <div class="review-card-heading">
+                                            <div class="review-title-group">
+                                                <img src="../images/calendar-create-event.svg"
+                                                    alt=""
+                                                    class="review-icon">
+                                                <h3>Место и время</h3>
+                                            </div>
+                                            <button type="button" class="review-edit" data-edit-step="2">
+                                                Изменить
+                                            </button>
+                                        </div>
+
+                                        <div class="review-content">
+                                            <div class="review-field">
+                                                <span>Место встречи</span>
+                                                <p id="review-place" data-review-field="step2.meeting-place">Не указано</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Дата и время</span>
+                                                <p id="review-time" data-review-field="step2.meeting-time">Не указано</p>
+                                            </div>
+                                            <div class="review-field">
+                                                <span>Комментарий к месту</span>
+                                                <p id="review-place-comment">Не указан</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Комментарий к дате и времени</span>
+                                                <p id="review-time-comment">Не указан</p>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <!-- Дополнительные параметры -->
+                                    <section class="review-card review-card-additional">
+                                        <div class="review-card-heading">
+                                            <div class="review-title-group">
+                                                <img src="../images/list-tree.svg"
+                                                    alt=""
+                                                    class="review-icon">
+                                                <h3>Дополнительно</h3>
+                                            </div>
+                                            <button type="button" class="review-edit" data-edit-step="3">
+                                                Изменить
+                                            </button>
+                                        </div>
+
+                                        <div class="review-content">
+                                            <div class="review-field">
+                                                <span>Бюджет на одного участника</span>
+                                                <p id="review-budget" data-review-field="step3.budget">Не указан</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Разрешить предложения</span>
+                                                <p id="review-suggestions" data-review-field="step3.allow-suggestions">Нет</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Гибкость времени</span>
+                                                <p id="review-flexible-time" data-review-field="step3.flexible-time">Нет</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Гибкость по месту</span>
+                                                <p id="review-flexible-place" data-review-field="step3.flexible-place">Нет</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Скрывать после набора компании</span>
+                                                <p id="review-hide-full" data-review-field="step3.hide-when-full">Нет</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Напоминания о встрече</span>
+                                                <p id="review-reminders" data-review-field="step3.meeting-reminders">Нет</p>
+                                            </div>
+
+                                            <div class="review-field">
+                                                <span>Дополнительные материалы</span>
+                                                <p id="review-file" data-review-field="step3.additional-file">Не прикреплены</p>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </div>
+
+                                <!-- Правая колонка -->
+                                <div class="review-sidebar">
+
+                                    <!-- Советы перед публикацией -->
+                                    <section class="review-advice">
+                                        <div class="advice-heading">
+                                            <img src="../images/lightbulb.svg"
+                                                alt=""
+                                                class="advice-icon">
+                                            <h3>Перед публикацией</h3>
+                                        </div>
+
+                                        <div class="advice-item">
+                                            <span class="advice-check">✓</span>
+                                            <p>Проверьте название и описание, чтобы участники понимали цель встречи.</p>
+                                        </div>
+
+                                        <div class="advice-item">
+                                            <span class="advice-check">✓</span>
+                                            <p>Убедитесь, что место и время указаны правильно.</p>
+                                        </div>
+
+                                        <div class="advice-item">
+                                            <span class="advice-check">✓</span>
+                                            <p>Проверьте бюджет и дополнительные условия участия.</p>
+                                        </div>
+                                    </section>
+
+                                    <!-- Информация перед публикацией -->
+                                    <section class="review-publish">
+                                        <div class="review-publish-heading">
+                                            <img src="../images/lock-keyhole.svg"
+                                                alt=""
+                                                class="review-icon">
+
+                                            <p class="review-publish-info">
+                                                После публикации вы сможете редактировать заявку
+                                                только после проверки <span>модерации</span> или снять её
+                                                <span>самостоятельно</span>
+                                            </p>
+                                        </div>
+                                    </section>
+
+                                    <!-- Кнопка публикации -->
+                                    <button type="button" id="publishRequest">
+                                        Опубликовать заявку
+                                    </button>
+
+                                    <!-- Правила под кнопкой -->
+                                    <p class="review-rules">
+                                        Нажимая кнопку, вы соглашаетесь с
+                                        <a href="#" target="_blank">правилами сервиса</a>.
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- БЛОК КНОПОК ДАЛЕЕ И ОТМЕНА-->
                      <div class="create-step-divider"></div>
