@@ -1,0 +1,114 @@
+<!--http://127.0.0.1/-->
+<!--docker compose up -d-->
+<!--docker compose stop-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WITH us</title>
+        <link rel="stylesheet" href="../css/my_requests.css">
+    </head>
+
+
+
+
+
+    <body class="wrapper">
+        <div>
+            <header>
+                <div class="logo_block">
+                    <img src="../images/main_icon_project.svg" alt="" class="bebebe">
+                    <span class="logo">WITH</span>  
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="main.html">Главная</a></li>
+                        <li><a href="locate_company.html">Найти компанию</a></li>
+                        <li><a href="create_event.html">Создать заявку</a></li>
+                        <li class="active"><a href="my_requests.html">Мои заявки</a></li>
+                        <li><a href="#">Уведомления</a></li>
+                    </ul>
+                </nav>
+                <div class="header_icons">
+                        <a href="#"><img src="../images/Loup.svg" alt=""></a>
+                        <a href="#"><img src="../images/blanket_avatar.svg" alt=""></a>
+                </div>
+            </header>
+        </div>
+
+
+        <div>
+            <div class="head">
+                <div class="text">
+                    <h1>Мои заявки</h1>
+                    <p>Здесь вы можете отслеживать статус ваших заявок на чужие <br>и свои мероприятия и управлять ими</p>
+                </div>
+                <button>Создать заявку</button>
+            </div>
+            <div class="auth-toggle requests-toggle">
+                <div class="toggle-slider"></div>
+
+                <button class="toggle-btn active" type="button" id="responsesTab">
+                    Мои отклики
+                </button>
+
+                <button class="toggle-btn" type="button" id="publicationsTab">
+                    Мои публикации
+                </button>
+            </div>
+
+            <div id="responsesContent">
+                <!-- Здесь будут заявки, на которые ты откликнулся -->
+            </div>
+
+            <div id="publicationsContent" style="display: none;">
+                <!-- Здесь будут заявки, которые ты опубликовал -->
+            </div>
+        </div>
+
+
+
+
+        <footer class="site-footer">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="#" alt="">
+                        <span>WITH</span>
+                    </div>
+                    <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <a href="main.html">Главная</a>
+                    <a href="locate_company.html">Найти компанию</a>
+                    <a href="create_event.html">Создать заявку</a>
+                    <a href="my_requests.html">Мои заявки</a>
+                    <a href="#">Уведомления</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Поддержка</h3>
+                    <a href="#">Правила сервиса</a>
+                    <a href="#">Поддержка</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Telegram"><img src="../images/social icons/telegram-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="Discord"><img src="../images/social icons/discord-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="VK"><img src="../images/social icons/vk-svgrepo-com.svg" alt=""></a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 WITH. Все права защищены.</p>
+            </div>
+        </footer>
+    <script src="../js/my_requests.js" defer></script>
+    </body>
+</html>

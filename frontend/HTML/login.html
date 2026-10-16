@@ -13,6 +13,7 @@
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/login.css">
         <link rel="stylesheet" href="../css/auth_modal.css">
+        <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
     </head>
 
 
@@ -58,7 +59,6 @@
                                 <img src="../images/eye-off.svg" alt="">
                             </button>
                         </div>
-
 
                         <div class="login-options">
                             <label class="checkbox">
@@ -160,5 +160,61 @@
         </footer>
         <div id="authModalContainer"></div>
         <script src="../js/auth_modal.js" defer></script>
+        <!--СКРИПТ ЗАЧЕМ ТО НУЖНЫЙ БЛЯ БЭКА -->
+        <script>
+                        // Ждем, пока вся страница полностью загрузится
+                    window.addEventListener('DOMContentLoaded', () => {
+                        // Заставляем скрипт найти форму, даже если у нее нет id (берем первую форму на странице)
+                        const form = document.querySelector('form');
+                        
+                        if (!form) {
+                            console.error("DevOps Error: Форма не найдена на странице login.html!");
+                            return;
+                        }
+                
+                        form.addEventListener('submit', async (event) => {
+                            event.preventDefault(); // Запрещаем странице перезагружаться
+                
+                            // ВНИМАНИЕ: Проверь, чтобы id ниже ('email' и 'password') 
+                            <!--совпадали с тем, что написано в тегах <input id="..."> в твоем HTML!-->
+                            const emailField = document.getElementById('email') || document.querySelector('input[type="email"]');
+                            const passwordField = document.getElementById('password') || document.querySelector('input[type="password"]');
+                
+                            if (!emailField || !passwordField) {
+                                alert("Ошибка: Скрипт не смог найти поля ввода на странице. Проверь их id в HTML!");
+                                return;
+                            }
+                
+                            console.log("DevOps Log: Данные собраны, отправляем в сеть...");
+                
+                            try {
+                                const response = await fetch('/api/login', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: emailField.value,
+                                        password: passwordField.value
+                                    })
+                                });
+                
+                                const data = await response.json();
+                
+                                if (response.ok) {
+                                    alert('Авторизация успешна!');
+                                    // Перенаправляем на страницу после успешного входа
+                                    window.location.href = './main.html';
+                                } else {
+                                    alert('Ошибка: ' + (data.detail || 'Неверный логин или пароль'));
+                                }
+                            } catch (error) {
+                                console.error('Ошибка сети:', error);
+                                alert('Не удалось связаться с бэкендом.');
+                            }
+                        });
+                    });
+        </script>
     </body>
 </html>
+
