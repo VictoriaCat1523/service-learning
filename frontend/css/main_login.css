@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+:root{
+    --btn-bl: #5965e8;
+    --title: #172b55;
+    --sub-title: #7C84B5;
+}
+
+
 /* ВЕРТИКАЛЬНЫЙ ПОЛЗУНОК*/
 *::-webkit-scrollbar {
     width: 8px;
@@ -10,7 +17,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #5965e8;
+    background: var(--btn-bl);
     border-radius: 10px;
 }
 
@@ -27,7 +34,7 @@ header a:visited {
 }
 
 header .active a, header .active a:visited{
-    color: #5965e8 !important;
+    color: var(--btn-bl) !important;
 }
 
 
@@ -38,7 +45,7 @@ header .btn-register:visited {
 
 header .btn-entrance,
 header .btn-entrance:visited {
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 
@@ -53,7 +60,7 @@ body{
     font-style: normal;
     font-size: 16px;
     margin: 0;
-    color: #172b55;
+    color: var(--title);
 }
 
 a{
@@ -105,6 +112,12 @@ header{
     font-size: 45px;
 }
 
+.logo_block .logo,
+.logo_block .logo:visited {
+    color: var(--title);
+}
+
+
 nav{
     position: absolute;
     left: 50%;
@@ -146,14 +159,14 @@ nav ul{
 
 .btn-entrance{
     background-color: white;
-    color: #5965e8;
+    color: var(--btn-bl);
 
     transition: background-color 0.2s ease, color 0.2s ease;
-    border: 1px solid #5965e8;
+    border: 1px solid var(--btn-bl);
 }
 
 .btn-register{
-    background-color: #5965e8;
+    background-color: var(--btn-bl);
     color: white;
     
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -240,7 +253,7 @@ header nav ul li.active::after {
     padding: 8px 16px;
 
     background-color: #eef0ff;
-    color: #5965e8;
+    color: var(--btn-bl);
     border-radius: 30px;
     word-spacing: 5px;
     font-size: clamp(15px, 1.2vw, 19px);
@@ -253,7 +266,7 @@ header nav ul li.active::after {
 
     line-height: 1.05;
 
-    color: #172b55;
+    color: var(--title);
 }
 
 .info_home p{
@@ -284,7 +297,7 @@ header nav ul li.active::after {
 }
 
 .btn-locate{
-    background-color: #5965e8;
+    background-color: var(--btn-bl);
     color: white;
     
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -292,9 +305,9 @@ header nav ul li.active::after {
 
 .btn-bid{
     background-color: white;
-    color: #5965e8;
+    color: var(--btn-bl);
 
-    border: 1px solid #5965e8;
+    border: 1px solid var(--btn-bl);
     
     transition: background-color 0.2s ease, color 0.2s ease;
 }

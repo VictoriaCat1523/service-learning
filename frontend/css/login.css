@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+:root{
+    --btn-bl: #5965e8;
+    --title: #172b55;
+    --sub-title: #7C84B5;
+}
+
+
 /* ВЕРТИКАЛЬНЫЙ ПОЛЗУНОК*/
 *::-webkit-scrollbar {
     width: 8px;
@@ -10,7 +17,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #5965e8;
+    background: var(--btn-bl);
     border-radius: 10px;
 }
 
@@ -25,7 +32,7 @@ header a:visited {
 }
 
 header .active a, header .active a:visited{
-    color: #5965e8 !important;
+    color: var(--btn-bl) !important;
 }
 
 header .btn-register,
@@ -35,7 +42,7 @@ header .btn-register:visited {
 
 header .btn-entrance,
 header .btn-entrance:visited {
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 /* БОДИ*/
 
@@ -45,7 +52,7 @@ body{
     font-style: normal;
     font-size: 16px;
     margin: 0;
-    color: #172b55;
+    color: var(--title);
     
 }
 
@@ -100,6 +107,11 @@ header{
     font-size: 45px;
 }
 
+.logo_block .logo,
+.logo_block .logo:visited {
+    color: var(--title);
+}
+
 
 nav{
     position: absolute;
@@ -142,13 +154,13 @@ nav ul{
 
 .btn-entrance{
     background-color: white;
-    color: #5965e8;
+    color: var(--btn-bl);
 
-    border: 1px solid #5965e8;
+    border: 1px solid var(--btn-bl);
 }
 
 .btn-register{
-    background-color: #5965e8;
+    background-color: var(--btn-bl);
     color: white;
 }
 
@@ -190,7 +202,7 @@ nav ul{
 
     display: flex;
 
-    background: #5965e8;
+    background: var(--btn-bl);
     border-radius: 28px;
 
     box-sizing: border-box;
@@ -239,7 +251,7 @@ nav ul{
 }
 
 .toggle-btn.active {
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 .open-register .toggle-slider {
@@ -301,7 +313,7 @@ nav ul{
     text-align: center;
     margin-top: -5px;
     margin-bottom: -17px;
-    color: #172b55;
+    color: var(--title);
     font-size: 40px;
     font-weight: 700;
     word-spacing: 1%;
@@ -328,7 +340,7 @@ nav ul{
     padding: 0 16px 0 48px;
     box-sizing: border-box;
     
-    color: #172b55;
+    color: var(--title);
     font-size: 18px;
     text-align: left;
     
@@ -343,7 +355,7 @@ nav ul{
 }
 
 .auth-form input:focus{
-    border: 2px solid #172b55;
+    border: 2px solid var(--title);
     outline: none;
     box-shadow: none;
 }
@@ -376,11 +388,11 @@ nav ul{
 }
 
 .auth-form .submit-btn{
-    background-color: #5965e8;
+    background-color: var(--btn-bl);
     color: #FFFFFF;
     height: 50px;
 
-    border: 2px #5965e8;
+    border: 2px var(--btn-bl);
     border-radius: 10px;
     
     font-size: 15px;
@@ -422,7 +434,7 @@ nav ul{
 .checkbox input[type="checkbox"]{
     width: 20px;
     height: 20px;
-    accent-color: #5965e8;
+    accent-color: var(--btn-bl);
 }
 
 /*БЛОК - ЗАБЫЛИ ПАРОЛЬ*/
@@ -432,7 +444,7 @@ nav ul{
     line-height: 1;
     margin: 0;
     transition: color 0.2s ease;
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 .login-options a:hover{
@@ -443,7 +455,7 @@ p a, p a:visited{
     align-items: center;
     margin-left: 15px;
     transition: color 0.2s ease;
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 p a:hover{

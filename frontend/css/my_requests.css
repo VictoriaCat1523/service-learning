@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+:root{
+    --btn-bl: #5965e8;
+    --title: #172b55;
+    --sub-title: #7C84B5;
+}
+
+
 /* ВЕРТИКАЛЬНЫЙ ПОЛЗУНОК*/
 *::-webkit-scrollbar {
     width: 8px;
@@ -10,7 +17,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #5965e8;
+    background: var(--btn-bl);
     border-radius: 10px;
 }
 
@@ -29,7 +36,7 @@ header a:visited {
 }
 
 header .active a, header .active a:visited{
-    color: #5965e8 !important;
+    color: var(--btn-bl) !important;
 }
 
 
@@ -40,7 +47,7 @@ header .btn-register:visited {
 
 header .btn-entrance,
 header .btn-entrance:visited {
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 
@@ -54,7 +61,7 @@ body{
     font-style: normal;
     font-size: 16px;
     margin: 0;
-    color: #172b55;
+    color: var(--title);
 }
 
 a{
@@ -84,7 +91,7 @@ header{
     
     padding: 0 30px;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: white;
 }
 
 .logo_block {
@@ -106,6 +113,12 @@ header{
     font-size: 45px;
 }
 
+.logo_block .logo,
+.logo_block .logo:visited {
+    color: var(--title);
+}
+
+
 nav{
     position: absolute;
     left: 50%;
@@ -124,16 +137,139 @@ nav ul{
     padding: 0;
 }
 
-.header_icons{
+
+.header_icons {
     display: flex;
     align-items: center;
     gap: 25px;
 
     margin-left: auto;
+    position: relative;
 }
 
-.header_icons img{
+
+/*ИКОНКИ АВАТАРА И ПОДДЕРЖКИ*/
+
+.header_icons img {
     display: block;
+}
+
+/*ПОДДЕРЖКА*/
+.header_icons a img{
+    width: 30px;
+    height: 30px;
+}
+
+/*АВАТАР, ФУНКЦИОНАЛ*/
+
+/* КНОПКА АВАТАРА */
+.avatar_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.avatar_button img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+
+/* ВЫПАДАЮЩЕЕ МЕНЮ ПРОФИЛЯ */
+.profile_menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1000;
+
+    width: 270px;
+    padding: 16px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #D6D9E8;
+    border-radius: 16px;
+
+    box-sizing: border-box;
+}
+
+/* ШАПКА МЕНЮ С АВАТАРОМ */
+.profile_menu_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #D6D9E8;
+}
+
+.profile_menu_header img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.profile_name {
+    color: #172B55;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.profile_subtitle {
+    color: #7C84B5;
+    font-size: 13px;
+}
+
+/* ССЫЛКИ МЕНЮ */
+.profile_menu_links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 10px;
+}
+
+.profile_menu_links a {
+    display: block;
+    padding: 11px 10px;
+    border-radius: 8px;
+
+    color: #172B55;
+    font-size: 14px;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile_menu_links a:hover {
+    background-color: #F0F2FF;
+    color: #5965e8;
+}
+
+/* ВЫХОД ИЗ АККАУНТА */
+.profile_menu_links .logout_link {
+    color: #D93636;
+}
+
+.profile_menu_links .logout_link:hover {
+    background-color: #FDECEC;
+    color: #B91C1C;
+}
+
+/* УБИРАЕМ СТАНДАРТНОЕ ОТОБРАЖЕНИЕ HIDDEN */
+.profile_menu[hidden] {
+    display: none;
 }
 
 header nav ul li.active {
@@ -156,13 +292,78 @@ header nav ul li.active::after {
 
 
 
+/*ОСНОВНЫЕ ПАРАМЕТРЫ*/
+.basic {
+    padding: 40px 80px;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    box-sizing: border-box;
+}
+
+.block {
+    flex: 3;
+    min-width: 0;
+}
+
+.advice {
+    flex: 1;
+    min-width: 0;
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    height: 400px;
+    padding: 10px;
+    box-sizing: border-box;
+}
 
 
+/*ЗАГОЛОВОК БЛОКА*/
+
+.head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0;
+}
 
 
+.head .text h1{
+    color: var(--title);
+    font-size: 42px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.head .text p{
+    color: #4F5B85;
+    margin-top: 0;
+}
+
+.head button{
+    height: 60px;
+    width: 200px;
+    border-radius: 20px ;
+    border: 1px solid var(--btn-bl);
+    color: #FFFFFF;
+    background-color: var(--btn-bl);
+    cursor: pointer;
+
+    font-size: 18px;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.head button:hover{
+    background-color: #303BA8;
+}
 
 
-
+/*
+АНИМАЦИЯ КНОПОК ЗАПОМНИТЬ, ПОКА НИГДЕ НЕ ИСПОЛЬЗУЕТСЯ
+.head button:active {
+    transform: scale(0.98);
+}
+*/
 /* ПЕРЕКЛЮЧАТЕЛЬ МОИХ ЗАЯВОК */
 .requests-toggle {
     position: relative;
@@ -170,7 +371,7 @@ header nav ul li.active::after {
     height: 52px;
     padding: 2px;
     display: flex;
-    background: #5965e8;
+    background: var(--btn-bl);
     border-radius: 28px;
     box-sizing: border-box;
 }
@@ -204,20 +405,126 @@ header nav ul li.active::after {
 }
 
 .requests-toggle .toggle-btn.active {
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 
 
 
+/* ФИЛЬТРЫ ЗАЯВОК */
+
+.requests-content {
+    margin-top: 30px;
+}
+
+
+.request-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 46px;
+    padding: 7px 18px;
+
+    border: 1px solid var(--sub-title);
+    border-radius: 24px;
+    background: #FFFFFF;
+
+    color: var(--sub-title);
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+
+.filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 24px;
+    height: 24px;
+    padding: 0 5px;
+    box-sizing: border-box;
+
+    border-radius: 50%;
+    background: #ECEEF3;
+    color: var(--btn-bl);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.filter-btn.active {
+    border-color: var(--btn-bl);
+    background: var(--btn-bl);
+    color: #FFFFFF;
+}
+
+.filter-btn.active .filter-count {
+    background: #E4E7F2;
+    color: var(--btn-bl);
+    stroke: var(--btn-bl);
+}
+
+.filter-btn:focus-visible {
+    outline: 2px solid #7896E8;
+    outline-offset: 3px;
+}
 
 
 
 
+/*ADVICE*/
 
+.block1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f5f7ff;
+    border: 6px solid #ffffff;
+    border-radius: 15px;
+    padding: 20px 12px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
 
+.block1 img{
+    width: 100px;
+    height: 100px;
+}
 
+.block1 h2{
+    text-align: center;
+    color: var(--title);
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 0;
+}
 
+.block1 p{
+    text-align: center;
+    color: var(--sub-title);
+    font-size: 18px;
+    margin-top: 10px;
+}
 
 
 

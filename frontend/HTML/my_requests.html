@@ -19,7 +19,7 @@
             <header>
                 <div class="logo_block">
                     <img src="../images/main_icon_project.svg" alt="" class="bebebe">
-                    <span class="logo">WITH</span>  
+                    <a href="main.html" class="logo">WITH</a>
                 </div>
                 
                 <nav>
@@ -32,39 +32,107 @@
                     </ul>
                 </nav>
                 <div class="header_icons">
-                        <a href="#"><img src="../images/Loup.svg" alt=""></a>
-                        <a href="#"><img src="../images/blanket_avatar.svg" alt=""></a>
+                    <a href="#"><img src="../images/message-circle-question-mark.svg" alt=""></a>
+                    <button class="avatar_button" type="button" aria-expanded="false" aria-label="Открыть меню профиля">
+                        <img src="../images/blanket_avatar.svg" alt="">
+                    </button>
+
+                    <div class="profile_menu" hidden>
+                        <div class="profile_menu_header">
+                            <img src="../images/blanket_avatar.svg" alt="">
+                            <div class="profile_info">
+                                <span class="profile_name">Имя пользователя</span>
+                                <span class="profile_subtitle">Мой профиль</span>
+                            </div>
+                        </div>
+
+                        <div class="profile_menu_links">
+                            <a href="../HTML/my_profile.html">Мой профиль</a>
+                            <a href="#">Настройки</a>
+                            <a href="#">Поддержка</a>
+                            <a href="#" class="logout_link">Выйти из аккаунта</a>
+                        </div>
+                    </div>
                 </div>
             </header>
         </div>
 
 
-        <div>
-            <div class="head">
-                <div class="text">
-                    <h1>Мои заявки</h1>
-                    <p>Здесь вы можете отслеживать статус ваших заявок на чужие <br>и свои мероприятия и управлять ими</p>
+        <div class="basic">
+            <div class="block">
+                <div class="head">
+                    <div class="text">
+                        <h1>Мои заявки</h1>
+                        <p>Здесь вы можете отслеживать статус ваших заявок на чужие <br>и свои мероприятия и управлять ими</p>
+                    </div>
+                    <button  type="button" onclick="window.location.href='create_event.html'">Создать заявку</button>
                 </div>
-                <button>Создать заявку</button>
+                <div class="auth-toggle requests-toggle">
+                    <div class="toggle-slider"></div>
+
+                    <button class="toggle-btn active" type="button" id="responsesTab">
+                        Мои отклики
+                    </button>
+
+                    <button class="toggle-btn" type="button" id="publicationsTab">
+                        Мои публикации
+                    </button>
+                </div>
+
+                <div id="responsesContent">
+                    <h2>Заявки, на которые я откликнулся</h2>
+                        <div class="request-filters">
+                            <button class="filter-btn active" type="button" data-filter="all">
+                                Все <span class="filter-count">0</span>
+                            </button>
+                            <button class="filter-btn" type="button" data-filter="active">
+                                Активные <span class="filter-count">0</span>
+                            </button>
+                            <button class="filter-btn" type="button" data-filter="waiting">
+                                Ожидают ответа <span class="filter-count">0</span>
+                            </button>
+                            <button class="filter-btn" type="button" data-filter="past">
+                                Прошедшие <span class="filter-count">0</span>
+                            </button>
+                            <button class="filter-btn" type="button" data-filter="not-accepted">
+                                Не приняты <span class="filter-count">0</span>
+                            </button>
+                            <!-- Здесь позже появятся карточки заявок -->
+                        </div>
+                </div>
+
+                <div id="publicationsContent" style="display: none;">
+                    <h2>Заявки, которые я опубликовал</h2>
+                    <div class="request-filters">
+                        <button class="filter-btn active" type="button" data-filter="all">
+                            Все <span class="filter-count">0</span>
+                        </button>
+                        <button class="filter-btn" type="button" data-filter="active">
+                            Активные <span class="filter-count">0</span>
+                        </button>
+                        <button class="filter-btn" type="button" data-filter="waiting">
+                            Ожидают ответа <span class="filter-count">0</span>
+                        </button>
+                        <button class="filter-btn" type="button" data-filter="past">
+                            Прошедшие <span class="filter-count">0</span>
+                        </button>
+                        <button class="filter-btn" type="button" data-filter="not-accepted">
+                            Не приняты <span class="filter-count">0</span>
+                        </button>
+                    </div>
+                    <!-- Здесь позже появятся карточки заявок -->
+
+                </div>
             </div>
-            <div class="auth-toggle requests-toggle">
-                <div class="toggle-slider"></div>
-
-                <button class="toggle-btn active" type="button" id="responsesTab">
-                    Мои отклики
-                </button>
-
-                <button class="toggle-btn" type="button" id="publicationsTab">
-                    Мои публикации
-                </button>
-            </div>
-
-            <div id="responsesContent">
-                <!-- Здесь будут заявки, на которые ты откликнулся -->
-            </div>
-
-            <div id="publicationsContent" style="display: none;">
-                <!-- Здесь будут заявки, которые ты опубликовал -->
+            <div class="advice">
+                <div class="block1">
+                    <img src="../images/calendar-check.svg" alt="">
+                    <h2>Планируйте свое время вместе с WITH!</h2>
+                    <p>Создавайте заявки,
+                        <br>находите компанию
+                        <br>и открывайте для себя 
+                        <br>новые возможности</p>
+                </div>
             </div>
         </div>
 
@@ -110,5 +178,6 @@
             </div>
         </footer>
     <script src="../js/my_requests.js" defer></script>
+    <script src="../js/profile_menu.js"></script>
     </body>
 </html>

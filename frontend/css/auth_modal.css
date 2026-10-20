@@ -1,3 +1,9 @@
+:root{
+    --btn-bl: #5965e8;
+    --title: #172b55;
+        --sub-title: #7C84B5;
+}
+
 
 /* ЗАТЕМНЕНИЕ ФОНА */
 .auth-modal-overlay {
@@ -55,7 +61,7 @@
 }
 
 .auth-modal-close:hover {
-    color: #172b55;
+    color: var(--title);
 }
 
 /* ИКОНКА */
@@ -67,7 +73,7 @@
 /* ЗАГОЛОВОК */
 .auth-modal h2 {
     margin: 0 0 14px;
-    color: #172b55;
+    color: var(--title);
     font-size: 27px;
 }
 
@@ -88,7 +94,7 @@
     padding: 14px;
     margin-top: 12px;
 
-    border: 2px solid #5965e8;
+    border: 2px solid var(--btn-bl);
     border-radius: 14px;
 
     font-size: 16px;
@@ -103,7 +109,7 @@
 
 /* РЕГИСТРАЦИЯ */
 .auth-modal-register {
-    background-color: #5965e8;
+    background-color: var(--btn-bl);
     color: #ffffff;
 }
 
@@ -115,7 +121,7 @@
 /* ВХОД */
 .auth-modal-login {
     background-color: #ffffff;
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 .auth-modal-login:hover {
@@ -138,7 +144,7 @@
 }
 
 .auth-modal-later:hover {
-    color: #172b55;
+    color: var(--title);
 }
 
 /* АНИМАЦИЯ */

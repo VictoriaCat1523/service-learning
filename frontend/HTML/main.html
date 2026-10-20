@@ -19,7 +19,7 @@
             <header>
                 <div class="logo_block">
                     <img src="../images/main_icon_project.svg" alt="" class="bebebe">
-                    <span class="logo">WITH</span>  
+                    <a href="main.html" class="logo">WITH</a>
                 </div>
                 
                 <nav>
@@ -32,8 +32,27 @@
                     </ul>
                 </nav>
                 <div class="header_icons">
-                        <a href="#"><img src="../images/Loup.svg" alt=""></a>
-                        <a href="#"><img src="../images/blanket_avatar.svg" alt=""></a>
+                    <a href="#"><img src="../images/message-circle-question-mark.svg" alt=""></a>
+                    <button class="avatar_button" type="button" aria-expanded="false" aria-label="Открыть меню профиля">
+                        <img src="../images/blanket_avatar.svg" alt="">
+                    </button>
+
+                    <div class="profile_menu" hidden>
+                        <div class="profile_menu_header">
+                            <img src="../images/blanket_avatar.svg" alt="">
+                            <div class="profile_info">
+                                <span class="profile_name">Имя пользователя</span>
+                                <span class="profile_subtitle">Мой профиль</span>
+                            </div>
+                        </div>
+
+                        <div class="profile_menu_links">
+                            <a href="../HTML/my_profile.html">Мой профиль</a>
+                            <a href="#">Настройки</a>
+                            <a href="#">Поддержка</a>
+                            <a href="#" class="logout_link">Выйти из аккаунта</a>
+                        </div>
+                    </div>
                 </div>
             </header>
         </div>
@@ -50,7 +69,7 @@
                 <p>Создай заявку или присоединись к кому-нибудь.</p>
                 <div class="hero_buttons">
                     <a href="locate_company.html" class="btn btn-locate">Найти компанию</a>
-                    <a href="#" class="btn btn-bid">Создать заявку</a>
+                    <a href="create_event.html" class="btn btn-bid">Создать заявку</a>
                 </div>
             </div>
             <div class="image_home">
@@ -99,5 +118,6 @@
                 <p>© 2026 WITH. Все права защищены.</p>
             </div>
         </footer>
+        <script src="../js/profile_menu.js"></script>
     </body>
 </html>

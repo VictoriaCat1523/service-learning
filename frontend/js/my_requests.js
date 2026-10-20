@@ -35,5 +35,21 @@ document.addEventListener('DOMContentLoaded', () => {
         publicationsTab.addEventListener('click', showPublications);
     }
 
+    
+    document.querySelectorAll('.request-filters').forEach((filterGroup) => {
+        const filterButtons = filterGroup.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach((item) => {
+                    item.classList.remove('active');
+                });
+
+                button.classList.add('active');
+            });
+        });
+    });
+
+
     showResponses();
 });

@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
+:root{
+    --btn-bl: #5965e8;
+    --title: #172b55;
+    --sub-title: #7C84B5;
+}
+
+
 /* ВЕРТИКАЛЬНЫЙ ПОЛЗУНОК*/
 *::-webkit-scrollbar {
     width: 8px;
@@ -10,7 +17,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-    background: #5965e8;
+    background: var(--btn-bl);
     border-radius: 10px;
 }
 
@@ -29,7 +36,7 @@ header a:visited {
 }
 
 header .active a, header .active a:visited{
-    color: #5965e8 !important;
+    color: var(--btn-bl) !important;
 }
 
 
@@ -40,7 +47,7 @@ header .btn-register:visited {
 
 header .btn-entrance,
 header .btn-entrance:visited {
-    color: #5965e8;
+    color: var(--btn-bl);
 }
 
 
@@ -54,7 +61,7 @@ body{
     font-style: normal;
     font-size: 16px;
     margin: 0;
-    color: #172b55;
+    color: var(--title);
 }
 
 a{
@@ -106,6 +113,12 @@ header{
     font-size: 45px;
 }
 
+
+.logo_block .logo,
+.logo_block .logo:visited {
+    color: var(--title);
+}
+
 nav{
     position: absolute;
     left: 50%;
@@ -124,17 +137,141 @@ nav ul{
     padding: 0;
 }
 
-.header_icons{
+.header_icons {
     display: flex;
     align-items: center;
     gap: 25px;
 
     margin-left: auto;
+    position: relative;
 }
 
-.header_icons img{
+
+/*ИКОНКИ АВАТАРА И ПОДДЕРЖКИ*/
+
+.header_icons img {
     display: block;
 }
+
+/*ПОДДЕРЖКА*/
+.header_icons a img{
+    width: 30px;
+    height: 30px;
+}
+
+/*АВАТАР, ФУНКЦИОНАЛ*/
+
+/* КНОПКА АВАТАРА */
+.avatar_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.avatar_button img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+
+/* ВЫПАДАЮЩЕЕ МЕНЮ ПРОФИЛЯ */
+.profile_menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    z-index: 1000;
+
+    width: 270px;
+    padding: 16px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #D6D9E8;
+    border-radius: 16px;
+
+    box-sizing: border-box;
+}
+
+/* ШАПКА МЕНЮ С АВАТАРОМ */
+.profile_menu_header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #D6D9E8;
+}
+
+.profile_menu_header img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.profile_name {
+    color: #172B55;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.profile_subtitle {
+    color: #7C84B5;
+    font-size: 13px;
+}
+
+/* ССЫЛКИ МЕНЮ */
+.profile_menu_links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 10px;
+}
+
+.profile_menu_links a {
+    display: block;
+    padding: 11px 10px;
+    border-radius: 8px;
+
+    color: #172B55;
+    font-size: 14px;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile_menu_links a:hover {
+    background-color: #F0F2FF;
+    color: #5965e8;
+}
+
+/* ВЫХОД ИЗ АККАУНТА */
+.profile_menu_links .logout_link {
+    color: #D93636;
+}
+
+.profile_menu_links .logout_link:hover {
+    background-color: #FDECEC;
+    color: #B91C1C;
+}
+
+
+/* УБИРАЕМ СТАНДАРТНОЕ ОТОБРАЖЕНИЕ HIDDEN */
+.profile_menu[hidden] {
+    display: none;
+}
+
 
 header nav ul li.active {
     position: relative;
@@ -205,7 +342,7 @@ header nav ul li.active::after {
     padding: 8px 16px;
 
     background-color: #eef0ff;
-    color: #5965e8;
+    color: var(--btn-bl);
     border-radius: 30px;
     word-spacing: 5px;
     font-size: clamp(15px, 1.2vw, 19px);
@@ -218,7 +355,7 @@ header nav ul li.active::after {
 
     line-height: 1.05;
 
-    color: #172b55;
+    color: var(--title);
 }
 
 .info_home p{
@@ -249,16 +386,16 @@ header nav ul li.active::after {
 }
 
 .btn-locate{
-    background-color: #5965e8;
+    background-color: var(--btn-bl);
     color: white;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .btn-bid{
     background-color: white;
-    color: #5965e8;
+    color: var(--btn-bl);
 
-    border: 1px solid #5965e8;
+    border: 1px solid var(--btn-bl);
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 

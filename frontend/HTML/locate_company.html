@@ -6,12 +6,12 @@
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/locate_company.css">
     </head>
-<body class="wrapper">
-        <div>
+    <body class="wrapper">
+               <div>
             <header>
                 <div class="logo_block">
                     <img src="../images/main_icon_project.svg" alt="" class="bebebe">
-                    <span class="logo">WITH</span>  
+                    <a href="main.html" class="logo">WITH</a>
                 </div>
                 
                 <nav>
@@ -24,11 +24,34 @@
                     </ul>
                 </nav>
                 <div class="header_icons">
-                    <a href="#"><img src="../images/Loup.svg" alt=""></a>
-                    <a href="#"><img src="../images/blanket_avatar.svg" alt=""></a>
+                    <a href="#"><img src="../images/message-circle-question-mark.svg" alt=""></a>
+                    <button class="avatar_button" type="button" aria-expanded="false" aria-label="Открыть меню профиля">
+                        <img src="../images/blanket_avatar.svg" alt="">
+                    </button>
+
+                    <div class="profile_menu" hidden>
+                        <div class="profile_menu_header">
+                            <img src="../images/blanket_avatar.svg" alt="">
+                            <div class="profile_info">
+                                <span class="profile_name">Имя пользователя</span>
+                                <span class="profile_subtitle">Мой профиль</span>
+                            </div>
+                        </div>
+
+                        <div class="profile_menu_links">
+                            <a href="../HTML/my_profile.html">Мой профиль</a>
+                            <a href="#">Настройки</a>
+                            <a href="#">Поддержка</a>
+                            <a href="#" class="logout_link">Выйти из аккаунта</a>
+                        </div>
+                    </div>
                 </div>
             </header>
         </div>
+        
+        
+        
+        
         <div class="info">
             <div class="text_locate">
                     <h1>Найти компанию</h1>
@@ -53,6 +76,7 @@
 
                     <hr class="filter-divider">
 
+                    <!--ВЫБОР ФИЛЬТРА КАТЕГОРИИ-->
                     <div class="categories">
                         <h3>Категории</h3>
                         <label><input type="checkbox" name="category" value="cinema">Кино</label>
@@ -72,23 +96,31 @@
                     </div>
 
                     <hr class="filter-divider">
-
+                    
+                    
+                    <!--ПОЛЗУНОК ВОЗРАСТА-->
                     <div class="age">
                         <h3>Возраст</h3>
+
                         <div id="age_values">
                             <span id="minAgeValue">18</span>
                             <span>-</span>
                             <span id="maxAgeValue">35</span>
                             <span>лет</span>
                         </div>
+
                         <div class="age_sliders">
+                            <div class="age_track">
+                                <div class="age_range"></div>
+                            </div>
+
                             <input type="range" id="minAge" min="18" max="60" value="18">
                             <input type="range" id="maxAge" min="18" max="60" value="35">
                         </div>
                     </div>
 
                     <hr class="filter-divider">
-
+                    <!--ВЫБОР ГЕНДЕРА-->
                     <div class="gender">
                         <h3>Пол</h3>
 
@@ -154,7 +186,7 @@
                 <p>© 2026 WITH. Все права защищены.</p>
             </div>
         </footer>
-
+        <script src="../js/profile_menu.js"></script>
     </body>
 </html>
 
