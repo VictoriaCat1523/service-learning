@@ -36,12 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     
-    document.querySelectorAll('.request-filters').forEach((filterGroup) => {
-        const filterButtons = filterGroup.querySelectorAll('.filter-btn');
+    document.querySelectorAll('.requests-stats').forEach((statsGroup) => {
+        const statButtons = statsGroup.querySelectorAll('.stat-btn');
 
-        filterButtons.forEach((button) => {
+        statButtons.forEach((button) => {
             button.addEventListener('click', () => {
-                filterButtons.forEach((item) => {
+                statButtons.forEach((item) => {
                     item.classList.remove('active');
                 });
 

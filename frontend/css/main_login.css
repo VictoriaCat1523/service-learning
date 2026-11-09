@@ -28,6 +28,10 @@
 
 /*ЦВЕТ ГИПЕРССЫЛОК*/
 
+header{
+    border-bottom: 1.2px solid var(--sub-title);
+}
+
 header a,
 header a:visited {
     color: #5f6b85;

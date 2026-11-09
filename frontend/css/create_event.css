@@ -45,6 +45,10 @@ a{
 
 /*ЦВЕТ ГИПЕРССЫЛОК*/
 
+header{
+    border-bottom: 1.2px solid var(--sub-title);
+}
+
 header a,
 header a:visited {
     color: #5f6b85;
@@ -265,7 +269,8 @@ nav ul{
     padding: 11px 10px;
     border-radius: 8px;
 
-    color: #172B55;
+    
+    color: var(--sub-title) !important;
     font-size: 14px;
     text-decoration: none;
 
@@ -274,17 +279,19 @@ nav ul{
 
 .profile_menu_links a:hover {
     background-color: #F0F2FF;
-    color: #5965e8;
+    color: #5965e8 !important;
 }
+
 /* ВЫХОД ИЗ АККАУНТА */
 .profile_menu_links .logout_link {
-    color: #D93636;
+    color: #D93636 !important;
 }
 
 .profile_menu_links .logout_link:hover {
     background-color: #FDECEC;
-    color: #B91C1C;
+    color: #B91C1C !important;
 }
+
 /* УБИРАЕМ СТАНДАРТНОЕ ОТОБРАЖЕНИЕ HIDDEN */
 .profile_menu[hidden] {
     display: none;

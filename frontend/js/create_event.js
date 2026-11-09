@@ -407,12 +407,11 @@ function showStep() {
         }
     });
 
-    // Меняем подписи кнопок в зависимости от этапа.
+    // Меняем подписи и видимость кнопок.
     cancelButton.textContent = currentStep === 1 ? "Отмена" : "Назад";
 
-    nextButton.textContent = currentStep === formSteps.length
-        ? "Опубликовать"
-        : "Далее";
+    nextButton.textContent = "Далее";
+    nextButton.hidden = currentStep === formSteps.length;
 
     // Восстанавливаем данные открываемого этапа.
     restoreStepData(currentStep);
@@ -427,7 +426,7 @@ function showStep() {
 // =====================================================
 
 nextButton.addEventListener("click", () => {
-    // Сохраняем изменения перед переходом.
+    // Сохраняем изменения текущего этапа.
     saveStepData(currentStep);
 
     // Проверяем обязательные поля первого этапа.
@@ -440,35 +439,20 @@ nextButton.addEventListener("click", () => {
         return;
     }
 
-    // Если остались этапы, переходим к следующему.
+    // Переходим к следующему этапу.
     if (currentStep < formSteps.length) {
         currentStep++;
         showStep();
-        return;
     }
-
-    // На последнем этапе собираем все актуальные данные.
-    saveStepData(1);
-    saveStepData(2);
-    saveStepData(3);
-
-    // Пока только выводим данные в консоль браузера.
-    // Позже здесь подключим POST-запрос к Python-бэкенду.
-    const payload = buildRequestPayload();
-
-    console.log("Данные заявки для бэкенда:", payload);
-    console.log("JSON заявки:", JSON.stringify(payload, null, 2));
-
-    alert("Данные заявки собраны. Отправку на сервер подключим позже.");
-
 });
-
 // Кнопка публикации заявки
 const publishButton = document.getElementById("publishRequest");
 
 if (publishButton) {
-    publishButton.addEventListener("click", () => {
-        // Собираем актуальные данные всех этапов
+    publishButton.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Собираем данные всех этапов
         saveStepData(1);
         saveStepData(2);
         saveStepData(3);
@@ -476,33 +460,12 @@ if (publishButton) {
         // Формируем объект заявки
         const payload = buildRequestPayload();
 
-        // Преобразуем объект в JSON с отступами
-        const json = JSON.stringify(payload, null, 2);
+        console.log("Данные заявки:", payload);
 
-        // Создаём файл JSON в памяти браузера
-        const blob = new Blob([json], {
-            type: "application/json;charset=utf-8"
-        });
-
-        // Создаём временную ссылку на файл
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-
-        // Имя файла содержит уникальный ID заявки
-        link.href = url;
-        link.download = `${payload.id}.json`;
-
-        // Запускаем скачивание
-        document.body.appendChild(link);
-        link.click();
-
-        // Удаляем временные элементы
-        link.remove();
-        URL.revokeObjectURL(url);
-
-        console.log("Заявка сохранена в JSON:", payload);
-
-        alert("Файл заявки JSON подготовлен к сохранению.");
+        
+        alert("Заявка подготовлена к публикации.");
+        // Переходим в раздел «Мои заявки»
+        window.location.href = "my_requests.html";
     });
 }
 

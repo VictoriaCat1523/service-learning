@@ -29,6 +29,9 @@
 
 /*ЦВЕТ ГИПЕРССЫЛОК*/
 
+header{
+    border-bottom: 1.2px solid var(--sub-title);
+}
 
 header a,
 header a:visited {
@@ -239,13 +242,13 @@ nav ul{
     gap: 4px;
     padding-top: 10px;
 }
-
 .profile_menu_links a {
     display: block;
     padding: 11px 10px;
     border-radius: 8px;
 
-    color: #172B55;
+    
+    color: var(--sub-title) !important;
     font-size: 14px;
     text-decoration: none;
 
@@ -254,18 +257,19 @@ nav ul{
 
 .profile_menu_links a:hover {
     background-color: #F0F2FF;
-    color: #5965e8;
+    color: #5965e8 !important;
 }
 
 /* ВЫХОД ИЗ АККАУНТА */
 .profile_menu_links .logout_link {
-    color: #D93636;
+    color: #D93636 !important;
 }
 
 .profile_menu_links .logout_link:hover {
     background-color: #FDECEC;
-    color: #B91C1C;
+    color: #B91C1C !important;
 }
+
 
 /* УБИРАЕМ СТАНДАРТНОЕ ОТОБРАЖЕНИЕ HIDDEN */
 .profile_menu[hidden] {
@@ -409,7 +413,55 @@ header nav ul li.active::after {
 }
 
 
+/* СТАТИСТИКА ЗАЯВОК */
 
+.requests-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.stat-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    min-height: 75px;
+    padding: 10px;
+
+    border: 1px solid #D6D9E8;
+    border-radius: 14px;
+    background: #FFFFFF;
+    color: var(--sub-title);
+
+    font-family: "Poppins", sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.stat-number {
+    color: var(--btn-bl);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.stat-btn.active {
+    background: var(--btn-bl);
+    border-color: var(--btn-bl);
+    color: #FFFFFF;
+}
+
+.stat-btn.active .stat-number {
+    color: #FFFFFF;
+}
+
+.stat-btn:hover {
+    border-color: var(--btn-bl);
+}
 
 /* ФИЛЬТРЫ ЗАЯВОК */
 

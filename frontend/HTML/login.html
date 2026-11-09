@@ -62,7 +62,7 @@
 
                         <div class="login-options">
                             <label class="checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" id="rememberMe">
                                 <span>Запомнить меня</span>
                             </label>
                             <a href="#">Забыли пароль?</a>
@@ -83,27 +83,107 @@
                             <br>для любых интересов и мероприятий
                         </p>
 
-                        <input type="name" class="name" placeholder="Имя">
+                        <input
+                            type="text"
+                            id="registerFirstName"
+                            name="first_name"
+                            class="name"
+                            placeholder="Имя"
+                            autocomplete="given-name"
+                            required
+                        >
 
-                        <input type="second-name" class="name" placeholder="Фамилия">
+                        <input
+                            type="text"
+                            id="registerLastName"
+                            name="last_name"
+                            class="name"
+                            placeholder="Фамилия"
+                            autocomplete="family-name"
+                            required
+                        >
 
-                        <input type="email" class="email" placeholder="Электронная почта">
+                        <input
+                            type="text"
+                            id="registerUsername"
+                            name="username"
+                            class="name"
+                            placeholder="Имя пользователя"
+                            autocomplete="username"
+                            minlength="3"
+                            maxlength="20"
+                            required
+                        >
+
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            class="email"
+                            placeholder="Электронная почта"
+                            autocomplete="email"
+                            required
+                        >
 
                         <div class="password-wrapper">
-                            <input type="password" id="registerPassword"class="pass" placeholder="Пароль">
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                name="password"
+                                class="pass"
+                                placeholder="Пароль"
+                                autocomplete="new-password"
+                                required
+                            >
                             <button type="button" class="show-password">
                                 <img src="../images/eye-off.svg" alt="">
                             </button>
                         </div>
 
                         <div class="password-wrapper">
-                            <input type="password" class="pass" placeholder="Повторите пароль">
+                            <input
+                                type="password"
+                                id="registerPasswordConfirm"
+                                name="password_confirm"
+                                class="pass"
+                                placeholder="Повторите пароль"
+                                autocomplete="new-password"
+                                required
+                            >
                             <button type="button" class="show-password">
                                 <img src="../images/eye-off.svg" alt="">
                             </button>
                         </div>
-                        <input type="date" class="date" placeholder="Дата рождения">
 
+                        <input
+                            type="date"
+                            id="registerBirthDate"
+                            name="birth_date"
+                            class="date"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="registerCity"
+                            name="city"
+                            class="city"
+                            placeholder="Город"
+                            autocomplete="address-level2"
+                            required
+                        >
+
+                        <select
+                            id="registerGender"
+                            name="gender"
+                            class="gender"
+                            required
+                        >
+                            <option value="" disabled selected>Выберите пол</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                            <option value="not_specified">Не указывать</option>
+                        </select>
                         <button type="submit" class="submit-btn">Зарегистрироваться</button>
 
                         <p class="Login">Уже есть аккаунт?<a href="#">Войти</a></p>
@@ -124,7 +204,7 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="#" alt="">
+                        <img src="../images/main_icon_project.svg" alt="">
                         <span>WITH</span>
                     </div>
                     <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>

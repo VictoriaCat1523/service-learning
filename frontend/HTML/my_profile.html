@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WITH us</title>
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/my_profile.css">
+        <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
     </head>
 
 
@@ -39,14 +40,13 @@
                             <img src="../images/blanket_avatar.svg" alt="">
                             <div class="profile_info">
                                 <span class="profile_name">Имя пользователя</span>
-                                <span class="profile_subtitle">Мой профиль</span>
                             </div>
                         </div>
 
                         <div class="profile_menu_links">
-                            <a href="../HTML/my_profile.html">Мой профиль</a>
-                            <a href="#">Настройки</a>
-                            <a href="#">Поддержка</a>
+                            <a href="my_profile.html?tab=profile">Мой профиль</a>
+                            <a href="my_profile.html?tab=favorites">Избранное</a>
+                            <a href="my_profile.html?tab=setings">Настройки</a>
                             <a href="#" class="logout_link">Выйти из аккаунта</a>
                         </div>
                     </div>
@@ -54,7 +54,186 @@
             </header>
         </div>
 
+        <div class="main">
+            <div class="panel">
+                <div class="top">
+                    <button class="profile active" data-target="profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round preview-icon"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg>
+                        Мой профиль
+                    </button>
 
+                    <button class="favorites" data-target="favorites">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star preview-icon"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+                        Избранное
+                    </button>
+
+                    <button class="setings" data-target="setings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings preview-icon"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg>
+                        Настройки
+                    </button>
+                </div>
+
+                <div class="bottom">
+                    <button class="exit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-log-out preview-icon"><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/></svg>
+                        Выйти
+                    </button>
+                </div>
+            </div>
+
+            <div id="profile" class="profile-content">
+
+                <div class="profile-heading">
+                    <div>
+                        <h1>Мой профиль</h1>
+                        <p>Управляйте личной информацией и настройками аккаунта</p>
+                    </div>
+
+                    <button class="edit-profile" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil-line preview-icon"><path d="M13 21h8"/><path d="m15 5 4 4"/><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/></svg>
+                        Редактировать
+                    </button>
+                </div>
+
+                <div class="profile-card">
+
+                    <div class="profile-user">
+                        <div class="profile-avatar">
+                            <img src="../images/blanket_avatar.svg" alt="Аватар пользователя">
+                        </div>
+
+                        <div class="profile-user-info">
+                            <h2 id="profileFullName">Имя Фамилия</h2>
+                            <p id="profileUsername">@username</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-divider"></div>
+
+                    <div class="profile-section">
+                        <h3>Личная информация</h3>
+
+                        <div class="profile-info-grid">
+
+                            <div class="info-item">
+                                <span>Имя</span>
+                                <p id="profileFirstName">Имя</p>
+                            </div>
+
+                            <div class="info-item">
+                                <span>Фамилия</span>
+                                <p id="profileLastName">Фамилия</p>
+                            </div>
+
+                            <div class="info-item">
+                                <span>Дата рождения</span>
+                                <p id="profileBirthDate">01.01.2000</p>
+                            </div>
+
+
+                            <div class="info-item">
+                                <span>Электронная почта</span>
+                                <p id="profileEmail">example@mail.com</p>
+                            </div>
+
+                            <div class="info-item">
+                                <span>Город</span>
+                                <p id="profileCity">Не указан</p>
+                            </div>
+
+                            <div class="info-item">
+                                <span>Пол</span>
+                                <p id="profileGender">Не указан</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="editProfileForm" hidden>
+
+                        <h3>Редактирование профиля</h3>
+
+                        <div class="profile-info-grid">
+
+                            <div class="info-item">
+                                <label for="editFirstName">Имя</label>
+                                <input type="text" id="editFirstName" required>
+                            </div>
+
+                            <div class="info-item">
+                                <label for="editLastName">Фамилия</label>
+                                <input type="text" id="editLastName" required>
+                            </div>
+
+                            <div class="info-item">
+                                <label for="editUsername">Username</label>
+                                <input type="text" id="editUsername" required>
+                            </div>
+
+                            <div class="info-item">
+                                <label for="editEmail">Электронная почта</label>
+                                <input type="email" id="editEmail" required>
+                            </div>
+
+                            <div class="info-item">
+                                <label for="editBirthDate">Дата рождения</label>
+                                <input type="date" id="editBirthDate" required>
+                            </div>
+
+                            <div class="info-item">
+                                <label for="editCity">Город</label>
+                                <input type="text" id="editCity" required>
+                            </div>
+
+                            <div class="info-item">
+                                <label for="editGender">Пол</label>
+                                <select id="editGender" required>
+                                    <option value="not_specified">Не указан</option>
+                                    <option value="male">Мужской</option>
+                                    <option value="female">Женский</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="edit-profile-actions">
+                            <button type="submit">Сохранить</button>
+                            <button type="button" id="cancelEditProfile">Отмена</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div id="favorites" class="favorites-content" hidden>
+
+                <div class="favorites-heading">
+                    <h1>Избранное</h1>
+                    <p>Здесь будут храниться понравившиеся вам заявки.</p>
+                </div>
+
+                <div class="favorites-placeholder">
+                    <img src="../images/star.svg" alt="">
+
+                    <h2>Раздел пока пуст</h2>
+
+                    <p>
+                        Функция избранного пока находится в разработке.
+                        Совсем скоро здесь можно будет сохранять интересные заявки.
+                    </p>
+
+                    <a href="locate_company.html">
+                        Найти компанию
+                    </a>
+                </div>
+
+            </div>
+
+            <div id="setings" hidden>
+
+            </div>
+
+        </div>
 
 
 
@@ -65,7 +244,7 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="#" alt="">
+                        <img src="../images/main_icon_project.svg" alt="">
                         <span>WITH</span>
                     </div>
                     <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
@@ -100,5 +279,7 @@
             </div>
         </footer>
         <script src="../js/profile_menu.js"></script>
+        <script src="../js/profile_navigation.js"></script>
+        <script src="../js/profile.js"></script>
     </body>
 </html>

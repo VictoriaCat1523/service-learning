@@ -377,8 +377,14 @@ nav ul{
     background-image: url("../images/user-round.svg");
 }
 
-.auth-form .date{
+.auth-form .date {
     background-image: url("../images/calendar.svg");
+    padding-left: 16px;
+}
+
+.auth-form .date::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    cursor: pointer;
 }
 
 .auth-form img{
@@ -469,10 +475,59 @@ p a:hover{
 
 
 
+/* Дополнительные поля регистрации */
+
+/* Город */
+.auth-form .city {
+    background-image: none;
+    padding-left: 16px !important;
+}
+
+/* Дата рождения */
+.auth-form #registerBirthDate {
+    padding-left: 48px;
+    color: var(--title);
+}
 
 
+/* Выбор пола */
+.auth-form .gender {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 
+    padding: 0 16px;
 
+    border: 2px solid #7C84B5;
+    border-radius: 12px;
+
+    background-color: #FFFFFF;
+    background-image: none;
+
+    color: #7C84B5;
+    font-family: inherit;
+    font-size: 18px;
+
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+.auth-form .gender:focus {
+    border-color: var(--title);
+}
+
+/* Цвет выбранного значения пола */
+.auth-form .gender:valid {
+    color: var(--title);
+}
+
+/* Цвет текста вариантов в раскрытом списке */
+.auth-form .gender option {
+    color: var(--title);
+}
 
 
 /*FOOTER С СОЦСЕТЯМИ И Т.П.*/

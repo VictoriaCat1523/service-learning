@@ -1,5 +1,5 @@
 from pydantic import BaseModel, ConfigDict
-from datetime import datetime
+from datetime import datetime, date
 
 # схемы для пользователя
 
@@ -12,9 +12,24 @@ class UserResponse(BaseModel): # отдаём обратно
     id: int
     username: str
     email: str
-    
+    first_name: str
+    last_name: str
+    gender: str
+    city: str
+    birth_date: date
+        
     model_config = ConfigDict(from_attributes=True)
 
+# схема для редактирования профиля
+
+class UserUpdate(BaseModel):
+    username: str
+    email: str
+    first_name: str
+    last_name: str
+    gender: str
+    city: str
+    birth_date: date
 
 # схемы для заявки
 
@@ -42,9 +57,14 @@ class RequestResponse(BaseModel): # показываем в ленте
 class UserRegister(BaseModel):
     username: str
     email: str
+    first_name: str
+    last_name: str
+    gender: str
+    city: str
+    birth_date: date
     password: str
     password_confirm: str
-
+    
     def check_passwords_match(self): # валидация
         if self.password != self.password_confirm:
             raise ValueError("Пароли не совпадают")
@@ -54,8 +74,9 @@ class UserRegister(BaseModel):
 # схема для входа
 
 class UserLogin(BaseModel):
-    email: str                                    #ИЗМЕНЕНО  НА EMAIL
+    email: str
     password: str
+    remember_me: bool = False
 
 
 # схема для токена (возвращаем после входа)

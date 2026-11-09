@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/create_event.css">
-
+        <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
     </head>
     <body class="wrapper">
         <div>
@@ -35,14 +35,13 @@
                             <img src="../images/blanket_avatar.svg" alt="">
                             <div class="profile_info">
                                 <span class="profile_name">Имя пользователя</span>
-                                <span class="profile_subtitle">Мой профиль</span>
                             </div>
                         </div>
 
                         <div class="profile_menu_links">
-                            <a href="../HTML/my_profile.html">Мой профиль</a>
-                            <a href="#">Настройки</a>
-                            <a href="#">Поддержка</a>
+                            <a href="my_profile.html?tab=profile">Мой профиль</a>
+                            <a href="my_profile.html?tab=favorites">Избранное</a>
+                            <a href="my_profile.html?tab=setings">Настройки</a>
                             <a href="#" class="logout_link">Выйти из аккаунта</a>
                         </div>
                     </div>
@@ -409,6 +408,7 @@
                                     </section>
 
                                     <!-- ДОПП ФАЙЛ -->
+                                    <!--
                                     <section class="additional-file">
                                         <h3>Дополнительные материалы</h3>
                                         <p>Прикрепите фотографию, афишу, карту или документ (необязательно).</p>
@@ -423,6 +423,7 @@
 
                                         <small>Форматы: JPG, PNG, PDF.</small>
                                     </section>
+                                    -->
                                 </div>
                                 
                                 
@@ -671,7 +672,7 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="#" alt="">
+                        <img src="../images/main_icon_project.svg" alt="">
                         <span>WITH</span>
                     </div>
                     <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
@@ -705,11 +706,11 @@
                 <p>© 2026 WITH. Все права защищены.</p>
             </div>
         </footer>
+        <script src="../js/category-select.js" defer></script>
+        <script src="../js/people_counter.js" defer></script>
+        <script src="../js/request-char-counter.js" defer></script>
+        <script src="../js/create_event.js" defer></script>
+        <script src="../js/profile_menu.js"></script>
     </body>
 </html>
 
-<script src="../js/category-select.js" defer></script>
-<script src="../js/people_counter.js" defer></script>
-<script src="../js/request-char-counter.js" defer></script>
-<script src="../js/create_event.js" defer></script>
-<script src="../js/profile_menu.js"></script>

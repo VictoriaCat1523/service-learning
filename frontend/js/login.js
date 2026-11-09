@@ -54,7 +54,15 @@
             showRegister();
         });
     }
+        // Переключение на вход по ссылке под формой регистрации
+    const loginLink = document.querySelector('.Login a');
 
+    if (loginLink) {
+        loginLink.addEventListener('click', (event) => {
+            event.preventDefault();
+            showLogin();
+        });
+    }
 
 
     // 6. Логика показа/скрытия пароля (глазок)
@@ -80,65 +88,74 @@
     // ==========================================
     // 7. СКРИПТ ОТПРАВКИ ДАННЫХ РЕГИСТРАЦИИ НА БЭКЕНД
     // ==========================================
-    if (authForm) {
-        authForm.addEventListener('submit', async function (event) {
-            // Блокируем стандартную перезагрузку страницы браузером
-            event.preventDefault();
+   if (authForm) {
+    authForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
 
-            // Ищем инпуты внутри формы по классам и ID из вашей верстки
-            const firstNameInput = authForm.querySelector('input.name:not([placeholder*="Фамилия"])');
-            const emailInput = authForm.querySelector('input.email');
-            const passwordInput = document.getElementById('registerPassword');
-            const confirmPasswordInput = authForm.querySelector('input[placeholder="Повторите пароль"]');
+        // Получаем данные из полей регистрации
+        const firstName = document.getElementById('registerFirstName')?.value.trim();
+        const lastName = document.getElementById('registerLastName')?.value.trim();
+        const username = document.getElementById('registerUsername')?.value.trim();
+        const email = document.getElementById('registerEmail')?.value.trim();
+        const password = document.getElementById('registerPassword')?.value;
+        const confirmPassword = document.getElementById('registerPasswordConfirm')?.value;
+        const birthDate = document.getElementById('registerBirthDate')?.value;
+        const city = document.getElementById('registerCity')?.value.trim();
+        const gender = document.getElementById('registerGender')?.value;
 
-            // Извлекаем значения и убираем лишние пробелы по краям
-            const username = firstNameInput?.value.trim();
-            const email = emailInput?.value.trim();
-            const password = passwordInput?.value;
-            const confirmPassword = confirmPasswordInput?.value;
+        // Проверяем заполнение полей
+        if (
+            !firstName || !lastName || !username || !email ||
+            !password || !confirmPassword || !birthDate || !city || !gender
+        ) {
+            alert('Пожалуйста, заполните все обязательные поля!');
+            return;
+        }
 
-            // Проверка на заполнение полей на стороне фронтенда
-            if (!username || !email || !password || !confirmPassword) {
-                alert('Пожалуйста, заполните все обязательные поля!');
-                return;
+        // Проверяем совпадение паролей
+        if (password !== confirmPassword) {
+            alert('Пароли не совпадают!');
+            return;
+        }
+
+        // Формируем данные для отправки на backend
+        const registerData = {
+            first_name: firstName,
+            last_name: lastName,
+            username: username,
+            email: email,
+            password: password,
+            password_confirm: confirmPassword,
+            birth_date: birthDate,
+            city: city,
+            gender: gender
+        };
+
+        try {
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registerData)
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert('Регистрация прошла успешно!');
+                authForm.reset();
+                showLogin();
+            } else {
+                const errorMessage = result.detail || 'Произошла ошибка при регистрации';
+                alert(`Ошибка: ${typeof errorMessage === 'object' ? JSON.stringify(errorMessage) : errorMessage}`);
             }
-
-            // Формируем JSON-объект строго под схему FastAPI (schemas.UserRegister)
-            const registerData = {
-                username: username,
-                email: email,
-                password: password,
-                password_confirm: confirmPassword
-            };
-
-            try {
-                // Отправляем POST-запрос на ваш локальный FastAPI сервер
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(registerData)
-                });
-
-                const result = await response.json();
-
-                // Обработка успешного ответа сервера (Статус 200)
-                if (response.ok) {
-                    alert('Регистрация прошла успешно!');
-                    authForm.reset(); // Очищаем поля формы
-                    showLogin();      // Переключаем пользователя на форму входа
-                } else {
-                    // Если FastAPI вернул ошибку (например, "Пароли не совпадают")
-                    const errorMessage = result.detail || 'Произошла ошибка при регистрации';
-                    alert(`Ошибка: ${typeof errorMessage === 'object' ? JSON.stringify(errorMessage) : errorMessage}`);
-                }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-                alert('Не удалось связаться с сервером бэкенда. Убедитесь, что ваш Python/FastAPI проект запущен.');
-            }
-        });
-    }
+        } catch (error) {
+            console.error('Ошибка сети:', error);
+            alert('Не удалось связаться с сервером. Проверьте, запущен ли backend.');
+        }
+    });
+}
 
     // ==========================================
     // 8. СКРИПТ ОТПРАВКИ ДАННЫХ АВТОРИЗАЦИИ (ВХОД)
@@ -166,7 +183,8 @@
             // Исправлено: формируем JSON строго под измененный schemas.UserLogin (ключ email вместо username)
             const loginData = {
                 email: emailValue,
-                password: passwordValue
+                password: passwordValue,
+                remember_me: document.getElementById('rememberMe').checked
             };
 
             try {
@@ -187,10 +205,21 @@
                     }
                     catch (e) {}                                                                 //ничего не делать     потому что есть алерт в логин.хтмл
                     
-                    // Сохраняем полученный JWT-токен в localStorage браузера. 
-                    localStorage.setItem('token', result.access_token);
-                    
-                    loginAuthForm.reset(); // Очищаем форму входа
+                    // Определяем, выбрал ли пользователь «Запомнить меня»
+                    const rememberMe = document.getElementById('rememberMe').checked;
+
+                    // Удаляем предыдущие токены, чтобы не осталось старой сессии
+                    localStorage.removeItem('token');
+                    sessionStorage.removeItem('token');
+
+                    // Сохраняем токен в зависимости от выбора пользователя
+                    if (rememberMe) {
+                        localStorage.setItem('token', result.access_token);
+                    } else {
+                        sessionStorage.setItem('token', result.access_token);
+                    }
+
+                    loginAuthForm.reset();
                 } else {
                     // Обрабатываем ошибку от FastAPI (например, "Неверный адрес электронной почты или пароль")
                     alert(`Ошибка: ${result.detail || 'Неверные данные для входа'}`);

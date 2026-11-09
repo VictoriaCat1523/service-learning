@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>WITH us</title>
         <link rel="stylesheet" href="../css/my_requests.css">
+        <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
     </head>
 
 
@@ -42,14 +43,13 @@
                             <img src="../images/blanket_avatar.svg" alt="">
                             <div class="profile_info">
                                 <span class="profile_name">Имя пользователя</span>
-                                <span class="profile_subtitle">Мой профиль</span>
                             </div>
                         </div>
 
                         <div class="profile_menu_links">
-                            <a href="../HTML/my_profile.html">Мой профиль</a>
-                            <a href="#">Настройки</a>
-                            <a href="#">Поддержка</a>
+                            <a href="my_profile.html?tab=profile">Мой профиль</a>
+                            <a href="my_profile.html?tab=favorites">Избранное</a>
+                            <a href="my_profile.html?tab=setings">Настройки</a>
                             <a href="#" class="logout_link">Выйти из аккаунта</a>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <h1>Мои заявки</h1>
                         <p>Здесь вы можете отслеживать статус ваших заявок на чужие <br>и свои мероприятия и управлять ими</p>
                     </div>
-                    <button  type="button" onclick="window.location.href='create_event.html'">Создать заявку</button>
+                    <button  type="button" onclick="window.location.href='create_event.html'">+ Создать заявку</button>
                 </div>
                 <div class="auth-toggle requests-toggle">
                     <div class="toggle-slider"></div>
@@ -81,47 +81,52 @@
 
                 <div id="responsesContent">
                     <h2>Заявки, на которые я откликнулся</h2>
-                        <div class="request-filters">
-                            <button class="filter-btn active" type="button" data-filter="all">
-                                Все <span class="filter-count">0</span>
-                            </button>
-                            <button class="filter-btn" type="button" data-filter="active">
-                                Активные <span class="filter-count">0</span>
-                            </button>
-                            <button class="filter-btn" type="button" data-filter="waiting">
-                                Ожидают ответа <span class="filter-count">0</span>
-                            </button>
-                            <button class="filter-btn" type="button" data-filter="past">
-                                Прошедшие <span class="filter-count">0</span>
-                            </button>
-                            <button class="filter-btn" type="button" data-filter="not-accepted">
-                                Не приняты <span class="filter-count">0</span>
-                            </button>
-                            <!-- Здесь позже появятся карточки заявок -->
-                        </div>
+                    <div class="requests-stats">
+                        <button class="stat-btn active" type="button" data-filter="all">
+                            <span class="stat-number">0</span>
+                            <span>Все</span>
+                        </button>
+
+                        <button class="stat-btn" type="button" data-filter="active">
+                            <span class="stat-number">0</span>
+                            <span>Активные</span>
+                        </button>
+
+                        <button class="stat-btn" type="button" data-filter="completed">
+                            <span class="stat-number">0</span>
+                            <span>Завершённые</span>
+                        </button>
+
+                        <button class="stat-btn" type="button" data-filter="cancelled">
+                            <span class="stat-number">0</span>
+                            <span>Отменённые</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="publicationsContent" style="display: none;">
                     <h2>Заявки, которые я опубликовал</h2>
-                    <div class="request-filters">
-                        <button class="filter-btn active" type="button" data-filter="all">
-                            Все <span class="filter-count">0</span>
+                    <div class="requests-stats">
+                        <button class="stat-btn active" type="button" data-filter="all">
+                            <span class="stat-number">0</span>
+                            <span>Все</span>
                         </button>
-                        <button class="filter-btn" type="button" data-filter="active">
-                            Активные <span class="filter-count">0</span>
+
+                        <button class="stat-btn" type="button" data-filter="active">
+                            <span class="stat-number">0</span>
+                            <span>Активные</span>
                         </button>
-                        <button class="filter-btn" type="button" data-filter="waiting">
-                            Ожидают ответа <span class="filter-count">0</span>
+
+                        <button class="stat-btn" type="button" data-filter="completed">
+                            <span class="stat-number">0</span>
+                            <span>Завершённые</span>
                         </button>
-                        <button class="filter-btn" type="button" data-filter="past">
-                            Прошедшие <span class="filter-count">0</span>
-                        </button>
-                        <button class="filter-btn" type="button" data-filter="not-accepted">
-                            Не приняты <span class="filter-count">0</span>
+
+                        <button class="stat-btn" type="button" data-filter="cancelled">
+                            <span class="stat-number">0</span>
+                            <span>Отменённые</span>
                         </button>
                     </div>
-                    <!-- Здесь позже появятся карточки заявок -->
-
                 </div>
             </div>
             <div class="advice">
@@ -143,7 +148,7 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <div class="footer-logo">
-                        <img src="#" alt="">
+                        <img src="../images/main_icon_project.svg" alt="">
                         <span>WITH</span>
                     </div>
                     <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
@@ -168,8 +173,6 @@
                         <a href="#" class="social-icon" aria-label="Telegram"><img src="../images/social icons/telegram-svgrepo-com.svg" alt=""></a>
                         <a href="#" class="social-icon" aria-label="Discord"><img src="../images/social icons/discord-svgrepo-com.svg" alt=""></a>
                         <a href="#" class="social-icon" aria-label="VK"><img src="../images/social icons/vk-svgrepo-com.svg" alt=""></a>
-
-
                     </div>
                 </div>
             </div>
