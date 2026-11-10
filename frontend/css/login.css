@@ -639,3 +639,87 @@ p a:hover{
 
 
 /*C8D1E3 */
+
+
+
+/* Кнопка подсказки около глазка */
+
+.password-help {
+    position: absolute;
+    right: 42px;
+    top: 50%;
+    transform: translateY(-65%);
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1.5px solid #5f6b85;
+    border-radius: 50%;
+    background: transparent;
+    color: #5f6b85;
+
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* Выдвигающаяся плашка */
+.password-hint {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 245px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    background: #232c40;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    line-height: 1.6;
+    z-index: 20;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease,
+                visibility 0.2s ease;
+}
+
+.password-hint:not([hidden]) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.password-hint[hidden] {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.password-hint p {
+    margin: 0 0 7px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.password-hint ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.password-hint li {
+    margin: 3px 0;
+}

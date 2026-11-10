@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from datetime import timedelta
 from typing import List
 import models
@@ -18,15 +19,32 @@ def register(user: schemas.UserRegister, db: Session = Depends(database.get_db))
             detail="Пароли не совпадают"
         )
     
-    db_user = db.query(models.User).filter(
-        (models.User.username == user.username) | 
-        (models.User.email == user.email)
+    # Проверяем занятость username
+    existing_username = db.query(models.User).filter(
+        func.lower(models.User.username) == user.username.lower()
     ).first()
-    
-    if db_user:
+
+    if existing_username:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Пользователь с таким именем или почтой уже существует"
+            detail={
+                "field": "username",
+                "message": "Этот username уже занят"
+            }
+        )
+
+    # Проверяем занятость email
+    existing_email = db.query(models.User).filter(
+        func.lower(models.User.email) == user.email.lower()
+    ).first()
+
+    if existing_email:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail={
+                "field": "email",
+                "message": "Этот email уже зарегистрирован"
+            }
         )
     
     hashed_password = auth.hash_password(user.password)
@@ -52,7 +70,9 @@ def register(user: schemas.UserRegister, db: Session = Depends(database.get_db))
 # вход
 @router.post("/login", response_model=schemas.Token)
 def login(user: schemas.UserLogin, db: Session = Depends(database.get_db)):
-    db_user = db.query(models.User).filter(models.User.email == user.email).first()
+    db_user = db.query(models.User).filter(
+        func.lower(models.User.email) == user.email.strip().lower()
+    ).first()
     
     if not db_user or not auth.verify_password(user.password, db_user.hashed_password):
         raise HTTPException(
@@ -65,7 +85,7 @@ def login(user: schemas.UserLogin, db: Session = Depends(database.get_db)):
     )
 
     access_token = auth.create_access_token(
-        data={"sub": db_user.username},
+        data={"sub": str(db_user.id)},
         expires_delta=token_lifetime
     )
     
@@ -87,26 +107,32 @@ def update_current_user_profile(
 ):
     # Проверяем, не занят ли новый username другим пользователем
     existing_username = db.query(models.User).filter(
-        models.User.username == user_data.username,
+        func.lower(models.User.username) == user_data.username.lower(),
         models.User.id != current_user.id
     ).first()
 
     if existing_username:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Этот username уже занят"
+            detail={
+                "field": "username",
+                "message": "Этот username уже занят"
+            }
         )
 
     # Проверяем, не занят ли новый email другим пользователем
     existing_email = db.query(models.User).filter(
-        models.User.email == user_data.email,
+        func.lower(models.User.email) == user_data.email.lower(),
         models.User.id != current_user.id
     ).first()
 
     if existing_email:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Этот email уже используется"
+            detail={
+                "field": "email",
+                "message": "Этот email уже зарегистрирован"
+            }
         )
 
     # Обновляем данные пользователя

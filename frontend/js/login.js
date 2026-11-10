@@ -84,7 +84,162 @@
             togglePassword(button);
         });
     });
-    
+    // Открытие и закрытие подсказки требований к паролю
+    const passwordHelp = document.getElementById('passwordHelp');
+    const passwordHint = document.getElementById('passwordHint');
+
+    if (passwordHelp && passwordHint) {
+        passwordHelp.addEventListener('click', () => {
+            passwordHint.hidden = !passwordHint.hidden;
+        });
+    }
+    // ==========================================
+    // ВАЛИДАЦИЯ ПОЛЕЙ РЕГИСТРАЦИИ
+    // ==========================================
+
+    // Получаем поля регистрации
+    const firstNameInput = document.getElementById('registerFirstName');
+    const lastNameInput = document.getElementById('registerLastName');
+    const usernameInput = document.getElementById('registerUsername');
+    const emailInput = document.getElementById('registerEmail');
+    const passwordInput = document.getElementById('registerPassword');
+    const confirmPasswordInput = document.getElementById('registerPasswordConfirm');
+
+    // Показываем ошибку под полем
+    function showFieldError(input, errorId, message) {
+        const errorElement = document.getElementById(errorId);
+
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+
+        if (input) {
+            input.classList.toggle('invalid', Boolean(message));
+        }
+    }
+
+    // Проверка имени и фамилии
+    function validateName(value) {
+        return /^[а-яёА-ЯЁa-zA-Z]+(?:[- ][а-яёА-ЯЁa-zA-Z]+)*$/.test(value.trim());
+    }
+
+    // Проверка username
+    function validateUsername(value) {
+        return /^[a-zA-Z0-9][a-zA-Z0-9_.]{1,18}[a-zA-Z0-9]$/.test(value.trim());
+    }
+
+    // Проверка email
+    function validateEmail(value) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+    }
+
+    // Проверка пароля
+    function getPasswordError(value) {
+        if (value.length < 8) {
+            return 'Минимум 8 символов';
+        }
+
+        if (new TextEncoder().encode(value).length > 72) {
+            return 'Пароль слишком длинный';
+        }
+
+        if (!/[A-ZА-ЯЁ]/.test(value)) {
+            return 'Добавьте заглавную букву';
+        }
+
+        if (!/[a-zа-яё]/.test(value)) {
+            return 'Добавьте строчную букву';
+        }
+
+        if (!/\d/.test(value)) {
+            return 'Добавьте хотя бы одну цифру';
+        }
+
+        if (!/[^a-zA-Zа-яёА-ЯЁ0-9\s]/.test(value)) {
+            return 'Добавьте специальный символ';
+        }
+
+        return '';
+    }
+
+    // Проверка имени при вводе
+    firstNameInput.addEventListener('input', () => {
+        const value = firstNameInput.value.trim();
+
+        showFieldError(
+            firstNameInput,
+            'firstNameError',
+            value && !validateName(value)
+                ? 'Используйте только буквы, пробел и дефис'
+                : ''
+        );
+    });
+
+    // Проверка фамилии при вводе
+    lastNameInput.addEventListener('input', () => {
+        const value = lastNameInput.value.trim();
+
+        showFieldError(
+            lastNameInput,
+            'lastNameError',
+            value && !validateName(value)
+                ? 'Используйте только буквы, пробел и дефис'
+                : ''
+        );
+    });
+
+    // Проверка username при вводе
+    usernameInput.addEventListener('input', () => {
+        const value = usernameInput.value.trim();
+
+        showFieldError(
+            usernameInput,
+            'usernameError',
+            value && !validateUsername(value)
+                ? 'От 3 до 20 символов: латинские буквы, цифры, точка и _'
+                : ''
+        );
+    });
+
+    // Проверка email при вводе
+    emailInput.addEventListener('input', () => {
+        const value = emailInput.value.trim();
+
+        showFieldError(
+            emailInput,
+            'emailError',
+            value && !validateEmail(value)
+                ? 'Введите корректный адрес электронной почты'
+                : ''
+        );
+    });
+
+    // Проверка пароля при вводе
+    passwordInput.addEventListener('input', () => {
+        showFieldError(
+            passwordInput,
+            'passwordError',
+            passwordInput.value ? getPasswordError(passwordInput.value) : ''
+        );
+
+        // Одновременно проверяем совпадение паролей
+        validatePasswordConfirm();
+    });
+
+    // Проверка повторного пароля
+    function validatePasswordConfirm() {
+        const confirmValue = confirmPasswordInput.value;
+
+        showFieldError(
+            confirmPasswordInput,
+            'confirmPasswordError',
+            confirmValue && confirmValue !== passwordInput.value
+                ? 'Пароли не совпадают'
+                : ''
+        );
+    }
+
+    confirmPasswordInput.addEventListener('input', validatePasswordConfirm);
     // ==========================================
     // 7. СКРИПТ ОТПРАВКИ ДАННЫХ РЕГИСТРАЦИИ НА БЭКЕНД
     // ==========================================
@@ -103,7 +258,7 @@
         const city = document.getElementById('registerCity')?.value.trim();
         const gender = document.getElementById('registerGender')?.value;
 
-        // Проверяем заполнение полей
+        // Проверяем заполнение обязательных полей
         if (
             !firstName || !lastName || !username || !email ||
             !password || !confirmPassword || !birthDate || !city || !gender
@@ -112,9 +267,46 @@
             return;
         }
 
+        // Проверяем имя
+        if (!validateName(firstName)) {
+            showFieldError(firstNameInput, 'firstNameError',
+                'Некорректное имя');
+            return;
+        }
+
+        // Проверяем фамилию
+        if (!validateName(lastName)) {
+            showFieldError(lastNameInput, 'lastNameError',
+                'Некорректная фамилия');
+            return;
+        }
+
+        // Проверяем username
+        if (!validateUsername(username)) {
+            showFieldError(usernameInput, 'usernameError',
+                'Username должен содержать 3–20 допустимых символов');
+            return;
+        }
+
+        // Проверяем email
+        if (!validateEmail(email)) {
+            showFieldError(emailInput, 'emailError',
+                'Введите корректный адрес электронной почты');
+            return;
+        }
+
+        // Проверяем пароль
+        const passwordError = getPasswordError(password);
+
+        if (passwordError) {
+            showFieldError(passwordInput, 'passwordError', passwordError);
+            return;
+        }
+
         // Проверяем совпадение паролей
         if (password !== confirmPassword) {
-            alert('Пароли не совпадают!');
+            showFieldError(confirmPasswordInput, 'confirmPasswordError',
+                'Пароли не совпадают');
             return;
         }
 
@@ -123,7 +315,7 @@
             first_name: firstName,
             last_name: lastName,
             username: username,
-            email: email,
+            email: email.toLowerCase(),
             password: password,
             password_confirm: confirmPassword,
             birth_date: birthDate,
@@ -145,10 +337,58 @@
             if (response.ok) {
                 alert('Регистрация прошла успешно!');
                 authForm.reset();
+
+                document.querySelectorAll('.field-error').forEach((element) => {
+                    element.textContent = '';
+                });
+
+                authForm.querySelectorAll('.invalid').forEach((element) => {
+                    element.classList.remove('invalid');
+                });
+
                 showLogin();
             } else {
-                const errorMessage = result.detail || 'Произошла ошибка при регистрации';
-                alert(`Ошибка: ${typeof errorMessage === 'object' ? JSON.stringify(errorMessage) : errorMessage}`);
+                const detail = result.detail;
+
+                if (Array.isArray(detail)) {
+                    detail.forEach((error) => {
+                        const field = error.loc?.[error.loc.length - 1];
+                        const message = error.msg;
+
+                        const errorFields = {
+                            first_name: [firstNameInput, 'firstNameError'],
+                            last_name: [lastNameInput, 'lastNameError'],
+                            username: [usernameInput, 'usernameError'],
+                            email: [emailInput, 'emailError'],
+                            password: [passwordInput, 'passwordError']
+                        };
+
+                        if (errorFields[field]) {
+                            showFieldError(
+                                errorFields[field][0],
+                                errorFields[field][1],
+                                message
+                            );
+                        } else {
+                            alert(message);
+                        }
+                    });
+                } else if (detail && detail.field) {
+                    const errorFields = {
+                        username: [usernameInput, 'usernameError'],
+                        email: [emailInput, 'emailError']
+                    };
+
+                    const field = errorFields[detail.field];
+
+                    if (field) {
+                        showFieldError(field[0], field[1], detail.message);
+                    } else {
+                        alert(detail.message);
+                    }
+                } else {
+                    alert(detail || 'Произошла ошибка при регистрации');
+                }
             }
         } catch (error) {
             console.error('Ошибка сети:', error);

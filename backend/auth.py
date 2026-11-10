@@ -41,22 +41,32 @@ def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db: Session = Depends(database.get_db)
 ):
-    token = credentials.credentials 
-    
+    token = credentials.credentials
+
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Не удалось подтвердить учётные данные",
         headers={"WWW-Authenticate": "Bearer"},
     )
+
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
+
+        user_id = payload.get("sub")
+
+        if user_id is None:
             raise credentials_exception
-    except JWTError:
+
+        user_id = int(user_id)
+
+    except (JWTError, ValueError, TypeError):
         raise credentials_exception
-    
-    user = db.query(models.User).filter(models.User.username == username).first()
+
+    user = db.query(models.User).filter(
+        models.User.id == user_id
+    ).first()
+
     if user is None:
         raise credentials_exception
+
     return user

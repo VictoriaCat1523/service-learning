@@ -116,7 +116,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const result = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(result.detail || 'Не удалось сохранить изменения');
+                    const detail = result.detail;
+
+                    const errorMessage = typeof detail === 'string'
+                        ? detail
+                        : detail?.message || 'Не удалось сохранить изменения';
+
+                    throw new Error(errorMessage);
                 }
                 Object.assign(user, result);
                 // Обновляем отображение профиля

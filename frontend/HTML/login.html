@@ -92,7 +92,7 @@
                             autocomplete="given-name"
                             required
                         >
-
+                        <span class="field-error" id="firstNameError"></span>
                         <input
                             type="text"
                             id="registerLastName"
@@ -102,7 +102,7 @@
                             autocomplete="family-name"
                             required
                         >
-
+                        <span class="field-error" id="lastNameError"></span>
                         <input
                             type="text"
                             id="registerUsername"
@@ -114,7 +114,7 @@
                             maxlength="20"
                             required
                         >
-
+                        <span class="field-error" id="usernameError"></span>
                         <input
                             type="email"
                             id="registerEmail"
@@ -124,7 +124,7 @@
                             autocomplete="email"
                             required
                         >
-
+                        <span class="field-error" id="emailError"></span>
                         <div class="password-wrapper">
                             <input
                                 type="password"
@@ -135,11 +135,27 @@
                                 autocomplete="new-password"
                                 required
                             >
+
                             <button type="button" class="show-password">
                                 <img src="../images/eye-off.svg" alt="">
                             </button>
-                        </div>
 
+                            <button type="button" class="password-help" id="passwordHelp">
+                                ?
+                            </button>
+
+                            <div class="password-hint" id="passwordHint" hidden>
+                                <p>Требования к паролю:</p>
+                                <ul>
+                                    <li>Минимум 8 символов</li>
+                                    <li>Заглавная буква</li>
+                                    <li>Строчная буква</li>
+                                    <li>Хотя бы одна цифра</li>
+                                    <li>Хотя бы один спецсимвол</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <span class="field-error" id="passwordError"></span>
                         <div class="password-wrapper">
                             <input
                                 type="password"
@@ -154,7 +170,7 @@
                                 <img src="../images/eye-off.svg" alt="">
                             </button>
                         </div>
-
+                        <span class="field-error" id="confirmPasswordError"></span>
                         <input
                             type="date"
                             id="registerBirthDate"
