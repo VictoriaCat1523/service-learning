@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WITH us</title>
+        <link rel="stylesheet" href="../css/create_event.css">
+        <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
+    </head>
+    <body class="wrapper">
+        <div>
+            <header>
+                <div class="logo_block">
+                    <img src="../images/main_icon_project.svg" alt="" class="bebebe">
+                    <a href="main.html" class="logo">WITH</a>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="main.html">Главная</a></li>
+                        <li><a href="locate_company.html">Найти компанию</a></li>
+                        <li class="active"><a href="create_event.html">Создать заявку</a></li>
+                        <li><a href="my_requests.html">Мои заявки</a></li>
+                        <li><a href="#">Уведомления</a></li>
+                    </ul>
+                </nav>
+                <div class="header_icons">
+                    <a href="#"><img src="../images/message-circle-question-mark.svg" alt=""></a>
+                    <button class="avatar_button" type="button" aria-expanded="false" aria-label="Открыть меню профиля">
+                        <img src="../images/blanket_avatar.svg" alt="">
+                    </button>
+
+                    <div class="profile_menu" hidden>
+                        <div class="profile_menu_header">
+                            <img src="../images/blanket_avatar.svg" alt="">
+                            <div class="profile_info">
+                                <span class="profile_name">Имя пользователя</span>
+                            </div>
+                        </div>
+
+                        <div class="profile_menu_links">
+                            <a href="my_profile.html?tab=profile">Мой профиль</a>
+                            <a href="my_profile.html?tab=favorites">Избранное</a>
+                            <a href="my_profile.html?tab=setings">Настройки</a>
+                            <a href="#" class="logout_link">Выйти из аккаунта</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <div class="info">
+            <div class="title">
+                <h1>Создание заявки</h1>
+                <p>Заполните форму, чтобы найти компанию или человека</p>
+            </div>
+            <div class="progress">
+                <div class="progress-step active">
+                    <div class="step-circle">1</div>
+                    <span>Детали заказа</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <span>Место и время</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <span>Дополнительно</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="step-circle">4</div>
+                    <span>Проверка и публикация</span>
+                </div>
+            </div>
+            <div class="plan-layout">
+                <div class="plan">
+                    <!-- ЭТАП 1 -->
+                    <div class="create-step" id="step1">
+                        <div class="create-plan">
+                            <h2>1. Детали заявки</h2>
+                            <p>Расскажите, какая помощь вам нужна</p>
+                            <div class="category">
+                                <h3>Категория</h3>
+                                <div class="category-dropdown">
+                                    <input type="hidden" name="category" value="" class="category-value">
+                                    <button type="button" class="category-select" aria-expanded="false">
+                                        <span class="selected-category">
+                                            <span class="category-emoji">🎬</span>
+                                            <span class="category-text">Выберите категорию</span>
+                                        </span>
+                                        <span class="category-arrow">⌄</span>
+                                    </button>
+                                    <div class="category-menu">
+                                        <button type="button" class="category-option" data-value="cinema"><span class="option-emoji">🎬</span><span>Кино</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="games"><span class="option-emoji">🎮</span><span>Игры</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="cafe"><span class="option-emoji">☕</span><span>Кафе</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="sport"><span class="option-emoji">⚽</span><span>Спорт</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="talk"><span class="option-emoji">💬</span><span>Общение</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="education"><span class="option-emoji">📚</span><span>Учёба</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="walk"><span class="option-emoji">🚶</span><span>Прогулка</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="event"><span class="option-emoji">🎉</span><span>Мероприятия</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="music"><span class="option-emoji">🎵</span><span>Музыка</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="travel"><span class="option-emoji">✈️</span><span>Поездки</span><span class="option-check"></span></button>
+                                        <button type="button" class="category-option" data-value="others"><span class="option-emoji">✨</span><span>Другое</span><span class="option-check"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="category">
+                                <h3>Название заявки</h3>
+                                <input type="text" class="name_plan" id="requestTitle" name="title" maxlength="80" placeholder="Например: Ищу компанию в кино" required>
+                                <div class="char-counter" id="titleCounter">0/80</div>
+                            </div>
+                            <div class="category">
+                                <h3>Описание</h3>
+                                <textarea class="description_plan" id="requestDescription" maxlength="500" name="description" placeholder="Опишите подробнее, что вы хотите, какие у вас ожидания и что важно для вас" rows="4" required></textarea>
+                                <div class="char-counter" id="descriptionCounter">0/500</div>
+                            </div>
+                            <div class="category">
+                                <h3>Количество человек</h3>
+                                <div class="people-counter">
+                                    <button type="button" class="counter-btn" id="decreasePeople">−</button>
+                                    <input type="number" class="people-input" id="peopleCount" name="people_count" value="1" min="1" max="100" required>
+                                    <button type="button" class="counter-btn" id="increasePeople">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="advice">
+                            <div class="advice-heading">
+                                <img src="../images/lightbulb.svg" alt="" class="advice-icon">
+                                <h1>Советы хорошей заявки</h1>
+                            </div>
+                            <div class="advice-item"><span class="advice-check">✓</span><p>Чем подробнее вы опишите запрос, тем выше шанс найти подходящего человека</p></div>
+                            <div class="advice-item"><span class="advice-check">✓</span><p>Будьте открыты и вежливы в заявке</p></div>
+                            <div class="advice-item"><span class="advice-check">✓</span><p>Укажите конкретную категорию и количество участников</p></div>
+                        </div>
+                    </div>
+
+                    <!-- ЭТАП 2 -->
+                    <div class="create-step" id="step2" hidden>
+                        <div class="create-plan">
+                            <h2>2. Место и время</h2>
+                            <p>Укажите, где и когда нужна помощь</p>
+                            <div class="plan-where-time">
+                                <div class="where">
+                                    <h3>Место встречи</h3>
+                                    <label><input type="radio" name="meeting-place" value="online"> Онлайн</label>
+                                    <label><input type="radio" name="meeting-place" value="specific"> В определенном месте</label>
+                                    <label><input type="radio" name="meeting-place" value="anywhere"> На усмотрение участников</label>
+                                    <label for="meeting-place-details" class="title">Адрес или дополнительные сведения (необязательно)</label>
+                                    <input class="address" type="text" id="meeting-place-details" name="meeting-place-details" placeholder="Адрес, название места или ссылка на картах">
+                                </div>
+                                
+                                <div class="time">
+                                    <h3>Дата и время</h3>
+                                    <label>
+                                        <input type="radio" name="meeting-time" value="today" checked>
+                                        Сегодня
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="meeting-time" value="custom">
+                                        Выбрать дату и время
+                                    </label>
+
+                                    <!-- НОВЫЙ БЛОК: поля даты и времени (скрыты по умолчанию) -->
+                                    <div class="custom-datetime" hidden style="margin-top: 15px; padding-left: 20px;">
+                                        <label for="event-date" style="display:block; margin-bottom: 5px; font-size: 14px;">Дата:</label>
+                                        <input type="date" id="event-date" name="event-date" style="margin-bottom: 10px; padding: 8px; border: 1px solid #ddd; border-radius: 6px; width: 100%; max-width: 200px;">
+                                        
+                                        <label for="event-time" style="display:block; margin-bottom: 5px; font-size: 14px;">Время:</label>
+                                        <input type="time" id="event-time" name="event-time" style="padding: 8px; border: 1px solid #ddd; border-radius: 6px; width: 100%; max-width: 200px;">
+                                    </div>
+
+                                    <label for="meeting-time-comment" class="title" style="margin-top: 15px; display: block;">
+                                        Комментарий ко времени (необязательно)
+                                    </label>
+                                    <textarea
+                                        class="date-time"
+                                        id="meeting-time-comment"
+                                        name="meeting-time-comment"
+                                        placeholder="Например, могу немного задержаться или удобное время после 18:00"
+                                        rows="3"
+                                        style="width: 100%; margin-top: 5px; padding: 8px; border: 1px solid #ddd; border-radius: 6px;"
+                                    ></textarea>    
+                                </div>
+                                <div class="advice">
+                                    <div class="advice-heading">
+                                        <img src="../images/clock-fading.svg" alt="" class="advice-icon">
+                                        <h1>Советы по выбору времени</h1>
+                                    </div>
+                                    <div class="advice-item"><span class="advice-check">✓</span><p>Если точное время пока неизвестно, укажи примерный промежуток в комментарии</p></div>
+                                    <div class="advice-item"><span class="advice-check">✓</span><p>Выбирай время, которое удобно не только тебе, но и возможным участникам</p></div>
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>
+
+                    <!-- ЭТАП 3 -->
+                    <div class="create-step" id="step3" hidden>
+                        <div class="create-plan">
+                            <h2>3. Дополнительно</h2>
+                            <p>Уточните детали, чтобы сделать вашу заявку более точной и понятной</p>
+                            <div class="plan-additional">
+                                <section class="additional-settings">
+                                    <h3>Дополнительные настройки</h3>
+                                    <label class="setting-option"><span><strong>Разрешить предложения</strong><small>Участники смогут предлагать изменения условий встречи.</small></span><input type="checkbox" name="allow-suggestions"></label>
+                                    <label class="setting-option"><span><strong>Гибкость времени</strong><small>Можно договориться о другом времени.</small></span><input type="checkbox" name="flexible-time" disabled></label>
+                                    <label class="setting-option"><span><strong>Гибкость по месту</strong><small>Можно обсудить другую локацию.</small></span><input type="checkbox" name="flexible-place" disabled></label>
+                                    <label class="setting-option"><span><strong>Скрывать после набора компании</strong><small>Заявка исчезнет из поиска, когда наберётся нужное количество участников.</small></span><input type="checkbox" name="hide-when-full"></label>
+                                    <label class="setting-option"><span><strong>Напоминания о встрече</strong><small>Участники будут получать напоминания перед встречей.</small></span><input type="checkbox" name="meeting-reminders"></label>
+                                </section>
+                                <div class="additional-main">
+                                    <section class="additional-budget">
+                                        <h3>Бюджет мероприятия</h3>
+                                        <label class="budget-option"><input type="radio" name="budget-type" value="none" checked><span>Не указан</span></label>
+                                        <label class="budget-option"><input type="radio" name="budget-type" value="specified"><span>Указать бюджет</span></label>
+                                        <div class="budget-input" hidden>
+                                            <label for="event-budget">Бюджет на одного участника</label>
+                                            <p>Укажите примерную сумму в рублях, которую планируете потратить на одного человека.</p>
+                                            <div class="budget-field">
+                                                <input type="number" id="event-budget" name="event-budget" min="0" step="1" placeholder="Например, 1500">
+                                                <span>₽ / чел.</span>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="advice">
+                                    <div class="advice-heading"><img src="../images/star.svg" alt="" class="advice-icon"><h1>Советы для заявки</h1></div>
+                                    <div class="advice-item"><span class="advice-check">✓</span><p>Укажи примерный бюджет, чтобы участники могли оценить расходы.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ЭТАП 4 -->
+                    <div class="create-step" id="step4" hidden>
+                        <div class="create-plan">
+                            <h2>4. Проверка и публикация</h2>
+                            <p>Проверьте информацию перед публикацией заявки.</p>
+                            <div class="review-layout">
+                                <div class="review-main">
+                                    <section class="review-card review-card-details">
+                                        <div class="review-card-heading">
+                                            <div class="review-title-group"><img src="../images/clapperboard.svg" alt="" class="review-icon"><h3>Детали заявки</h3></div>
+                                            <button type="button" class="review-edit" data-edit-step="1">Изменить</button>
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-field"><span>Название</span><p id="review-title" data-review-field="step1.title">Не указано</p></div>
+                                            <div class="review-field"><span>Категория</span><p id="review-category" data-review-field="step1.category">Не выбрана</p></div>
+                                            <div class="review-field"><span>Описание</span><p id="review-description" data-review-field="step1.description">Не указано</p></div>
+                                            <div class="review-field"><span>Количество участников</span><p id="review-people" data-review-field="step1.people_count">Не указано</p></div>
+                                        </div>
+                                    </section>
+                                    <section class="review-card review-card-time">
+                                        <div class="review-card-heading">
+                                            <div class="review-title-group"><img src="../images/calendar-create-event.svg" alt="" class="review-icon"><h3>Место и время</h3></div>
+                                            <button type="button" class="review-edit" data-edit-step="2">Изменить</button>
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-field"><span>Место встречи</span><p id="review-place" data-review-field="step2.meeting-place">Не указано</p></div>
+                                            <div class="review-field"><span>Дата и время</span><p id="review-time" data-review-field="step2.meeting-time">Не указано</p></div>
+                                            <div class="review-field"><span>Комментарий к месту</span><p id="review-place-comment">Не указан</p></div>
+                                            <div class="review-field"><span>Комментарий к дате и времени</span><p id="review-time-comment">Не указан</p></div>
+                                        </div>
+                                    </section>
+                                    <section class="review-card review-card-additional">
+                                        <div class="review-card-heading">
+                                            <div class="review-title-group"><img src="../images/list-tree.svg" alt="" class="review-icon"><h3>Дополнительно</h3></div>
+                                            <button type="button" class="review-edit" data-edit-step="3">Изменить</button>
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-field"><span>Бюджет на одного участника</span><p id="review-budget" data-review-field="step3.budget">Не указан</p></div>
+                                            <div class="review-field"><span>Разрешить предложения</span><p id="review-suggestions" data-review-field="step3.allow-suggestions">Нет</p></div>
+                                            <div class="review-field"><span>Гибкость времени</span><p id="review-flexible-time" data-review-field="step3.flexible-time">Нет</p></div>
+                                            <div class="review-field"><span>Гибкость по месту</span><p id="review-flexible-place" data-review-field="step3.flexible-place">Нет</p></div>
+                                            <div class="review-field"><span>Скрывать после набора компании</span><p id="review-hide-full" data-review-field="step3.hide-when-full">Нет</p></div>
+                                            <div class="review-field"><span>Напоминания о встрече</span><p id="review-reminders" data-review-field="step3.meeting-reminders">Нет</p></div>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="review-sidebar">
+                                    <section class="review-advice">
+                                        <div class="advice-heading"><img src="../images/lightbulb.svg" alt="" class="advice-icon"><h3>Перед публикацией</h3></div>
+                                        <div class="advice-item"><span class="advice-check">✓</span><p>Проверьте название и описание, чтобы участники понимали цель встречи.</p></div>
+                                        <div class="advice-item"><span class="advice-check">✓</span><p>Убедитесь, что место и время указаны правильно.</p></div>
+                                    </section>
+                                    <section class="review-publish">
+                                        <div class="review-publish-heading">
+                                            <img src="../images/lock-keyhole.svg" alt="" class="review-icon">
+                                            <p class="review-publish-info">После публикации вы сможете редактировать заявку только после проверки <span>модерации</span> или снять её <span>самостоятельно</span></p>
+                                        </div>
+                                    </section>
+                                    <button type="button" id="publishRequest">Опубликовать заявку</button>
+                                    <p class="review-rules">Нажимая кнопку, вы соглашаетесь с <a href="#" target="_blank">правилами сервиса</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="create-step-divider"></div>
+                    <div class="plan-actions">
+                        <button type="button" class="cancel-btn" onclick="history.back()">Отмена</button>
+                        <button type="button" class="next-btn" id="nextStep">Далее</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo"><img src="../images/main_icon_project.svg" alt=""><span>WITH</span></div>
+                    <p>ЗДЕСЬ БУДЕТ СЛОГАН. ЗДЕСЬ БУДЕТ СЛОГАН</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <a href="main.html">Главная</a>
+                    <a href="locate_company.html">Найти компанию</a>
+                    <a href="create_event.html">Создать заявку</a>
+                    <a href="my_requests.html">Мои заявки</a>
+                    <a href="#">Уведомления</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Поддержка</h3>
+                    <a href="#">Правила сервиса</a>
+                    <a href="#">Поддержка</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Telegram"><img src="../images/social icons/telegram-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="Discord"><img src="../images/social icons/discord-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="VK"><img src="../images/social icons/vk-svgrepo-com.svg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom"><p>© 2026 WITH. Все права защищены.</p></div>
+        </footer>
+        <script src="../js/category-select.js" defer></script>
+        <script src="../js/people_counter.js" defer></script>
+        <script src="../js/request-char-counter.js" defer></script>
+        <script src="../js/create_event.js" defer></script>
+        <script src="../js/profile_menu.js"></script>
+    </body>
+</html>

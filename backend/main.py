@@ -3,7 +3,11 @@ import models
 import database
 from routes import router as requests_router
 
-app = FastAPI(title="WITH", version="1.0.0")
+app = FastAPI(
+    title="WITH",
+    version="1.0.0",
+    servers=[{"url": "/api"}]
+)
 
 models.Base.metadata.create_all(bind=database.engine)
 
