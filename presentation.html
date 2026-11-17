@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5faff">
+<title>With — курсовой проект МАИ</title>
+<style>
+:root{
+ --bg:#f5faff;--ink:#102f49;--muted:#58748b;--blue:#2388d1;--blue2:#69b9ed;
+ --pale:#e5f3ff;--line:#d6eaf8;--white:#fff;--shadow:0 22px 65px rgba(36,112,165,.12)
+}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}
+body{font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+.deck{height:100%;position:relative;overflow:hidden;background:
+ radial-gradient(ellipse at 88% 8%,#dff2ff 0,transparent 32%),
+ radial-gradient(ellipse at 4% 92%,#e8f5ff 0,transparent 30%),var(--bg)}
+.deck:before{content:"";position:absolute;inset:0;opacity:.23;background-image:radial-gradient(#72b5e2 1px,transparent 1px);background-size:25px 25px;mask-image:linear-gradient(90deg,#000,transparent 82%);pointer-events:none}
+.top{position:absolute;z-index:5;top:0;left:0;right:0;height:72px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;gap:10px;align-items:center;font-size:22px;font-weight:850;letter-spacing:-1px}
+.mark{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;color:white;background:linear-gradient(145deg,var(--blue2),var(--blue));box-shadow:0 7px 18px #2388d133}
+.meta{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:750}
+.slide{position:absolute;inset:72px 0 68px;padding:3vh 8vw 2vh;display:flex;align-items:center;overflow:auto;opacity:0;visibility:hidden;transform:translateY(18px) scale(.99);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1),visibility .45s}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.inner{width:min(1180px,100%);margin:auto}
+.kicker{font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--blue);font-weight:850;display:flex;align-items:center;gap:10px;margin-bottom:17px}
+.kicker:before{content:"";width:24px;height:2px;background:var(--blue)}
+h1,h2,h3,p{margin-top:0}
+h1{font-size:clamp(58px,8.7vw,112px);line-height:.91;letter-spacing:-.08em;margin-bottom:24px;font-weight:900}
+h2{font-size:clamp(38px,5.4vw,68px);line-height:.99;letter-spacing:-.065em;margin-bottom:24px;font-weight:880}
+h3{font-size:20px;letter-spacing:-.035em;margin-bottom:9px}
+p{font-size:15px;line-height:1.6;color:var(--muted);margin-bottom:0}
+.blue{color:var(--blue)}.lead{font-size:clamp(18px,2vw,23px);max-width:660px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{position:relative;background:#ffffffdc;border:1px solid #fff;border-radius:22px;padding:23px;box-shadow:0 12px 35px #1d66900c;overflow:hidden}
+.card:after{content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-53px;bottom:-55px;background:#e9f6ff}
+.card p{font-size:14px}
+.num{font-size:11px;letter-spacing:.13em;font-weight:850;color:var(--blue);margin-bottom:15px}
+.symbol{width:42px;height:42px;border-radius:14px;background:var(--pale);display:grid;place-items:center;color:var(--blue);font-size:21px;margin-bottom:16px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:4vw;align-items:center}
+.hero-visual{height:480px;display:grid;place-items:center;position:relative}
+.ring{position:absolute;width:min(34vw,410px);aspect-ratio:1;border:1px solid #9bcff0;border-radius:50%;animation:spin 26s linear infinite}
+.ring:before,.ring:after{content:"";position:absolute;inset:13%;border:1px solid #b8dcf4;border-radius:50%}.ring:after{inset:27%}
+.ring i{position:absolute;top:14%;left:17%;width:13px;height:13px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 8px #2388d11c}
+.event{position:relative;width:min(83%,355px);padding:26px;border-radius:27px;background:#ffffffeb;border:1px solid white;box-shadow:var(--shadow);transform:rotate(-4deg);animation:float 5s ease-in-out infinite}
+.event small{font-size:10px;letter-spacing:.14em;color:var(--blue);font-weight:850;text-transform:uppercase}
+.event strong{display:block;font-size:31px;line-height:1.04;letter-spacing:-.06em;margin:14px 0}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.tag{border-radius:99px;background:var(--pale);color:#2876ad;padding:8px 12px;font-size:11px;font-weight:800}
+.people{display:flex;align-items:center;margin-top:20px}
+.avatar{width:32px;height:32px;border:3px solid white;border-radius:50%;margin-left:-7px;background:linear-gradient(140deg,#b8e2ff,#358dc9)}
+.avatar:first-child{margin-left:0}.avatar:nth-child(2){background:linear-gradient(140deg,#d9edff,#83b9e2)}.avatar:nth-child(3){background:linear-gradient(140deg,#c7e9ed,#4b9eaa)}
+.people span{font-size:11px;color:var(--muted);margin-left:10px}
+.problem{display:grid;grid-template-columns:.85fr 1.15fr;gap:5vw;align-items:center}
+.bigquote{font-size:clamp(29px,4vw,49px);font-weight:850;line-height:1.08;letter-spacing:-.06em}
+.bigquote em{font-style:normal;color:var(--blue)}
+.metric{font-size:48px;font-weight:900;letter-spacing:-.07em;color:var(--blue)}
+.note{font-size:12px;color:var(--muted);line-height:1.45}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+.flow b{background:white;border:1px solid var(--line);padding:13px 15px;border-radius:14px;font-size:13px}
+.flow i{font-style:normal;color:#70b6e4;font-size:19px}
+.mock{max-width:620px;margin:auto;background:white;border:1px solid var(--line);border-radius:23px;padding:17px;box-shadow:var(--shadow);transform:rotate(1deg)}
+.mock-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #edf3f8;padding:3px 3px 14px}
+.mock-head strong{font-size:20px;color:var(--blue)}
+.mock-head span{font-size:10px;color:var(--muted)}
+.mock-title{font-size:25px;font-weight:900;letter-spacing:-.06em;line-height:1.05;padding:16px 3px 5px}
+.mock-title span{color:var(--blue)}
+.mock-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding-top:13px}
+.mock-item{border:1px solid #e5f0f8;border-radius:14px;padding:10px}
+.mock-cover{height:83px;border-radius:10px;background:linear-gradient(135deg,#cceaff,#80bce5);display:grid;place-items:center;font-size:27px;margin-bottom:10px}
+.mock-item strong{font-size:12px;display:block}.mock-item small{font-size:10px;color:var(--muted)}
+.tech{display:grid;grid-template-columns:1fr .9fr;gap:20px}
+.stack{display:grid;gap:10px}
+.stackline{display:flex;gap:13px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 15px}
+.stackbadge{width:39px;height:39px;flex:none;border-radius:12px;background:var(--pale);display:grid;place-items:center;color:var(--blue);font-size:11px;font-weight:900}
+.stackline strong{font-size:14px;display:block}.stackline small{font-size:11px;color:var(--muted)}
+.arch{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px}
+.arch div{text-align:center;border-radius:12px;padding:13px;font-size:13px;font-weight:800;background:#edf7ff;border:1px solid #d9edfc}
+.arch .primary{background:linear-gradient(110deg,#2388d1,#70c1f2);color:white;border:0}
+.arch span{text-align:center;color:#77b8e4}
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.member{background:#fff;border:1px solid var(--line);border-radius:19px;padding:18px 14px;min-height:170px}
+.initials{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#bce4ff,#4c9dd6);display:grid;place-items:center;color:white;font-weight:900;margin-bottom:16px}
+.member strong{display:block;font-size:14px;line-height:1.3}.member small{display:block;color:var(--muted);font-size:11px;margin-top:6px}
+.roles{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}
+.role{background:#e8f5ff;color:#2878b1;padding:9px 12px;border-radius:10px;font-size:11px;font-weight:800}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:22px}
+.phase{border-top:3px solid #8ac9f1;padding:13px 4px 0}.phase b{font-size:14px;display:block;margin-bottom:7px}.phase p{font-size:12px}
+.result{font-size:38px;color:var(--blue);font-weight:900;letter-spacing:-.06em;margin-bottom:8px}
+.result-card{min-height:145px}
+.budget{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:16px}
+.budgetbox{background:#fff;border:1px solid var(--line);border-radius:17px;padding:16px}
+.budgetbox strong{font-size:22px;color:var(--blue);letter-spacing:-.04em;display:block}
+.budgetbox span{font-size:11px;color:var(--muted)}
+.qr-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:720px;margin:28px auto 20px}
+.qr-slot{background:#fff;border:2px dashed #9ccce9;border-radius:22px;padding:20px;text-align:center;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.qr-empty{width:104px;height:104px;border:1px solid #d7eaf7;border-radius:12px;display:grid;place-items:center;color:#80b6d9;font-size:30px;background:repeating-linear-gradient(45deg,#f8fcff,#f8fcff 6px,#eef7fd 6px,#eef7fd 12px)}
+.qr-slot strong{font-size:15px;margin-top:12px}.qr-slot small{font-size:11px;color:var(--muted);margin-top:4px}
+.thanks{text-align:center}.thanks h2{font-size:clamp(54px,8vw,96px)}
+.footer{position:absolute;z-index:5;bottom:0;left:0;right:0;height:68px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between}
+.progress{height:3px;position:absolute;bottom:67px;left:0;right:0;background:#dceefa}.progress span{height:100%;display:block;width:10%;background:linear-gradient(90deg,var(--blue),#7dc9f4);transition:width .35s}
+.controls{display:flex;align-items:center;gap:9px}.nav{width:37px;height:37px;border-radius:50%;border:1px solid #cce5f6;background:#ffffffc9;color:var(--ink);cursor:pointer;font-size:17px}.nav:hover{background:var(--blue);color:white}
+.count{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:47px;text-align:center}
+.dots{display:flex;gap:5px}.dot{border:0;width:6px;height:6px;padding:0;border-radius:10px;background:#bdd8ea;cursor:pointer}.dot.active{width:20px;background:var(--blue)}
+.hint{font-size:11px;color:#89a2b6}
+.reveal{opacity:0;transform:translateY(15px);transition:opacity .55s,transform .55s}.active .reveal{opacity:1;transform:none}.active .reveal:nth-child(2){transition-delay:.07s}.active .reveal:nth-child(3){transition-delay:.14s}.active .reveal:nth-child(4){transition-delay:.21s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-12px) rotate(-2deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:850px){
+ .top{height:58px;padding:0 18px}.meta{display:none}
+ .slide{inset:58px 0 60px;padding:20px 19px;align-items:flex-start}
+ .hero,.problem,.tech{grid-template-columns:1fr}.hero-visual{height:245px}.ring{width:225px}
+ h1{font-size:clamp(56px,15vw,84px)}h2{font-size:clamp(36px,10vw,52px)}
+ .grid3,.grid2{grid-template-columns:1fr}.card{padding:18px}
+ .team{grid-template-columns:1fr 1fr}.member{min-height:130px}
+ .timeline{grid-template-columns:1fr 1fr}.budget{grid-template-columns:1fr 1fr}
+ .footer{height:60px;padding:0 18px}.progress{bottom:59px}.hint{display:none}
+ .qr-layout{gap:10px}.qr-slot{min-height:160px;padding:12px}.qr-empty{width:80px;height:80px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="deck">
+<header class="top">
+ <div class="brand"><span class="mark">w</span>with</div>
+ <div class="meta">Курсовой проект · МАИ · 2026</div>
+</header>
+
+<!-- 1 -->
+<section class="slide active">
+ <div class="inner hero">
+  <div>
+   <div class="kicker reveal">Общественный проект · Обучение служением</div>
+   <h1 class="reveal">With<span class="blue">.</span><br>Найди своих<br><span class="blue">для досуга.</span></h1>
+   <p class="lead reveal">Веб-сервис для поиска людей со схожими интересами и организации совместного досуга.</p>
+   <div class="tags reveal"><span class="tag">МАИ</span><span class="tag">Москва</span><span class="tag">Совместные активности</span></div>
+  </div>
+  <div class="hero-visual reveal"><div class="ring"><i></i></div><div class="event">
+   <small>Предложение о досуге</small><strong>Кто со мной<br>на выставку?</strong>
+   <p style="font-size:12px">Ищем компанию на выходные</p>
+   <div class="tags"><span class="tag">Искусство</span><span class="tag">Москва</span></div>
+   <div class="people"><i class="avatar"></i><i class="avatar"></i><i class="avatar"></i><span>Участники рядом</span></div>
+  </div></div>
+ </div>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+ <div class="inner problem">
+  <div>
+   <div class="kicker reveal">01 · Проблема</div>
+   <div class="bigquote reveal">Хочется пойти,<br>но <em>не с кем.</em></div>
+   <p class="reveal" style="margin-top:18px">Человек хочет посетить мероприятие или попробовать новое занятие, но не может быстро найти подходящую компанию.</p>
+  </div>
+  <div class="grid2">
+   <article class="card reveal"><div class="num">ПРИЧИНА 01</div><h3>Разные интересы</h3><p>Знакомые могут не разделять желание сходить на конкретное мероприятие.</p></article>
+   <article class="card reveal"><div class="num">ПРИЧИНА 02</div><h3>Несовпадение графиков</h3><p>Свободное время и территориальная доступность у людей различаются.</p></article>
+   <article class="card reveal"><div class="num">ПРИЧИНА 03</div><h3>Сложно договориться</h3><p>В общих чатах объявления и ответы быстро теряются среди сообщений.</p></article>
+   <article class="card reveal"><div class="num">СЛЕДСТВИЕ</div><h3>Отложенный досуг</h3><p>Поиск затягивается, а запланированная активность может не состояться.</p></article>
+  </div>
+ </div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">02 · Актуальность</div>
+  <h2 class="reveal">Цифрового общения много.<br><span class="blue">Компанию для встречи</span><br>всё ещё нужно искать.</h2>
+  <div class="grid3">
+   <article class="card reveal"><div class="metric">69%</div><h3>Общение онлайн</h3><p>Столько россиян 18–24 лет преимущественно общаются с друзьями и близкими в интернете.</p><div class="note" style="margin-top:12px">ВЦИОМ, аналитический обзор от 24.06.2025</div></article>
+   <article class="card reveal"><div class="metric">24%</div><h3>Общение лично</h3><p>Доля молодых людей 18–24 лет, которые преимущественно общаются с близкими лично.</p><div class="note" style="margin-top:12px">ВЦИОМ, аналитический обзор от 24.06.2025</div></article>
+   <article class="card reveal"><div class="metric">6%</div><h3>Отказ из-за отсутствия компании</h3><p>Респонденты сообщали, что отказывались от посещения музеев или выставок без спутника.</p><div class="note" style="margin-top:12px">ВЦИОМ, «Идём в музей?», 11.02.2026</div></article>
+  </div>
+  <p class="reveal" style="font-size:12px;margin-top:16px">Эти данные показывают значимость темы, но не являются оценкой доли студентов Москвы, которым нужен With.</p>
+ </div>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">03 · Целевая аудитория</div>
+  <h2 class="reveal">Совершеннолетние студенты<br><span class="blue">и молодые люди Москвы.</span></h2>
+  <div class="grid3">
+   <article class="card reveal"><div class="symbol">01</div><h3>Первокурсники</h3><p>Адаптируются к новой образовательной среде, городу и кругу общения.</p></article>
+   <article class="card reveal"><div class="symbol">02</div><h3>Люди с необычными интересами</h3><p>Хотят найти единомышленников для занятий, которые не разделяют знакомые.</p></article>
+   <article class="card reveal"><div class="symbol">03</div><h3>Инициаторы встреч</h3><p>Готовы организовать небольшую компанию, но им не хватает участников.</p></article>
+  </div>
+  <div class="flow reveal"><b>Студенческая среда Москвы</b><i>→</i><b>Пилотная аудитория</b><i>→</i><b>Возможное расширение</b></div>
+ </div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">04 · Проектное решение</div>
+  <h2 class="reveal">Не просто знакомство.<br><span class="blue">Конкретный план вместе.</span></h2>
+  <div class="grid3">
+   <article class="card reveal"><div class="symbol">＋</div><h3>Создать активность</h3><p>Название, категория, дата и время, место, условия и количество участников.</p></article>
+   <article class="card reveal"><div class="symbol">⌕</div><h3>Найти предложение</h3><p>Просмотреть каталог и выбрать подходящую активность по своим интересам.</p></article>
+   <article class="card reveal"><div class="symbol">✓</div><h3>Подтвердить участие</h3><p>Отправить отклик и дождаться решения организатора — принятия или отказа.</p></article>
+  </div>
+  <div class="flow reveal"><b>Предложение</b><i>→</i><b>Поиск</b><i>→</i><b>Отклик</b><i>→</i><b>Подтверждение</b></div>
+ </div>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">05 · Интерфейс сервиса</div>
+  <h2 class="reveal">Основной сценарий —<br><span class="blue">в нескольких действиях.</span></h2>
+  <div class="grid2" style="align-items:center">
+   <div class="mock reveal">
+    <div class="mock-head"><strong>with</strong><span>Главная　Каталог　Мои заявки　Профиль</span></div>
+    <div class="mock-title">Найди компанию<br><span>для своих планов</span></div>
+    <p style="font-size:11px;padding:0 3px">Выбирай активность или создавай собственную</p>
+    <div class="mock-grid">
+     <div class="mock-item"><div class="mock-cover">🎨</div><strong>Выставка современного искусства</strong><small>Москва · Искусство</small></div>
+     <div class="mock-item"><div class="mock-cover" style="background:linear-gradient(135deg,#d9edff,#9bc8e9)">☕</div><strong>Кофе и прогулка</strong><small>Москва · Прогулки</small></div>
+    </div>
+   </div>
+   <div>
+    <article class="card reveal" style="margin-bottom:12px"><div class="num">01</div><h3>Каталог активностей</h3><p>Просмотр доступных предложений и поиск подходящего досуга.</p></article>
+    <article class="card reveal" style="margin-bottom:12px"><div class="num">02</div><h3>Создание заявки</h3><p>Публикация собственной идеи с параметрами будущей встречи.</p></article>
+    <article class="card reveal"><div class="num">03</div><h3>Мои заявки и отклики</h3><p>Управление публикациями, запросами и статусами участия.</p></article>
+   </div>
+  </div>
+  <p class="reveal" style="font-size:11px;margin-top:12px">Иллюстративный макет интерфейса, не скриншот работающей версии.</p>
+ </div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">06 · Техническое решение</div>
+  <h2 class="reveal">Клиент · API · <span class="blue">База данных.</span></h2>
+  <div class="tech">
+   <div class="stack reveal">
+    <div class="stackline"><div class="stackbadge">UI</div><div><strong>HTML · CSS · JavaScript</strong><small>Интерфейс и взаимодействие с пользователем</small></div></div>
+    <div class="stackline"><div class="stackbadge">API</div><div><strong>Python · FastAPI</strong><small>Серверная логика и HTTP API</small></div></div>
+    <div class="stackline"><div class="stackbadge">ORM</div><div><strong>SQLAlchemy · Pydantic</strong><small>Модели данных и валидация запросов</small></div></div>
+    <div class="stackline"><div class="stackbadge">DB</div><div><strong>PostgreSQL</strong><small>Хранение пользователей, заявок и откликов</small></div></div>
+    <div class="stackline"><div class="stackbadge">OPS</div><div><strong>JWT · Docker · GitHub</strong><small>Авторизация, окружение и совместная разработка</small></div></div>
+   </div>
+   <div class="arch reveal">
+    <div>Пользователь</div><span>↓</span>
+    <div class="primary">Frontend<br>HTML / CSS / JS</div><span>↓ HTTP-запросы</span>
+    <div class="primary">Backend<br>Python / FastAPI</div><span>↓ SQLAlchemy ORM</span>
+    <div>PostgreSQL</div>
+    <p style="font-size:11px;text-align:center;margin-top:6px">Docker обеспечивает согласованное окружение запуска</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">07 · Состав команды</div>
+  <h2 class="reveal">Команда проекта <span class="blue">With.</span></h2>
+  <div class="team">
+   <article class="member reveal"><div class="initials">АВ</div><strong>Алексеева Виктория</strong><small>Участник команды</small></article>
+   <article class="member reveal"><div class="initials">АА</div><strong>Антонова Ангелина</strong><small>Участник команды</small></article>
+   <article class="member reveal"><div class="initials">КВ</div><strong>Конькова Виктория</strong><small>Участник команды</small></article>
+   <article class="member reveal"><div class="initials">ОА</div><strong>Ольхов Александр</strong><small>Участник команды</small></article>
+   <article class="member reveal"><div class="initials">СД</div><strong>Стребков Даниил</strong><small>Team Lead</small></article>
+  </div>
+  <div class="roles reveal">
+   <span class="role">Координация и управление</span><span class="role">Frontend-разработка</span><span class="role">Backend-разработка</span><span class="role">DevOps</span><span class="role">Тестирование · QA</span>
+  </div>
+  <p class="reveal" style="font-size:11px;margin-top:13px">Состав участников — по титульному листу курсовой работы; функциональные направления — по разделу о распределении ответственности.</p>
+ </div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+ <div class="inner">
+  <div class="kicker reveal">08 · Результаты и ресурсы</div>
+  <h2 class="reveal">Что получилось <span class="blue">реализовать.</span></h2>
+  <div class="grid3">
+   <article class="card result-card reveal"><div class="result">2</div><h3>Тестовых аккаунта</h3><p>Сквозная проверка взаимодействия двух независимых пользователей.</p></article>
+   <article class="card result-card reveal"><div class="result">15+</div><h3>Тест-кейсов</h3><p>Проверки основных функций, ошибок ввода и прав доступа.</p></article>
+   <article class="card result-card reveal"><div class="result">3</div><h3>Ключевые сущности</h3><p>Пользователь, активность и отклик — основа модели данных.</p></article>
+  </div>
+  <div class="grid2" style="margin-top:14px">
+   <article class="card reveal" style="min-height:0"><div class="num">ПРОВЕРЕННЫЙ СЦЕНАРИЙ</div><p style="font-weight:750;color:var(--ink)">Регистрация / вход → создание заявки → поиск другим пользователем → отклик → подтверждение организатором → отображение статуса.</p><p style="font-size:12px;margin-top:8px">Состояния хранятся в PostgreSQL и доступны после повторного входа.</p></article>
+   <article class="card reveal" style="min-height:0"><div class="num">РЕСУРСЫ И ПЛАН</div><div class="budget"><div class="budgetbox"><strong>2 880 ₽</strong><span>Плановые прямые расходы с резервом</span></div><div class="budgetbox"><strong>245 ч</strong><span>Расчётная трудоёмкость команды</span></div></div><p style="font-size:11px;margin-top:10px">Учебная смета: не фактические расходы. Эквивалент трудозатрат — 85 750 ₽, без выплат участникам. Срок проекта: 15.09–30.11.2026.</p></article>
+  </div>
+  <p class="reveal" style="font-size:11px;margin-top:10px">Опрос и сравнительное UX-исследование не проводились; социальный эффект и снижение одиночества не заявляются как доказанные результаты.</p>
+ </div>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+ <div class="inner thanks">
+  <div class="kicker reveal" style="justify-content:center">With · Ссылки на проект</div>
+  <h2 class="reveal">Спасибо за<br><span class="blue">внимание!</span></h2>
+  <p class="reveal">О проекте можно узнать подробнее по QR-кодам.</p>
+  <div class="qr-layout">
+   <div class="qr-slot reveal"><div class="qr-empty">＋</div><strong>GitHub</strong><small>Место для QR-кода репозитория</small></div>
+   <div class="qr-slot reveal"><div class="qr-empty">＋</div><strong>Сфера</strong><small>Место для QR-кода проекта</small></div>
+  </div>
+  <p class="reveal" style="font-size:12px">With — когда для хорошего плана нужна компания.</p>
+ </div>
+</section>
+
+<div class="progress"><span id="bar"></span></div>
+<footer class="footer">
+ <div class="hint">← → листать · F — полный экран</div>
+ <div class="controls"><div class="dots" id="dots"></div><span class="count" id="count">01 / 10</span><button class="nav" id="prev" aria-label="Назад">←</button><button class="nav" id="next" aria-label="Вперёд">→</button></div>
+</footer>
+</div>
+<script>
+(()=>{
+ const slides=[...document.querySelectorAll('.slide')],dots=document.getElementById('dots');
+ const count=document.getElementById('count'),bar=document.getElementById('bar');let index=0;
+ slides.forEach((_,i)=>{const d=document.createElement('button');d.className='dot'+(!i?' active':'');d.setAttribute('aria-label','Слайд '+(i+1));d.onclick=()=>show(i);dots.appendChild(d)});
+ const ds=[...dots.children];
+ function show(n){index=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,i)=>s.classList.toggle('active',i===index));ds.forEach((d,i)=>d.classList.toggle('active',i===index));count.textContent=String(index+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0');bar.style.width=((index+1)/slides.length*100)+'%'}
+ document.getElementById('prev').onclick=()=>show(index-1);document.getElementById('next').onclick=()=>show(index+1);
+ document.addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(index+1)}if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(index-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1);if(e.key.toLowerCase()==='f'){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()}});
+ let x=0;document.addEventListener('touchstart',e=>x=e.changedTouches[0].screenX,{passive:true});document.addEventListener('touchend',e=>{const dx=e.changedTouches[0].screenX-x;if(Math.abs(dx)>55)show(index+(dx<0?1:-1))},{passive:true});
+ show(0);
+})();
+</script>
+</body>
+</html>

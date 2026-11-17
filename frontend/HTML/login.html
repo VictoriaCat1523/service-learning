@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../js/login.js" defer></script>
+        <script>    
+            if (sessionStorage.getItem('openRegister') === 'true') {
+                    document.documentElement.classList.add('open-register');
+                }
+        </script>
+        <title>WITH us</title>
+        <link rel="stylesheet" href="../css/login.css">
+        <link rel="stylesheet" href="../css/auth_modal.css">
+        <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
+    </head>
+
+
+    <body class="wrapper">
+        <div>
+            <header>
+                <div class="logo_block">
+                    <img src="../images/main_icon_project.svg" alt="" class="bebebe">
+                    <a href="main_login.html" class="logo">WITH</a>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="main_login.html">Главная</a></li>
+                        <li><a href="#" data-auth-modal-open>Найти компанию</a></li>
+                        <li><a href="#" data-auth-modal-open>Создать заявку</a></li>
+                        <li><a href="#"  data-auth-modal-open>Мои заявки</a></li>
+                        <li><a href="#"  data-auth-modal-open>Уведомления</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div class="auth-container">
+            <div class="auth-box">
+
+                <div class="auth-toggle">
+                    <div class="toggle-slider"></div>
+                    <button class="toggle-btn active" type="button" id="loginTab">Войти</button>
+                    <button class="toggle-btn" type="button" id="registerTab">Регистрация</button>
+                </div>
+
+                <div id="loginForm">
+                    <form class="auth-form">
+                        <h1>С возвращением!</h1>
+                        <p>Войдите, чтобы продолжить</p>
+
+                        <input type="email" class="user" placeholder="Адрес электронной почты">
+
+                        <div class="password-wrapper">
+                            <input type="password" id="loginPassword" class="pass login" placeholder="Введите свой пароль">
+                            <button type="button" class="show-password">
+                                <img src="../images/eye-off.svg" alt="">
+                            </button>
+                        </div>
+
+                        <div class="login-options">
+                            <label class="checkbox">
+                                <input type="checkbox" id="rememberMe">
+                                <span>Запомнить меня</span>
+                            </label>
+                            <a href="#">Забыли пароль?</a>
+                        </div>
+                        
+                        
+                        <button type="submit" class="submit-btn">Войти</button>
+                    </form>
+                </div>
+
+
+                <div id="registerForm">
+                    <form class="auth-form">
+
+                        <img src="../images/user-registration.svg" alt="" class="user-registration">
+                        <h1>Создай аккаунт</h1>
+                        <p> Зарегестрируйся, чтобы находить компании
+                            <br>для любых интересов и мероприятий
+                        </p>
+
+                        <input
+                            type="text"
+                            id="registerFirstName"
+                            name="first_name"
+                            class="name"
+                            placeholder="Имя"
+                            autocomplete="given-name"
+                            required
+                        >
+                        <span class="field-error" id="firstNameError"></span>
+                        <input
+                            type="text"
+                            id="registerLastName"
+                            name="last_name"
+                            class="name"
+                            placeholder="Фамилия"
+                            autocomplete="family-name"
+                            required
+                        >
+                        <span class="field-error" id="lastNameError"></span>
+                        <input
+                            type="text"
+                            id="registerUsername"
+                            name="username"
+                            class="name"
+                            placeholder="Имя пользователя"
+                            autocomplete="username"
+                            minlength="3"
+                            maxlength="20"
+                            required
+                        >
+                        <span class="field-error" id="usernameError"></span>
+                        <input
+                            type="email"
+                            id="registerEmail"
+                            name="email"
+                            class="email"
+                            placeholder="Электронная почта"
+                            autocomplete="email"
+                            required
+                        >
+                        <span class="field-error" id="emailError"></span>
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="registerPassword"
+                                name="password"
+                                class="pass"
+                                placeholder="Пароль"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                            <button type="button" class="show-password">
+                                <img src="../images/eye-off.svg" alt="">
+                            </button>
+
+                            <button type="button" class="password-help" id="passwordHelp">
+                                ?
+                            </button>
+
+                            <div class="password-hint" id="passwordHint" hidden>
+                                <p>Требования к паролю:</p>
+                                <ul>
+                                    <li>Минимум 8 символов</li>
+                                    <li>Заглавная буква</li>
+                                    <li>Строчная буква</li>
+                                    <li>Хотя бы одна цифра</li>
+                                    <li>Хотя бы один спецсимвол</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <span class="field-error" id="passwordError"></span>
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="registerPasswordConfirm"
+                                name="password_confirm"
+                                class="pass"
+                                placeholder="Повторите пароль"
+                                autocomplete="new-password"
+                                required
+                            >
+                            <button type="button" class="show-password">
+                                <img src="../images/eye-off.svg" alt="">
+                            </button>
+                        </div>
+                        <span class="field-error" id="confirmPasswordError"></span>
+                        <input
+                            type="date"
+                            id="registerBirthDate"
+                            name="birth_date"
+                            class="date"
+                            required
+                        >
+
+                        <input
+                            type="text"
+                            id="registerCity"
+                            name="city"
+                            class="city"
+                            placeholder="Город"
+                            autocomplete="address-level2"
+                            required
+                        >
+
+                        <select
+                            id="registerGender"
+                            name="gender"
+                            class="gender"
+                            required
+                        >
+                            <option value="" disabled selected>Выберите пол</option>
+                            <option value="male">Мужской</option>
+                            <option value="female">Женский</option>
+                            <option value="not_specified">Не указывать</option>
+                        </select>
+                        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+
+                        <p class="Login">Уже есть аккаунт?<a href="#">Войти</a></p>
+                    </form>
+                </div>
+                
+               
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <footer class="site-footer">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <img src="../images/main_icon_project.svg" alt="">
+                        <span>WITH</span>
+                    </div>
+                    <p>WITH YOU. WITH EVERYONE</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Навигация</h3>
+                    <a href="main_login.html">Главная</a>
+                    <a href="#" data-auth-modal-open>Найти компанию</a>
+                    <a href="#" data-auth-modal-open>Создать заявку</a>
+                    <a href="#" data-auth-modal-open>Мои заявки</a>
+                    <a href="#" data-auth-modal-open>Уведомления</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Поддержка</h3>
+                    <a href="#">Правила сервиса</a>
+                    <a href="#">Поддержка</a>
+                    <a href="#">Контакты</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Telegram"><img src="../images/social icons/telegram-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="Discord"><img src="../images/social icons/discord-svgrepo-com.svg" alt=""></a>
+                        <a href="#" class="social-icon" aria-label="VK"><img src="../images/social icons/vk-svgrepo-com.svg" alt=""></a>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 WITH. Все права защищены.</p>
+            </div>
+        </footer>
+        <div id="authModalContainer"></div>
+        <script src="../js/auth_modal.js" defer></script>
+        <!--СКРИПТ ЗАЧЕМ ТО НУЖНЫЙ БЛЯ БЭКА -->
+        <script>
+                        // Ждем, пока вся страница полностью загрузится
+                    window.addEventListener('DOMContentLoaded', () => {
+                        // Заставляем скрипт найти форму, даже если у нее нет id (берем первую форму на странице)
+                        const form = document.querySelector('form');
+                        
+                        if (!form) {
+                            console.error("DevOps Error: Форма не найдена на странице login.html!");
+                            return;
+                        }
+                
+                        form.addEventListener('submit', async (event) => {
+                            event.preventDefault(); // Запрещаем странице перезагружаться
+                
+                            // ВНИМАНИЕ: Проверь, чтобы id ниже ('email' и 'password') 
+                            <!--совпадали с тем, что написано в тегах <input id="..."> в твоем HTML!-->
+                            const emailField = document.getElementById('email') || document.querySelector('input[type="email"]');
+                            const passwordField = document.getElementById('password') || document.querySelector('input[type="password"]');
+                
+                            if (!emailField || !passwordField) {
+                                alert("Ошибка: Скрипт не смог найти поля ввода на странице. Проверь их id в HTML!");
+                                return;
+                            }
+                
+                            console.log("DevOps Log: Данные собраны, отправляем в сеть...");
+                
+                            try {
+                                const response = await fetch('/api/login', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        email: emailField.value,
+                                        password: passwordField.value
+                                    })
+                                });
+                
+                                const data = await response.json();
+                
+                                if (response.ok) {
+                                    alert('Авторизация успешна!');
+                                    // Перенаправляем на страницу после успешного входа
+                                    window.location.href = './main.html';
+                                } else {
+                                    alert('Ошибка: ' + (data.detail || 'Неверный логин или пароль'));
+                                }
+                            } catch (error) {
+                                console.error('Ошибка сети:', error);
+                                alert('Не удалось связаться с бэкендом.');
+                            }
+                        });
+                    });
+        </script>
+    </body>
+</html>
+

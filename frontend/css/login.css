@@ -1,0 +1,725 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root{
+    --btn-bl: #5965e8;
+    --title: #172b55;
+    --sub-title: #7C84B5;
+}
+
+
+/* ВЕРТИКАЛЬНЫЙ ПОЛЗУНОК*/
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--btn-bl);
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: #4c57d6;
+}
+/*ЦВЕТ ГИПЕРССЫЛОК*/
+
+header a,
+header a:visited {
+    color: #5f6b85;
+}
+
+header .active a, header .active a:visited{
+    color: var(--btn-bl) !important;
+}
+
+header .btn-register,
+header .btn-register:visited {
+    color: white;
+}
+
+header .btn-entrance,
+header .btn-entrance:visited {
+    color: var(--btn-bl);
+}
+/* БОДИ*/
+
+body{
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 16px;
+    margin: 0;
+    color: var(--title);
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+.wrapper {
+    min-height: 100vh;
+    width: 100%;
+    background-color: #F5F7FF;
+    background-image: url("../images/BACKGROUND.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+}
+
+.container{
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 90px;
+    
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+.logo_block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+    margin-left: 50px;
+}
+
+.bebebe{
+    width: 50px;
+    height: 50px;
+}
+
+.logo{
+    margin: 20px;
+    font-weight: 700;
+    font-size: 45px;
+}
+
+.logo_block .logo,
+.logo_block .logo:visited {
+    color: var(--title);
+}
+
+
+nav{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+nav ul{
+    display:flex;
+    gap: 40px;
+
+    list-style: none;
+    align-items: center;
+    
+    margin: 0;
+    padding: 0;
+}
+
+
+.header_btns{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header_btns a{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+    padding: 15px 37px;
+
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    word-spacing: 4px;
+}
+
+.btn-entrance{
+    background-color: white;
+    color: var(--btn-bl);
+
+    border: 1px solid var(--btn-bl);
+}
+
+.btn-register{
+    background-color: var(--btn-bl);
+    color: white;
+}
+
+/* ЧАСТЬ НИЖЕ ГЛАВНОЙ*/
+
+.auth-container {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    margin-top: 40px;
+}
+
+.auth-box {
+    width: 540px;
+    max-height: calc(100vh - 150px);
+    padding: 40px;
+    
+    background-color: #FFFFFF;
+    border: 1px solid #E3E8FF;
+    border-radius: 24px;
+    box-sizing: border-box;
+
+    box-shadow: 0 15px 40px rgba(65, 82, 150, 0.08);
+
+    overflow-y: auto;
+}
+
+
+/* ТУМБЛЕР*/
+.auth-toggle {
+    position: relative;
+
+    width: 100%;
+    height: 52px;
+
+    padding: 2px;
+
+    display: flex;
+
+    background: var(--btn-bl);
+    border-radius: 28px;
+
+    box-sizing: border-box;
+}
+
+.toggle-slider {
+    position: absolute;
+
+    top: 2px;
+    left: 2px;
+
+    width: calc(50% - 2px);
+    height: 48px;
+
+    background: #FFFFFF;
+
+    border-radius: 24px;
+
+    transition: transform 0.3s ease;
+
+    z-index: 1;
+}
+
+.toggle-btn {
+    position: relative;
+
+    flex: 1;
+
+    height: 48px;
+
+    margin: 0;
+    padding: 0;
+
+    border: none;
+    border-radius: 24px;
+
+    background: transparent;
+    color: #FFFFFF;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    z-index: 2;
+}
+
+.toggle-btn.active {
+    color: var(--btn-bl);
+}
+
+.open-register .toggle-slider {
+    transform: translateX(100%);
+    transition: none !important;
+}
+
+/* ПОЛЯ ВВОДА*/
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+    padding-right: 40px !important;
+}
+
+.show-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-65%);
+
+    width: 24px;
+    height: 24px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.show-password img {
+    width: 20px !important;
+    height: 20px !important;
+
+    display: block;
+}
+
+
+.auth-form{
+    width: 100%;
+    margin-top: 30px;
+    color: #7C84B5;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form h1{
+    text-align: center;
+    margin-top: -5px;
+    margin-bottom: -17px;
+    color: var(--title);
+    font-size: 40px;
+    font-weight: 700;
+    word-spacing: 1%;
+}
+
+.auth-form p{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.auth-form input:not([type="checkbox"]){
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #7C84B5;
+    border-radius: 12px;
+    height: 50px;
+
+    background-position: 14px center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    padding: 0 16px 0 48px;
+    box-sizing: border-box;
+    
+    color: var(--title);
+    font-size: 18px;
+    text-align: left;
+    
+    box-shadow: none;
+    outline: none;
+
+    appearance: none;
+}
+
+.auth-form input::placeholder {
+    color: #7C84B5;
+}
+
+.auth-form input:focus{
+    border: 2px solid var(--title);
+    outline: none;
+    box-shadow: none;
+}
+
+.auth-form .user{
+    background-image: url("../images/user-round.svg");
+    
+}
+
+.auth-form .pass{
+    background-image: url("../images/lock-keyhole.svg");
+}
+
+.auth-form .email{
+    background-image: url("../images/mail.svg");
+}
+
+.auth-form .name{
+    background-image: url("../images/user-round.svg");
+}
+
+.auth-form .date {
+    background-image: url("../images/calendar.svg");
+    padding-left: 16px;
+}
+
+.auth-form .date::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.auth-form img{
+    width: 20%;
+    display: block;
+    margin: 0 auto;
+}
+
+.auth-form .submit-btn{
+    background-color: var(--btn-bl);
+    color: #FFFFFF;
+    height: 50px;
+
+    border: 2px var(--btn-bl);
+    border-radius: 10px;
+    
+    font-size: 15px;
+
+    box-shadow: none;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.auth-form .submit-btn:hover{
+    background-color: #303BA8;
+    border-color: #303BA8;
+}
+
+.login-options{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+
+
+.checkbox{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    cursor: pointer;
+}
+
+.checkbox span{
+    font-size: 16px;
+}
+
+.checkbox input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    accent-color: var(--btn-bl);
+}
+
+/*БЛОК - ЗАБЫЛИ ПАРОЛЬ*/
+
+.login-options a, .login-options a:visited{
+    text-decoration: none;
+    line-height: 1;
+    margin: 0;
+    transition: color 0.2s ease;
+    color: var(--btn-bl);
+}
+
+.login-options a:hover{
+    color: #303BA8;
+}
+
+p a, p a:visited{
+    align-items: center;
+    margin-left: 15px;
+    transition: color 0.2s ease;
+    color: var(--btn-bl);
+}
+
+p a:hover{
+    color: #303BA8;
+}
+.login {
+    margin-top: 40px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+
+
+/* Дополнительные поля регистрации */
+
+/* Город */
+.auth-form .city {
+    background-image: none;
+    padding-left: 16px !important;
+}
+
+/* Дата рождения */
+.auth-form #registerBirthDate {
+    padding-left: 48px;
+    color: var(--title);
+}
+
+
+/* Выбор пола */
+.auth-form .gender {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    padding: 0 16px;
+
+    border: 2px solid #7C84B5;
+    border-radius: 12px;
+
+    background-color: #FFFFFF;
+    background-image: none;
+
+    color: #7C84B5;
+    font-family: inherit;
+    font-size: 18px;
+
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+}
+
+.auth-form .gender:focus {
+    border-color: var(--title);
+}
+
+/* Цвет выбранного значения пола */
+.auth-form .gender:valid {
+    color: var(--title);
+}
+
+/* Цвет текста вариантов в раскрытом списке */
+.auth-form .gender option {
+    color: var(--title);
+}
+
+
+/*FOOTER С СОЦСЕТЯМИ И Т.П.*/
+
+.site-footer{
+    background-color: #232c40;
+    color: #ffff;
+    padding: 25px 80px;
+    margin-top: 60px;
+}
+
+.footer-main{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* ЛОГО И СЛОГАН*/
+
+.footer-brand{
+    width: 320px;
+    gap: 16px;
+}
+
+.footer-logo{
+    display: inline-flex;
+}
+
+.footer-logo img{
+    width: 60px;
+    height: 60px;
+    margin-right: 30px;
+}
+
+.footer-logo span{
+    font-size: 40px;
+}
+
+.footer-brand p{
+    font-size: 14px;
+    color: #C8D1E3;
+    margin: 10px 0 0 ;
+}
+
+/*ОБЩАЯ НАСТРОЙКА НАВИГАЦИИ, ИНФО И СОЦ. СЕТЕЙ*/
+
+.footer-links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;;
+    gap: 10px;
+    min-width: 100px;
+}
+
+.footer-links h3{
+    font-size: 20px;
+    margin: 0;
+}
+
+.footer-links a{
+    font-size: 16px;
+    text-decoration: none;
+    color: #C8D1E3;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover{
+    color: #8FA8FF;
+}
+
+/*СОЦИАЛНЫЕ ИКОНКИ*/
+.social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 5px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.social-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+
+    transition: filter 0.2s ease;
+}
+
+.social-icon:hover img {
+     filter: brightness(0) saturate(100%)
+            invert(72%) sepia(18%) saturate(1094%)
+            hue-rotate(194deg) brightness(103%) contrast(101%);
+}
+/*НИЖНЯЯ ЧАСТ FOOTERA*/
+.footer-bottom{
+    margin-top: 30px;
+    border-top: 1px solid #5f6b85;
+    color: #5f6b85;
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+
+/*C8D1E3 */
+
+
+
+/* Кнопка подсказки около глазка */
+
+.password-help {
+    position: absolute;
+    right: 42px;
+    top: 50%;
+    transform: translateY(-65%);
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1.5px solid #5f6b85;
+    border-radius: 50%;
+    background: transparent;
+    color: #5f6b85;
+
+    font-family: inherit;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+/* Выдвигающаяся плашка */
+.password-hint {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 245px;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    background: #232c40;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+    font-size: 13px;
+    line-height: 1.6;
+    z-index: 20;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease,
+                visibility 0.2s ease;
+}
+
+.password-hint:not([hidden]) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.password-hint[hidden] {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.password-hint p {
+    margin: 0 0 7px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.password-hint ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.password-hint li {
+    margin: 3px 0;
+}

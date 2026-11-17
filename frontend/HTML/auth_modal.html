@@ -1,0 +1,44 @@
+
+<!-- ОКНО ДЛЯ НЕАВТОРИЗОВАННОГО ПОЛЬЗОВАТЕЛЯ -->
+<div class="auth-modal-overlay" id="authModal" hidden>
+    <div
+        class="auth-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="authModalTitle"
+    >
+        <button
+            type="button"
+            class="auth-modal-close"
+            data-auth-modal-close
+            aria-label="Закрыть окно"
+        >
+            &times;
+        </button>
+
+        <div class="auth-modal-icon">🔐</div>
+
+        <h2 id="authModalTitle">Нужен аккаунт</h2>
+
+        <p class="auth-modal-text">
+            Чтобы создать заявку и найти компанию,
+            сначала зарегистрируйтесь или войдите в аккаунт.
+        </p>
+
+        <a href="login.html" class="auth-modal-register" data-open-register  >
+            Зарегистрироваться
+        </a>
+
+        <a href="login.html" class="auth-modal-login">
+            Войти в аккаунт
+        </a>
+
+        <button
+            type="button"
+            class="auth-modal-later"
+            data-auth-modal-close
+        >
+            Позже
+        </button>
+    </div>
+</div>
