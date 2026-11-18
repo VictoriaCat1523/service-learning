@@ -367,3 +367,159 @@ def get_request(
     if not request:
         raise HTTPException(status_code=404, detail="Заявка не найдена")
     return request
+
+
+# ==========================================
+# 🆕 ИЗМЕНЕНИЕ СТАТУСА ЗАЯВКИ (ОТМЕНА / ЗАВЕРШЕНИЕ / ВОЗВРАТ)
+# ==========================================
+
+@router.patch("/requests/{request_id}/status")
+def update_request_status(
+    request_id: int,
+    status_data: dict,
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    # 1. Ищем заявку
+    db_request = db.query(models.Request).filter(models.Request.id == request_id).first()
+    if not db_request:
+        raise HTTPException(status_code=404, detail="Заявка не найдена")
+
+    # 2. Только автор может менять статус
+    if db_request.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Только автор заявки может изменить её статус")
+
+    # 3. Получаем новый статус
+    new_status = status_data.get("status")
+    allowed_statuses = ["cancelled", "completed", "active"]
+    if new_status not in allowed_statuses:
+        raise HTTPException(status_code=400, detail="Недопустимый статус")
+
+    current_status = db_request.status
+
+    # 4. Логика переходов между статусами
+    # Завершённую заявку менять нельзя
+    if current_status == "completed":
+        raise HTTPException(status_code=400, detail="Завершённую заявку нельзя изменить")
+
+    # Возврат к активной разрешён только из cancelled
+    if new_status == "active" and current_status != "cancelled":
+        raise HTTPException(status_code=400, detail="Вернуть к активной можно только отменённую заявку")
+
+    # Нельзя сделать active → active или cancelled → cancelled
+    if new_status == current_status:
+        raise HTTPException(status_code=400, detail=f"Заявка уже в статусе '{current_status}'")
+
+    # 5. === ОТМЕНА ЗАЯВКИ ===
+    if new_status == "cancelled":
+        # Находим все активные отклики (pending и accepted), чтобы отклонить их
+        active_responses = db.query(models.RequestResponse).filter(
+            models.RequestResponse.request_id == request_id,
+            models.RequestResponse.status.in_(["pending", "accepted"])
+        ).all()
+
+        for response in active_responses:
+            response.status = "declined"
+
+            # Уведомление пользователю, который откликнулся
+            notification = models.Notification(
+                user_id=response.user_id,
+                title="Заявка отменена",
+                message=f"Заявка '{db_request.title}' была отменена организатором.",
+                notification_type="request_cancelled",
+                related_request_id=db_request.id
+            )
+            db.add(notification)
+
+        db_request.status = "cancelled"
+        db.commit()
+        db.refresh(db_request)
+
+        return {
+            "message": "Заявка отменена. Все откликнувшиеся получили уведомления.",
+            "new_status": "cancelled",
+            "request_id": request_id,
+            "notified_count": len(active_responses)
+        }
+
+    # 6. === ЗАВЕРШЕНИЕ ЗАЯВКИ ===
+    elif new_status == "completed":
+        db_request.status = "completed"
+        db.commit()
+        db.refresh(db_request)
+
+        return {
+            "message": "Заявка завершена",
+            "new_status": "completed",
+            "request_id": request_id
+        }
+
+    # 7. === ВОЗВРАТ К АКТИВНОЙ (из cancelled) ===
+    elif new_status == "active" and current_status == "cancelled":
+        # Восстанавливаем все declined-отклики обратно в pending
+        declined_responses = db.query(models.RequestResponse).filter(
+            models.RequestResponse.request_id == request_id,
+            models.RequestResponse.status == "declined"
+        ).all()
+
+        for response in declined_responses:
+            response.status = "pending"
+
+            # Уведомляем пользователя, что заявка снова активна
+            notification = models.Notification(
+                user_id=response.user_id,
+                title="Заявка снова активна!",
+                message=f"Заявка '{db_request.title}', на которую вы откликались, снова активна. Организатор возобновил её.",
+                notification_type="request_reactivated",
+                related_request_id=db_request.id
+            )
+            db.add(notification)
+
+        # Сбрасываем статус с full на active (если вдруг был full)
+        db_request.status = "active"
+        db.commit()
+        db.refresh(db_request)
+
+        return {
+            "message": "Заявка снова активна. Все откликнувшиеся получили уведомления.",
+            "new_status": "active",
+            "request_id": request_id,
+            "restored_responses": len(declined_responses)
+        }
+
+
+# ==========================================
+# 🆕 АВТОЗАВЕРШЕНИЕ ПРОСРОЧЕННЫХ ЗАЯВОК
+# ==========================================
+
+@router.post("/requests/auto-complete")
+def auto_complete_expired_requests(
+    db: Session = Depends(database.get_db)
+):
+    """
+    Находит все активные/полные заявки с прошедшей датой и завершает их.
+    Можно вызывать вручную через POST /api/requests/auto-complete
+    или настроить cron-задачу для автоматического запуска.
+    """
+    from datetime import datetime
+
+    now = datetime.utcnow()
+
+    # Находим заявки в статусах active/full, у которых дата уже прошла
+    expired_requests = db.query(models.Request).filter(
+        models.Request.status.in_(["active", "full"]),
+        models.Request.date_time < now
+    ).all()
+
+    completed_count = 0
+    for request in expired_requests:
+        request.status = "completed"
+        completed_count += 1
+
+    db.commit()
+
+    return {
+        "message": "Автозавершение выполнено",
+        "completed_count": completed_count,
+        "checked_at": now.isoformat()
+    }
