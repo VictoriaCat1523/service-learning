@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Уведомления - WITH</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
+    <style>
+        .notifications-container { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .notification-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .notification-card.unread { border-left: 4px solid #4f46e5; background: #f5f3ff; }
+        .notification-title { font-weight: 600; color: #111827; margin-bottom: 8px; }
+        .notification-message { color: #4b5563; line-height: 1.5; margin-bottom: 12px; white-space: pre-line; }
+        .notification-date { font-size: 0.85rem; color: #9ca3af; }
+        .mark-read-btn { background: #e0e7ff; color: #4f46e5; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.875rem; margin-top: 10px; }
+        .mark-read-btn:hover { background: #c7d2fe; }
+    </style>
+</head>
+<body class="wrapper">
+    <!-- Вставь сюда свой header из main.html -->
+    <header>
+        <div class="logo_block">
+            <img src="../images/main_icon_project.svg" alt="" class="bebebe">
+            <a href="main.html" class="logo">WITH</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="main.html">Главная</a></li>
+                <li><a href="locate_company.html">Найти компанию</a></li>
+                <li><a href="create_event.html">Создать заявку</a></li>
+                <li><a href="my_requests.html">Мои заявки</a></li>
+                <li class="active"><a href="notifications.html">Уведомления</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="notifications-container">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <h1 style="margin:0;">Уведомления</h1>
+            <button id="read-all-btn" style="background:#4f46e5; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-weight:600;">
+                Прочитать все
+            </button>
+        </div>
+        <div id="notifications-list">Загрузка...</div>
+    </div>
+
+    <script src="../js/profile_menu.js"></script>
+    <script src="../js/notifications.js"></script>
+</body>
+</html>

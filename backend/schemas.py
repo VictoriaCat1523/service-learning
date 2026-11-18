@@ -169,3 +169,58 @@ class UserLogin(BaseModel):
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
+
+
+# схемы для заявок
+
+class RequestCreate(BaseModel):
+    title: str
+    description: str
+    activity_type: str
+    location: str
+    date_time: datetime
+    people_count: int = 1
+    budget: str | None = None
+    file_path: str | None = None
+
+class RequestResponseModel(BaseModel):
+    id: int
+    title: str
+    description: str
+    activity_type: str
+    location: str
+    date_time: datetime
+    people_count: int
+    budget: str | None = None
+    file_path: str | None = None
+    status: str
+    user_id: int
+    created_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)
+
+# схемы для откликов
+class ResponseCreate(BaseModel):
+    request_id: int
+
+class ResponseRead(BaseModel):
+    id: int
+    request_id: int
+    user_id: int
+    status: str
+    created_at: datetime
+    # Можно добавить вложенную схему пользователя, если нужно отображать имя откликнувшегося
+
+    model_config = ConfigDict(from_attributes=True)
+
+class NotificationResponse(BaseModel):
+    id: int
+    user_id: int
+    title: str
+    message: str
+    notification_type: str
+    is_read: int
+    related_request_id: int | None
+    created_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)

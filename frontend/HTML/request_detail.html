@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка - WITH</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="icon" type="image/svg+xml" href="../images/main_icon_project.svg">
+    <style>
+        .detail-container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .request-info { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 24px; border: 1px solid #e5e7eb; }
+        .responses-section { background: #fff; border-radius: 12px; padding: 24px; border: 1px solid #e5e7eb; }
+        .response-item { display: flex; justify-content: space-between; align-items: center; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; }
+        .response-user { flex: 1; }
+        .response-user strong { color: #111827; }
+        .response-user p { margin: 4px 0 0 0; color: #6b7280; font-size: 0.9rem; }
+        .response-actions { display: flex; gap: 8px; }
+        .btn-accept { background: #10b981; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .btn-decline { background: #ef4444; color: white; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+        .btn-accept:disabled, .btn-decline:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; }
+        .status-pending { background: #fef3c7; color: #92400e; }
+        .status-accepted { background: #d1fae5; color: #065f46; }
+        .status-declined { background: #fee2e2; color: #991b1b; }
+    </style>
+</head>
+<body class="wrapper">
+    <header>
+        <div class="logo_block">
+            <img src="../images/main_icon_project.svg" alt="" class="bebebe">
+            <a href="main.html" class="logo">WITH</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="main.html">Главная</a></li>
+                <li><a href="locate_company.html">Найти компанию</a></li>
+                <li><a href="create_event.html">Создать заявку</a></li>
+                <li><a href="my_requests.html">Мои заявки</a></li>
+                <li><a href="notifications.html">Уведомления</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="detail-container">
+        <div id="request-info" class="request-info">Загрузка...</div>
+        <div id="responses-section" class="responses-section" hidden>
+            <h2>Отклики на заявку</h2>
+            <div id="responses-list">Загрузка...</div>
+        </div>
+    </div>
+
+    <script src="../js/profile_menu.js"></script>
+    <script src="../js/request_detail.js"></script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 8.92C0 4.02 3.81 0.12 8.38 0H37.68C42.25 0.12 46.05 4.02 46.05 8.92V36.75C46.05 41.88 41.8 45.85 36.8 45.85H9.25C4.12 45.85 0 41.76 0 36.75V8.92Z" fill="url(#paint0_linear_126_65)"/>
 <path d="M35.15 19.17C33.62 19.17 32.22 19.97 31.52 21.26L27.84 27.92L27.72 28.05L32.82 34.97L38.53 24.84C38.85 24.3 39.06 23.65 39.06 22.95C39.06 20.84 37.29 19.17 35.15 19.17Z" fill="url(#paint1_linear_126_65)"/>
@@ -40,6 +41,17 @@
 <stop stop-color="#A892FC"/>
 <stop offset="0.4844" stop-color="#836DFD"/>
 <stop offset="0.8281" stop-color="#5D52FD"/>
+=======
+<svg width="301" height="301" viewBox="0 0 301 301" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="301" height="301" rx="38" fill="url(#paint0_linear_7_148)"/>
+<path d="M90 86C90 98.7025 79.7025 109 67 109C54.2975 109 44 98.7025 44 86C44 73.2975 54.2975 63 67 63C79.7025 63 90 73.2975 90 86Z" fill="#211F2B"/>
+<path d="M257 86C257 98.7025 246.703 109 234 109C221.297 109 211 98.7025 211 86C211 73.2974 221.297 63 234 63C246.703 63 257 73.2974 257 86Z" fill="#211F2B"/>
+<path d="M67 145L77.39 192.4L105.208 254L149.494 195.547L195.792 254L223.61 192.4L234 145" stroke="#211F2B" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="paint0_linear_7_148" x1="121" y1="41.5" x2="192" y2="322.5" gradientUnits="userSpaceOnUse">
+<stop stop-color="#57B3FF"/>
+<stop offset="0.976274" stop-color="#505E82"/>
+>>>>>>> backend-setup
 </linearGradient>
 </defs>
 </svg>
