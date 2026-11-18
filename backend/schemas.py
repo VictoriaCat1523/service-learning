@@ -212,3 +212,15 @@ class ResponseRead(BaseModel):
     # Можно добавить вложенную схему пользователя, если нужно отображать имя откликнувшегося
 
     model_config = ConfigDict(from_attributes=True)
+
+class NotificationResponse(BaseModel):
+    id: int
+    user_id: int
+    title: str
+    message: str
+    notification_type: str
+    is_read: int
+    related_request_id: int | None
+    created_at: datetime
+
+    model_config = ConfigDict(from_attributes=True)

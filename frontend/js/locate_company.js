@@ -160,8 +160,9 @@ async function loadRequests() {
                     });
 
                     if (res.ok) {
+                        alert('Вы успешно откликнулись! Организатор получил уведомление с вашими контактами.');
                         e.target.textContent = 'Вы откликнулись ✓';
-                        e.target.style.background = '#10b981'; // Зеленый цвет
+                        e.target.style.background = '#10b981';
                     } else {
                         const err = await res.json();
                         alert(err.detail || 'Не удалось откликнуться');

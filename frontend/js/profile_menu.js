@@ -86,3 +86,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+async function updateUnreadBadgeGlobal() {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (!token) return;
+    try {
+        const res = await fetch("/api/notifications/unread-count", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const badge = document.getElementById('unread-badge');
+        if (badge) {
+            if (data.unread_count > 0) {
+                badge.textContent = data.unread_count > 99 ? '99+' : data.unread_count;
+                badge.style.display = 'inline-block';
+            } else {
+                badge.style.display = 'none';
+            }
+        }
+    } catch (e) { console.error(e); }
+}
+updateUnreadBadgeGlobal();

@@ -29,7 +29,12 @@
                         <li><a href="locate_company.html">Найти компанию</a></li>
                         <li><a href="create_event.html">Создать заявку</a></li>
                         <li class="active"><a href="my_requests.html">Мои заявки</a></li>
-                        <li><a href="#">Уведомления</a></li>
+                        <li>
+                            <a href="notifications.html" style="position:relative;">
+                                Уведомления
+                                <span id="unread-badge" style="display:none; position:absolute; top:-8px; right:-12px; background:#ef4444; color:white; border-radius:50%; width:20px; height:20px; font-size:12px; line-height:20px; text-align:center;"></span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <div class="header_icons">
@@ -82,24 +87,17 @@
                 <div id="responsesContent">
                     <h2>Заявки, на которые я откликнулся</h2>
                     <div class="requests-stats">
-                        <button class="stat-btn active" type="button" data-filter="all">
-                            <span class="stat-number">0</span>
-                            <span>Все</span>
+                        <button class="stat-btn active" data-filter="all">
+                            <span class="stat-number">0</span> Все
                         </button>
-
-                        <button class="stat-btn" type="button" data-filter="active">
-                            <span class="stat-number">0</span>
-                            <span>Активные</span>
+                        <button class="stat-btn" data-filter="pending">
+                            <span class="stat-number">0</span> На рассмотрении
                         </button>
-
-                        <button class="stat-btn" type="button" data-filter="completed">
-                            <span class="stat-number">0</span>
-                            <span>Завершённые</span>
+                        <button class="stat-btn" data-filter="accepted">
+                            <span class="stat-number">0</span> Завершенные
                         </button>
-
-                        <button class="stat-btn" type="button" data-filter="cancelled">
-                            <span class="stat-number">0</span>
-                            <span>Отменённые</span>
+                        <button class="stat-btn" data-filter="declined">
+                            <span class="stat-number">0</span> Отклоненные
                         </button>
                     </div>
                     <!-- Контейнер для карточек откликов -->

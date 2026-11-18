@@ -139,16 +139,13 @@ def join_request(
     current_user: models.User = Depends(auth.get_current_user),
     db: Session = Depends(database.get_db)
 ):
-    # Проверка: заявка существует
     db_request = db.query(models.Request).filter(models.Request.id == request_id).first()
     if not db_request:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Заявка не найдена")
     
-    # Проверка: нельзя откликнуться на свою заявку
     if db_request.user_id == current_user.id:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Нельзя откликнуться на собственную заявку")
 
-    # Проверка: пользователь уже откликался
     existing_response = db.query(models.RequestResponse).filter(
         models.RequestResponse.request_id == request_id,
         models.RequestResponse.user_id == current_user.id
@@ -156,13 +153,23 @@ def join_request(
     if existing_response:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Вы уже откликнулись на эту заявку")
 
-    # Создаем отклик
     new_response = models.RequestResponse(
         request_id=request_id,
         user_id=current_user.id,
         status="pending"
     )
     db.add(new_response)
+    
+    # === СОЗДАЕМ УВЕДОМЛЕНИЕ ДЛЯ АВТОРА ЗАЯВКИ ===
+    notification = models.Notification(
+        user_id=db_request.user_id,
+        title="Новый отклик на вашу заявку",
+        message=f"Пользователь {current_user.first_name} {current_user.last_name} (@{current_user.username}) откликнулся на заявку '{db_request.title}'.\nEmail для связи: {current_user.email}",
+        notification_type="response",
+        related_request_id=db_request.id
+    )
+    db.add(notification)
+    
     db.commit()
     db.refresh(new_response)
     return new_response
@@ -176,3 +183,187 @@ def get_my_responses(
     return db.query(models.RequestResponse).filter(
         models.RequestResponse.user_id == current_user.id
     ).all()
+
+# ==========================================
+# УВЕДОМЛЕНИЯ
+# ==========================================
+
+@router.get("/notifications/", response_model=List[schemas.NotificationResponse])
+def get_my_notifications(
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    notifications = db.query(models.Notification).filter(
+        models.Notification.user_id == current_user.id
+    ).order_by(models.Notification.created_at.desc()).all()
+    return notifications
+
+@router.patch("/notifications/{notification_id}/read")
+def mark_as_read(
+    notification_id: int,
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    notification = db.query(models.Notification).filter(
+        models.Notification.id == notification_id,
+        models.Notification.user_id == current_user.id
+    ).first()
+    if not notification:
+        raise HTTPException(status_code=404, detail="Уведомление не найдено")
+    notification.is_read = 1
+    db.commit()
+    return {"message": "Отмечено как прочитанное"}
+
+# ==========================================
+# ПРИНЯТИЕ / ОТКЛОНЕНИЕ ОТКЛИКОВ (для автора заявки)
+# ==========================================
+
+@router.patch("/responses/{response_id}/accept")
+def accept_response(
+    response_id: int,
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    response = db.query(models.RequestResponse).filter(models.RequestResponse.id == response_id).first()
+    if not response:
+        raise HTTPException(status_code=404, detail="Отклик не найден")
+    
+    request = db.query(models.Request).filter(models.Request.id == response.request_id).first()
+    if request.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Только автор заявки может принимать отклики")
+    
+    response.status = "accepted"
+    
+    # Создаем уведомление для откликнувшегося
+    responder = db.query(models.User).filter(models.User.id == response.user_id).first()
+    notification = models.Notification(
+        user_id=response.user_id,
+        title="Ваш отклик принят!",
+        message=f"Ваш отклик на заявку '{request.title}' принят. Свяжитесь с организатором: {current_user.email}",
+        notification_type="response_accepted",
+        related_request_id=request.id
+    )
+    db.add(notification)
+    
+    # Проверяем, не набрано ли нужное количество людей
+    accepted_count = db.query(models.RequestResponse).filter(
+        models.RequestResponse.request_id == request.id,
+        models.RequestResponse.status == "accepted"
+    ).count()
+    
+    if accepted_count >= request.people_count:
+        request.status = "full"
+    
+    db.commit()
+    return {"message": "Отклик принят"}
+
+
+@router.patch("/responses/{response_id}/decline")
+def decline_response(
+    response_id: int,
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    response = db.query(models.RequestResponse).filter(models.RequestResponse.id == response_id).first()
+    if not response:
+        raise HTTPException(status_code=404, detail="Отклик не найден")
+    
+    request = db.query(models.Request).filter(models.Request.id == response.request_id).first()
+    if request.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Только автор заявки может отклонять отклики")
+    
+    response.status = "declined"
+    
+    # Уведомление для откликнувшегося
+    notification = models.Notification(
+        user_id=response.user_id,
+        title="Ваш отклик отклонен",
+        message=f"К сожалению, ваш отклик на заявку '{request.title}' отклонен.",
+        notification_type="response_declined",
+        related_request_id=request.id
+    )
+    db.add(notification)
+    
+    db.commit()
+    return {"message": "Отклик отклонен"}
+
+
+# ==========================================
+# ЭНДПОИНТ ДЛЯ АВТОРА: ВСЕ ОТКЛИКИ НА ЕГО ЗАЯВКИ
+# ==========================================
+
+@router.get("/requests/{request_id}/responses")
+def get_responses_for_my_request(
+    request_id: int,
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    request = db.query(models.Request).filter(models.Request.id == request_id).first()
+    if not request:
+        raise HTTPException(status_code=404, detail="Заявка не найдена")
+    if request.user_id != current_user.id:
+        raise HTTPException(status_code=403, detail="Только автор может видеть отклики")
+    
+    responses = db.query(models.RequestResponse).filter(
+        models.RequestResponse.request_id == request_id
+    ).all()
+    
+    result = []
+    for resp in responses:
+        user = db.query(models.User).filter(models.User.id == resp.user_id).first()
+        result.append({
+            "id": resp.id,
+            "status": resp.status,
+            "created_at": resp.created_at,
+            "user": {
+                "id": user.id,
+                "username": user.username,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "email": user.email
+            }
+        })
+    return result
+
+
+# ==========================================
+# СЧЕТЧИК НЕПРОЧИТАННЫХ УВЕДОМЛЕНИЙ
+# ==========================================
+
+@router.get("/notifications/unread-count")
+def get_unread_count(
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    count = db.query(models.Notification).filter(
+        models.Notification.user_id == current_user.id,
+        models.Notification.is_read == 0
+    ).count()
+    return {"unread_count": count}
+
+
+# ==========================================
+# ПРОЧИТАТЬ ВСЕ УВЕДОМЛЕНИЯ
+# ==========================================
+
+@router.patch("/notifications/read-all")
+def read_all_notifications(
+    current_user: models.User = Depends(auth.get_current_user),
+    db: Session = Depends(database.get_db)
+):
+    db.query(models.Notification).filter(
+        models.Notification.user_id == current_user.id,
+        models.Notification.is_read == 0
+    ).update({models.Notification.is_read: 1})
+    db.commit()
+    return {"message": "Все уведомления отмечены как прочитанные"}
+
+@router.get("/requests/{request_id}", response_model=schemas.RequestResponseModel)
+def get_request(
+    request_id: int,
+    db: Session = Depends(database.get_db)
+):
+    request = db.query(models.Request).filter(models.Request.id == request_id).first()
+    if not request:
+        raise HTTPException(status_code=404, detail="Заявка не найдена")
+    return request

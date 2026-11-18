@@ -61,3 +61,17 @@ class RequestResponse(Base):
 
     request = relationship("Request", back_populates="responses")
     user = relationship("User", back_populates="responses")
+
+class Notification(Base):
+    __tablename__ = "notifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    title = Column(String, nullable=False)
+    message = Column(Text, nullable=False)
+    notification_type = Column(String, nullable=False)
+    is_read = Column(Integer, default=0)  # 0 = не прочитано, 1 = прочитано
+    related_request_id = Column(Integer, ForeignKey("requests.id"), nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", backref="notifications")

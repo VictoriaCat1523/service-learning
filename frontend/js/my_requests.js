@@ -81,18 +81,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateCounters(containerId, items, statusField) {
-        const wrap = document.getElementById(containerId)?.closest('.requests-content, #responsesContent, #publicationsContent')
-            || document.getElementById(containerId)?.parentElement;
+        const wrap = document.getElementById(containerId)?.closest('#responsesContent, #publicationsContent');
         if (!wrap) return;
         const buttons = wrap.querySelectorAll('.stat-btn');
+        
         const all = items.length;
-        const active = items.filter(i => (i[statusField] || '') === 'active' || (i[statusField] || '') === 'pending').length;
-        const completed = items.filter(i => (i[statusField] || '') === 'completed' || (i[statusField] || '') === 'accepted').length;
-        const cancelled = items.filter(i => (i[statusField] || '') === 'cancelled' || (i[statusField] || '') === 'declined').length;
-        const values = { all, active, completed, cancelled };
+        const isResponses = wrap.id === 'responsesContent';
+        
+        // Разные маппинги для откликов и публикаций
+        const mapping = isResponses ? {
+            'all': all,
+            'pending': items.filter(i => i[statusField] === 'pending').length,
+            'accepted': items.filter(i => i[statusField] === 'accepted').length,
+            'declined': items.filter(i => i[statusField] === 'declined').length
+        } : {
+            'all': all,
+            'pending': items.filter(i => i[statusField] === 'active').length,      // active = на рассмотрении (для публикаций)
+            'accepted': items.filter(i => i[statusField] === 'full' || i[statusField] === 'closed').length, // full/closed = завершены
+            'declined': items.filter(i => i[statusField] === 'cancelled').length
+        };
+        
         buttons.forEach(b => {
             const num = b.querySelector('.stat-number');
-            if (num) num.textContent = values[b.dataset.filter] ?? 0;
+            if (num) num.textContent = mapping[b.dataset.filter] ?? 0;
         });
     }
 
