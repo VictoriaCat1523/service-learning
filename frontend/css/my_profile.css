@@ -1306,3 +1306,25 @@ button:hover {
 .favorites-find-btn:hover {
     opacity: 0.85;
 }
+
+
+
+.my_profile-inline-1 {
+    position:relative;
+}
+
+
+.my_profile-inline-2 {
+    display:none;
+    position:absolute;
+    top:-8px;
+    right:-12px;
+    background:#ef4444;
+    color:white;
+    border-radius:50%;
+    width:20px;
+    height:20px;
+    font-size:12px;
+    line-height:20px;
+    text-align:center;
+}

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
-:root{
+:root {
     --btn-bl: #5965e8;
     --title: #172b55;
     --sub-title: #7C84B5;
@@ -29,7 +29,7 @@
 
 /*ЦВЕТ ГИПЕРССЫЛОК*/
 
-header{
+header {
     border-bottom: 1.2px solid var(--sub-title);
 }
 
@@ -38,7 +38,8 @@ header a:visited {
     color: #5f6b85;
 }
 
-header .active a, header .active a:visited{
+header .active a,
+header .active a:visited {
     color: var(--btn-bl) !important;
 }
 
@@ -53,7 +54,7 @@ header .btn-entrance:visited {
     color: var(--btn-bl);
 }
 
-body{
+body {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -62,31 +63,31 @@ body{
     color: var(--title);
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.wrapper{
+.wrapper {
     background-color: #f5f7ff;
     min-height: 100vh;
 }
 
 
-.container{
+.container {
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
 }
 
 
-header{
+header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     width: 100%;
     height: 90px;
-    
+
     padding: 0 30px;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -96,16 +97,16 @@ header{
     display: flex;
     align-items: center;
     gap: 10px;
-    
+
     margin-left: 50px;
 }
 
-.bebebe{
+.bebebe {
     width: 50px;
     height: 50px;
 }
 
-.logo{
+.logo {
     margin: 20px;
     font-weight: 700;
     font-size: 45px;
@@ -116,32 +117,32 @@ header{
     color: var(--title);
 }
 
-nav{
+nav {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
 
-nav ul{
-    display:flex;
+nav ul {
+    display: flex;
     gap: 40px;
 
     list-style: none;
     align-items: center;
-    
+
     margin: 0;
     padding: 0;
 }
 
 
-.header_btns{
+.header_btns {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.header_btns a{
+.header_btns a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -176,7 +177,7 @@ nav ul{
 }
 
 /*ПОДДЕРЖКА*/
-.header_icons a img{
+.header_icons a img {
     width: 30px;
     height: 30px;
 }
@@ -266,7 +267,7 @@ nav ul{
     padding: 11px 10px;
     border-radius: 8px;
 
-    
+
     color: var(--sub-title) !important;
     font-size: 14px;
     text-decoration: none;
@@ -312,7 +313,7 @@ header nav ul li.active::after {
 
 
 
-/* ОСНОВНАЯ ЧАСТЬ*/ 
+/* ОСНОВНАЯ ЧАСТЬ*/
 .info {
     position: relative;
     display: flex;
@@ -321,15 +322,16 @@ header nav ul li.active::after {
     gap: 28px;
     padding: 40px 80px;
 }
+
 /* ТЕКСТ*/
-.text_locate h1{
+.text_locate h1 {
     font-size: 42px;
     margin-bottom: 0;
     color: var(--title);
     margin-top: 0;
 }
 
-.text_locate p{
+.text_locate p {
     margin-top: 0;
     font-size: 20px;
     color: #4F5B85;
@@ -337,15 +339,16 @@ header nav ul li.active::after {
 
 /* ПОЛЯ ВВОДА*/
 
-.LocateCompany{
+.LocateCompany {
     display: flex;
     align-items: center;
     gap: 20px;
-    color:  #7C84B5;
+    color: #7C84B5;
     box-shadow: none;
     outline: none;
     appearance: none;
 }
+
 /* ПОИСК ПЕРВЫЙ*/
 .locate-group {
     display: flex;
@@ -477,7 +480,7 @@ header nav ul li.active::after {
 
 /*ЗАГОЛОВОК*/
 
-.FilterHeader{
+.FilterHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -488,12 +491,12 @@ header nav ul li.active::after {
     margin-bottom: -20px;
 }
 
-.FilterHeader h1{
+.FilterHeader h1 {
     font-size: 20px;
     color: var(--title);
 }
 
-.reset_all{
+.reset_all {
     padding: 0;
     border: none;
     background: transparent;
@@ -504,23 +507,29 @@ header nav ul li.active::after {
 
 
 /*ПАРАМЕТРЫ ДЛЯ ВСЕХ ГРУПП*/
-.age, .categories, .gender{
+.age,
+.categories,
+.gender {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
 /*ПАРАМЕТРЫ ДЛЯ ТЕКСТА В ГРУППАХ*/
-.age h3, .categories h3, .gender h3{
+.age h3,
+.categories h3,
+.gender h3 {
     display: flex;
     font-size: 18px;
     color: var(--title);
     margin: 0;
-    
+
 }
 
 
-.age label, .categories label, .gender label{
+.age label,
+.categories label,
+.gender label {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -528,9 +537,10 @@ header nav ul li.active::after {
     font-size: 16px;
     color: #4F5B85;
 }
+
 /*ЧАСТЬ С КАТЕГОРИЯМИ*/
 
-.show_categories{
+.show_categories {
     align-self: flex-start;
     padding: 0;
     border: none;
@@ -542,7 +552,7 @@ header nav ul li.active::after {
 
 .show_categories:hover {
     color: #303BA8;
-    
+
 }
 
 
@@ -553,6 +563,7 @@ header nav ul li.active::after {
     accent-color: var(--btn-bl);
     cursor: pointer;
 }
+
 /*ЧАСТЬ С ВОЗРАСТОМ*/
 
 
@@ -658,7 +669,7 @@ header nav ul li.active::after {
 
 
 /*ПОКАЗАТЬ РЕЗУЛЬТАТ*/
-.apply_filters{
+.apply_filters {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -713,109 +724,273 @@ header nav ul li.active::after {
 
 
 
-    /*FOOTER С СОЦСЕТЯМИ И Т.П.*/
+/*FOOTER С СОЦСЕТЯМИ И Т.П.*/
 
-    .site-footer{
-        background-color: #232c40;
-        color: #ffff;
-        padding: 25px 80px;
-        margin-top: 60px;
+.site-footer {
+    background-color: #232c40;
+    color: #ffff;
+    padding: 25px 80px;
+    margin-top: 60px;
+}
+
+.footer-main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* ЛОГО И СЛОГАН*/
+
+.footer-brand {
+    width: 320px;
+    gap: 16px;
+}
+
+.footer-logo {
+    display: inline-flex;
+}
+
+.footer-logo img {
+    width: 60px;
+    height: 60px;
+    margin-right: 30px;
+}
+
+.footer-logo span {
+    font-size: 40px;
+}
+
+.footer-brand p {
+    font-size: 14px;
+    color: #C8D1E3;
+    margin: 10px 0 0;
+}
+
+/*ОБЩАЯ НАСТРОЙКА НАВИГАЦИИ, ИНФО И СОЦ. СЕТЕЙ*/
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    ;
+    gap: 10px;
+    min-width: 100px;
+}
+
+.footer-links h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.footer-links a {
+    font-size: 16px;
+    text-decoration: none;
+    color: #C8D1E3;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #8FA8FF;
+}
+
+/*СОЦИАЛНЫЕ ИКОНКИ*/
+.social-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    margin-top: 5px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.social-icon img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+
+    transition: filter 0.2s ease;
+}
+
+.social-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(72%) sepia(18%) saturate(1094%) hue-rotate(194deg) brightness(103%) contrast(101%);
+}
+
+/*НИЖНЯЯ ЧАСТ FOOTERA*/
+.footer-bottom {
+    margin-top: 30px;
+    border-top: 1px solid #5f6b85;
+    color: #5f6b85;
+    font-size: 14px;
+    padding-top: 15px;
+}
+
+
+.locate_company-inline-1 {
+    position: relative;
+}
+
+
+.locate_company-inline-2 {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: #ef4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
+
+
+.content-layout {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    align-items: start;
+    gap: 28px;
+    width: 100%;
+}
+
+.filter_list {
+    width: 280px;
+    min-width: 0;
+}
+
+.requests-list {
+    min-width: 0;
+    width: 100%;
+}
+
+#requests-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+}
+
+#requests-container>.request-card {
+    position: relative;
+    min-width: 0;
+    margin: 0 !important;
+    padding: 22px 22px 20px 25px !important;
+    overflow: hidden;
+    border: 1px solid #dce2f2 !important;
+    border-left: 4px solid #5965e8 !important;
+    border-radius: 15px !important;
+    background: #fff !important;
+    box-shadow: 0 5px 18px rgba(23, 43, 85, .055) !important;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+#requests-container>.request-card:hover {
+    transform: translateY(-3px);
+    border-color: #bfc9ed !important;
+    box-shadow: 0 10px 24px rgba(23, 43, 85, .10) !important;
+}
+
+#requests-container>.request-card>div:first-child {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 12px;
+    margin-bottom: 14px !important;
+}
+
+#requests-container>.request-card h3 {
+    min-width: 0;
+    margin: 0 !important;
+    color: #172b55 !important;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px !important;
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+#requests-container>.request-card>div:first-child span {
+    flex: 0 0 auto;
+    padding: 5px 11px !important;
+    border: 1px solid #e0e5ff;
+    border-radius: 999px !important;
+    background: #f0f2ff !important;
+    color: #5965e8 !important;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+}
+
+#requests-container>.request-card>p {
+    margin: 0 0 16px !important;
+    color: #596783 !important;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    line-height: 1.6 !important;
+    overflow-wrap: anywhere;
+}
+
+#requests-container>.request-card>div:nth-of-type(2) {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin: 0 0 18px !important;
+    color: #687695 !important;
+    font-family: "Poppins", sans-serif;
+    font-size: 13px !important;
+}
+
+#requests-container>.request-card .join-btn {
+    width: auto !important;
+    min-width: 145px;
+    padding: 10px 20px !important;
+    border: 0 !important;
+    border-radius: 9px !important;
+    background: #5965e8 !important;
+    color: #fff !important;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    font-weight: 600 !important;
+    transition: background .2s ease, transform .2s ease;
+}
+
+#requests-container>.request-card .join-btn:hover {
+    background: #4652d5 !important;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 1100px) {
+    .content-layout {
+        grid-template-columns: 260px minmax(0, 1fr);
     }
 
-    .footer-main{
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
+    .filter_list {
+        width: 260px;
     }
 
-    /* ЛОГО И СЛОГАН*/
+    #requests-container {
+        grid-template-columns: 1fr;
+    }
+}
 
-    .footer-brand{
-        width: 320px;
-        gap: 16px;
+@media (max-width: 760px) {
+    .content-layout {
+        grid-template-columns: minmax(0, 1fr);
     }
 
-    .footer-logo{
-        display: inline-flex;
+    .filter_list {
+        width: 100%;
     }
 
-    .footer-logo img{
-        width: 60px;
-        height: 60px;
-        margin-right: 30px;
+    #requests-container {
+        grid-template-columns: minmax(0, 1fr);
     }
+}
 
-    .footer-logo span{
-        font-size: 40px;
-    }
 
-    .footer-brand p{
-        font-size: 14px;
-        color: #C8D1E3;
-        margin: 10px 0 0 ;
-    }
-
-    /*ОБЩАЯ НАСТРОЙКА НАВИГАЦИИ, ИНФО И СОЦ. СЕТЕЙ*/
-
-    .footer-links{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;;
-        gap: 10px;
-        min-width: 100px;
-    }
-
-    .footer-links h3{
-        font-size: 20px;
-        margin: 0;
-    }
-
-    .footer-links a{
-        font-size: 16px;
-        text-decoration: none;
-        color: #C8D1E3;
-        transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover{
-        color: #8FA8FF;
-    }
-
-    /*СОЦИАЛНЫЕ ИКОНКИ*/
-    .social-links {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        gap: 16px;
-        margin-top: 5px;
-    }
-
-    .social-icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-    }
-
-    .social-icon img {
-        width: 36px;
-        height: 36px;
-        object-fit: contain;
-
-        transition: filter 0.2s ease;
-    }
-
-    .social-icon:hover img {
-        filter: brightness(0) saturate(100%)
-                invert(72%) sepia(18%) saturate(1094%)
-                hue-rotate(194deg) brightness(103%) contrast(101%);
-    }
-    /*НИЖНЯЯ ЧАСТ FOOTERA*/
-    .footer-bottom{
-        margin-top: 30px;
-        border-top: 1px solid #5f6b85;
-        color: #5f6b85;
-        font-size: 14px;
-        padding-top: 15px;
-    }

@@ -1,0 +1,149 @@
+/* Детальная страница заявки WITH */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --with-primary: #5965e8;
+    --with-navy: #172b55;
+    --with-muted: #7c84b5;
+    --with-bg: #f5f7ff;
+}
+
+body.wrapper {
+    background: var(--with-bg);
+    color: var(--with-navy);
+    font-family: 'Poppins', sans-serif;
+}
+
+.detail-container {
+    width: min(100% - 40px, 980px);
+    margin: 42px auto 72px;
+}
+
+.request-info,
+.responses-section {
+    background: #fff;
+    border: 1px solid #e8ebf7;
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 22px;
+    box-shadow: 0 10px 30px rgba(31, 52, 104, .06);
+}
+
+.request-info h1,
+.request-info h2,
+.responses-section h2 {
+    color: var(--with-navy);
+    font-weight: 700;
+}
+
+.response-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    padding: 18px;
+    border: 1px solid #e8ebf7;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    background: #fcfcff;
+}
+
+.response-user {
+    flex: 1;
+    min-width: 0;
+}
+
+.response-user strong {
+    color: var(--with-navy);
+}
+
+.response-user p {
+    margin: 5px 0 0;
+    color: #7782a2;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.response-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.btn-accept,
+.btn-decline {
+    border: 0;
+    padding: 9px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font: 600 13px 'Poppins', sans-serif;
+    transition: .2s;
+}
+
+.btn-accept {
+    background: #e9f8f1;
+    color: #16865a;
+}
+
+.btn-accept:hover {
+    background: #16865a;
+    color: white;
+}
+
+.btn-decline {
+    background: #fff0f0;
+    color: #d94b58;
+}
+
+.btn-decline:hover {
+    background: #d94b58;
+    color: white;
+}
+
+.btn-accept:disabled,
+.btn-decline:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    background: #fff6df;
+    color: #a46b08;
+}
+
+.status-accepted {
+    background: #e5f7ef;
+    color: #16865a;
+}
+
+.status-declined {
+    background: #fff0f0;
+    color: #c43f4b;
+}
+
+@media(max-width:640px) {
+    .detail-container {
+        width: calc(100% - 24px);
+        margin: 22px auto 40px;
+    }
+
+    .request-info,
+    .responses-section {
+        padding: 18px;
+        border-radius: 15px;
+    }
+
+    .response-item {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
